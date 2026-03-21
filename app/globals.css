@@ -1,27 +1,162 @@
+/* ============================================================
+   Pathly Website — Global Styles
+   Design System: see /DESIGN.md
+   ============================================================ */
+
+/* ----- Self-hosted Fonts (REGEL 3) ----- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/Inter-Variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/JetBrainsMono.woff2') format('woff2');
+}
+
+/* ----- Tailwind Layers ----- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+/* ----- CSS Custom Properties (DESIGN.md tokens) ----- */
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-navy: #133C7B;
+    --color-navy-hover: #1A4E9F;
+    --color-navy-tint: #EEF3FB;
+    --color-text: #333333;
+    --color-muted: #8498B9;
+    --color-bg: #FFFFFF;
+    --color-bg-soft: #F9FAFB;
+    --color-border: #E5EAF2;
+    --color-success: #00B870;
+
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* ----- Reset & Base ----- */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+  }
+
+  /* Heading defaults — weight defined by Tailwind classes */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-navy);
+    outline-offset: 2px;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: var(--color-navy-tint);
+    color: var(--color-navy);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* ----- Reduced Motion (REGEL 5) ----- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
+/* ----- Utility: Shimmer Button Animation ----- */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .shimmer-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 100%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+
+  /* Trust Ticker scroll animation */
+  .trust-scroll {
+    animation: scroll-left 30s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── Hero CSS-fade-in ───────────────────────────────────────────────────
+   * Pure CSS animations for above-the-fold content.
+   * Why CSS instead of Framer Motion initial={opacity:0}?
+   * → SSR renders opacity:0 into HTML; JS hydration can be delayed,
+   *   leaving hero invisible. CSS @keyframes fire independently of JS.
+   */
+  @keyframes hero-fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-fade-in {
+    animation: hero-fade-up 0.6s ease-out both;
+  }
+  .hero-fade-in-delay-1 {
+    animation: hero-fade-up 0.6s ease-out 0.1s both;
+  }
+  .hero-fade-in-delay-2 {
+    animation: hero-fade-up 0.6s ease-out 0.2s both;
+  }
+  .hero-fade-in-delay-3 {
+    animation: hero-fade-up 0.6s ease-out 0.3s both;
+  }
+  .hero-fade-in-delay-4 {
+    animation: hero-fade-up 0.6s ease-out 0.4s both;
   }
 }
