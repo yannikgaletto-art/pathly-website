@@ -1,52 +1,54 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { HERO, STATS } from "@/lib/constants";
 import { ShimmerButton } from "@/components/ui/ShimmerButton";
 import { FeatureChip } from "@/components/ui/FeatureChip";
 import { PhoneCarousel } from "@/components/ui/PhoneCarousel";
 import { CountUp } from "@/components/ui/CountUp";
+import { HighlightText } from "@/components/ui/HighlightText";
 
 /**
  * Hero section.
  *
- * Animation strategy: use CSS keyframe `hero-fade-in` for above-the-fold
- * content (text + CTAs) to avoid Framer Motion SSR/hydration flash where
- * initial={{ opacity: 0 }} would be server-rendered and then the JS
- * animation never fires until after full hydration.
- *
- * Phone and chips use Framer Motion with `initial={false}` — they appear
- * immediately visible and Framer Motion only handles the subtle scale entrance.
+ * Layout: The headline fills the viewport as a single line, no
+ * distractions — no badges, no subline, no CTAs above the fold.
+ * "gesehen zu werden." has a marker-highlight + "Pathly" badge
+ * that sweeps in (inspired by ready.so Febby animation).
  */
 export function Hero() {
   return (
     <section
       aria-label="Hero"
-      className="relative overflow-hidden bg-white px-6 pt-20 pb-16 md:pt-28 md:pb-24"
+      className="relative overflow-hidden bg-white"
     >
-      <div className="mx-auto max-w-site">
-        {/* Single-column centred layout */}
-        <div className="flex flex-col items-center text-center gap-8">
-
-          {/* DSGVO Badge */}
-          <div className="hero-fade-in inline-flex items-center gap-2 rounded-full bg-navy-tint px-4 py-2 text-[13px] font-semibold text-navy">
-            🇪🇺 DSGVO-konform · EU-gehostet
-          </div>
-
-          {/* Headline */}
+      {/* ── Full-viewport Headline Block ──────────────────────── */}
+      <div className="flex items-center justify-center min-h-[100svh] px-6">
+        <div className="text-center w-full">
+          {/* Headline — single line, smaller font to fit */}
           <h1
-            className="hero-fade-in-delay-1 text-[48px] md:text-[64px] font-bold text-text leading-[1.1] tracking-[-0.03em] max-w-[760px]"
+            className="hero-fade-in-delay-1 text-[clamp(1.75rem,4.2vw,3.5rem)] font-bold text-text leading-[1.15] tracking-[-0.03em] whitespace-nowrap"
           >
-            {HERO.headline}
+            Jeder verdient es,{" "}
+            <HighlightText color="#CADCF2" delay={400} badge="Pathly" badgeColor="#CADCF2">
+              gesehen zu werden.
+            </HighlightText>
           </h1>
 
+
+        </div>
+      </div>
+
+      {/* ── Below-fold content ────────────────────────────────── */}
+      <div className="mx-auto max-w-site px-6 pb-16 md:pb-24">
+        <div className="flex flex-col items-center text-center gap-8">
+
           {/* Subline */}
-          <p className="hero-fade-in-delay-2 text-[18px] text-muted leading-[1.7] max-w-2xl">
+          <p className="text-[18px] text-muted leading-[1.7] max-w-2xl">
             {HERO.subheadline}
           </p>
 
           {/* CTAs */}
-          <div className="hero-fade-in-delay-3 flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <ShimmerButton href="#waitlist" size="lg">
               Kostenlos starten →
             </ShimmerButton>
@@ -63,7 +65,7 @@ export function Hero() {
           </div>
 
           {/* Phone Mockup + Chip Cluster */}
-          <div className="hero-fade-in-delay-4 relative w-full flex justify-center mt-4">
+          <div className="relative w-full flex justify-center mt-4">
             {/* Floating chips — hidden on mobile */}
             <div className="absolute z-10 top-[12%] left-[5%] hidden md:block">
               <FeatureChip label={HERO.chips[0]} delay={0} />
@@ -82,7 +84,7 @@ export function Hero() {
           </div>
 
           {/* Stats Row */}
-          <div className="hero-fade-in-delay-4 w-full grid grid-cols-3 divide-x divide-border max-w-2xl mt-2">
+          <div className="w-full grid grid-cols-3 divide-x divide-border max-w-2xl mt-2">
             {STATS.map((stat) => (
               <div key={stat.label} className="px-8 py-4 text-center first:pl-0 last:pr-0">
                 <CountUp

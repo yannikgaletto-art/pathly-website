@@ -1,62 +1,44 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FINAL_CTA, SITE } from "@/lib/constants";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { ShimmerButton } from "@/components/ui/ShimmerButton";
 
+/**
+ * Section 09 — Final CTA
+ * Centered card on #EEF3FB background with Tally popup trigger.
+ * Generous whitespace (128px vertical padding).
+ */
 export function FinalCTA() {
-  const tallyId = SITE.tallyFormId;
-
   return (
-    <SectionWrapper id="waitlist" ariaLabel="Warteliste">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6 }}
-        className="relative rounded-2xl bg-gradient-to-br from-navy to-navy-hover p-12 md:p-16 text-center text-white overflow-hidden"
-      >
-        {/* Background glow */}
-        <div className="absolute -top-24 -right-24 w-[400px] h-[400px] bg-white/5 rounded-full blur-3xl pointer-events-none" />
+    <section id="waitlist" aria-label="Warteliste" className="bg-white px-6 py-32">
+      <div className="mx-auto max-w-[640px]">
+        {/* CTA Card */}
+        <div className="rounded-2xl bg-navy-tint border border-border p-12 md:p-16 text-center">
+          <h2 className="text-[28px] md:text-[36px] font-bold text-navy leading-tight">
+            {FINAL_CTA.headline}
+          </h2>
 
-        <h2 className="text-h2-mobile lg:text-h2-desktop font-bold relative z-10">
-          {FINAL_CTA.headline}
-        </h2>
-        <p className="mt-4 text-lg text-white/80 max-w-xl mx-auto relative z-10">
-          {FINAL_CTA.subheadline}
-        </p>
+          <p className="mt-4 text-[16px] text-muted leading-relaxed">
+            {FINAL_CTA.body}
+          </p>
 
-        <div className="mt-8 relative z-10">
-          {tallyId ? (
-            /* Tally.so Embed — DSGVO-konform (EU Server) */
-            <iframe
-              data-tally-src={`https://tally.so/embed/${tallyId}?alignLeft=1&hideTitle=1&transparentBackground=1`}
-              loading="lazy"
-              width="100%"
-              height="200"
-              title="Pathly Warteliste"
-              className="rounded-lg"
-              // F-06 fix: sandbox restricts iframe capabilities (no top-nav, no popups)
-              sandbox="allow-scripts allow-forms allow-same-origin"
-            />
-          ) : (
-            /* Fallback: Direct CTA link when no Tally form configured */
+          <div className="mt-8">
             <ShimmerButton
-              href={`mailto:hello@${SITE.domain}?subject=Warteliste%20Pathly`}
+              href="#"
               size="lg"
-              variant="secondary"
-              className="bg-white text-navy hover:bg-gray-50"
+              data-tally-open={SITE.tallyFormId || undefined}
+              data-tally-emoji-text="👋"
+              data-tally-emoji-animation="wave"
             >
               {FINAL_CTA.cta}
             </ShimmerButton>
-          )}
-        </div>
+          </div>
 
-        <p className="mt-4 text-small text-white/60 relative z-10">
-          {FINAL_CTA.note}
-        </p>
-      </motion.div>
-    </SectionWrapper>
+          <p className="mt-4 text-[12px] text-muted">
+            {FINAL_CTA.note}
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

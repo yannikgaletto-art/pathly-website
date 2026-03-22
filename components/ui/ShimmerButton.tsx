@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-interface ShimmerButtonProps {
+interface ShimmerButtonProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
@@ -13,6 +13,7 @@ interface ShimmerButtonProps {
 
 /**
  * Custom shimmer CTA button — Tailwind-only, no external lib (REGEL 8).
+ * Supports arbitrary HTML attributes (data-tally-*, aria-*, etc.) via rest spread.
  */
 export function ShimmerButton({
   children,
@@ -21,6 +22,7 @@ export function ShimmerButton({
   className,
   variant = "primary",
   size = "md",
+  ...rest
 }: ShimmerButtonProps) {
   const baseClasses = cn(
     "shimmer-btn inline-flex items-center justify-center font-semibold rounded-md transition-colors duration-200 focus-visible:outline-navy",
@@ -35,14 +37,14 @@ export function ShimmerButton({
 
   if (href) {
     return (
-      <a href={href} className={baseClasses}>
+      <a href={href} className={baseClasses} {...rest}>
         {children}
       </a>
     );
   }
 
   return (
-    <button onClick={onClick} className={baseClasses}>
+    <button onClick={onClick} className={baseClasses} {...rest}>
       {children}
     </button>
   );

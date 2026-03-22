@@ -39,158 +39,175 @@ export const HERO = {
 } as const;
 
 // ─── Trust Ticker ────────────────────────────────────────────
-export const TRUST = {
+export const TRUST_TICKER = {
   quote:
-    "»74 % aller Bewerbungen werden von ATS-Systemen aussortiert, bevor ein Mensch sie liest.«",
-  source: "Harvard Business Review, 2024",
-  badges: [
-    "EU-gehostet",
-    "DSGVO-konform",
-    "Ende-zu-Ende verschlüsselt",
-    "Kein Datenverkauf",
-  ],
+    "Harvard × Accenture (2021): Millionen qualifizierter Kandidaten werden durch automatisierte Systeme aussortiert — nicht wegen mangelnder Qualifikation.",
+  url: "https://www.hbs.edu/managing-the-future-of-work/Documents/research/hiddenworkers09032021.pdf",
+  linkLabel: "Studie lesen →",
 } as const;
 
 // ─── Problem Section ────────────────────────────────────────
-export const PROBLEM = {
-  sectionLabel: "Das Problem",
-  headline: "90 % der Jobsuchenden bewerben sich falsch.",
+export const PROBLEMS = {
+  headline: "Das Recruiting-System ist strukturell kaputt.",
+  subline: "Nicht deine Qualifikation ist das Problem.",
   items: [
     {
-      emoji: "📋",
-      title: "Generische Lebensläufe",
-      body: "Derselbe CV für jede Stelle — ATS-Systeme sortieren dich sofort aus.",
+      id: "01",
+      tag: "ATS-Filter",
+      headline: "75% werden aussortiert, bevor ein Mensch deine Bewerbung liest",
+      body: "Applicant Tracking Systems (ATS) scannen deinen CV in Sekunden. Ohne die richtigen Keywords bist du raus; egal wie qualifiziert du bist.",
+      solution: "Pathly optimiert deinen CV mit ATS-Keywords pro Stelle.",
+      source: "Studie: Harvard Business School, 2021",
+      sourceUrl: "https://www.hbs.edu/managing-the-future-of-work/Documents/research/hiddenworkers09032021.pdf",
     },
     {
-      emoji: "✍️",
-      title: "Leere Anschreiben",
-      body: "»Hiermit bewerbe ich mich…« — HR-Manager lesen nicht weiter.",
+      id: "02",
+      tag: "Generische Bewerbung",
+      headline: "Gleicher CV und CL für jede Stelle = Rekrutier kennen das Wording von GBT Texten",
+      body: "Recruiter erkennen Copy-Paste sofort. Ohne individuellen Bezug zur Stelle hast du keine Chance gegen optimierte Konkurrenz.",
+      solution: "Pathly generiert Anschreiben in deinem Stil — pro Job.",
+      source: "Studie: Stepstone Recruiting Report, 2023",
+      sourceUrl: "https://www.stepstone.de/e-recruiting/hr-report/",
     },
     {
-      emoji: "🕳️",
-      title: "Blindes Bewerben",
-      body: "Keine Recherche, kein Unternehmensbezug, kein Plan — kein Gespräch.",
+      id: "03",
+      tag: "Blindes Bewerben",
+      headline: "Keine Recherche, kein Gespräch.",
+      body: "Du bewirbst dich ohne zu wissen, was das Unternehmen wirklich sucht. Ohne Kontext klingst du wie alle anderen.",
+      solution: "Pathly recherchiert das Unternehmen automatisch für dich.",
+      source: "Studie: LinkedIn Talent Trends, 2024",
+      sourceUrl: "https://business.linkedin.com/talent-solutions/global-talent-trends",
     },
   ],
 } as const;
 
 // ─── How It Works ────────────────────────────────────────────
 export const HOW_IT_WORKS = {
-  sectionLabel: "So funktioniert's",
-  headline: "Von der Stellenanzeige zum Vorstellungsgespräch.",
+  headline: "So funktioniert Pathly.",
+  subline: "Vier Schritte. Kein Chaos.",
   steps: [
     {
       step: "01",
-      title: "Job finden",
-      body: "Pathly durchsucht Stellenportale und zeigt dir nur relevante Jobs — gefiltert nach deinen Werten und Skills.",
-      icon: "search",
+      title: "Job finden & einfügen",
+      body: "Füge eine Stellenanzeige ein — Pathly extrahiert automatisch alle relevanten Infos und erstellt einen strukturierten Steckbrief.",
     },
     {
       step: "02",
       title: "CV optimieren",
-      body: "Dein Lebenslauf wird für jede Stelle individuell optimiert. ATS-Keywords, klare Struktur, 2-Seiten Format.",
-      icon: "file",
+      body: "Dein Lebenslauf wird für jede Stelle individuell optimiert. ATS-Keywords, klare Struktur, professionelles Format.",
     },
     {
       step: "03",
       title: "Anschreiben generieren",
       body: "KI-gestützt, aber in deiner Sprache. Mit Unternehmensbezug, persönlichem Stil und ohne Floskeln.",
-      icon: "pen",
     },
     {
       step: "04",
       title: "Interview vorbereiten",
-      body: "Mock-Interviews mit KI-Coach. Gap-Analyse, PREP-Framework und personalisiertes Feedback.",
-      icon: "mic",
+      body: "Mock-Interviews mit KI-Coach. Gap-Analyse, PREP-Framework und personalisiertes Feedback nach jeder Session.",
     },
   ],
 } as const;
 
-// ─── Features Section ───────────────────────────────────────
+// ─── Features Section (Tab-based) ───────────────────────────
 export const FEATURES = {
-  sectionLabel: "Funktionen",
-  headline: "Alles, was du für eine erfolgreiche Bewerbung brauchst.",
-  items: [
+  headline: "Alles in einem System.",
+  subline: "Kein Tab-Switching. Kein manuelles Tracking.",
+  tabs: [
     {
-      title: "Job Pipeline",
-      body: "Automatisches Scraping, Steckbrief-Preview, Culture-Fit-Scoring — alles in einer Queue.",
+      label: "Job Queue",
+      headline: "Deine Bewerbungs-Pipeline auf einen Blick",
+      bullets: [
+        "Automatisches Job-Matching nach deinem Profil",
+        "Status-Tracking für jede Bewerbung",
+        "Bis zu 5 aktive Jobs parallel verwalten",
+      ],
       screen: "/images/screen-02-queue.jpg",
     },
     {
-      title: "Cover Letter Studio",
-      body: "3-stufige Generierung mit Writing-Style-Analyse. Zitate, Hiring-Manager-Kritik, Anti-Fluff-Filter.",
+      label: "CV Optimizer",
+      headline: "Dein CV, optimiert für jeden Job einzeln",
+      bullets: [
+        "ATS-Keyword Alignment pro Stelle",
+        "Match-Score Anzeige vor dem Absenden",
+        "Originale Formatierung bleibt erhalten",
+      ],
+      screen: "/images/screen-01-goals.jpg",
+    },
+    {
+      label: "Cover Letter",
+      headline: "Anschreiben in deinem Stil — nicht in KI-Sprache",
+      bullets: [
+        "Schreibstil-Analyse aus deinen eigenen Texten",
+        "Skeptical Hiring Manager Critique eingebaut",
+        "Fertig in unter 3 Minuten",
+      ],
       screen: "/images/screen-03-cover.jpg",
     },
     {
-      title: "Interview Coaching",
-      body: "3-Runden Mock-Interview mit PREP- und 3-2-1-Framework. Personalisierte Gap-Analyse nach jeder Session.",
+      label: "Coaching",
+      headline: "Interview-Training, das dich wirklich vorbereitet",
+      bullets: [
+        "KI-Gesprächspartner simuliert echte Interviews",
+        "Analyse deiner Antworten nach dem Gespräch",
+        "Basiert auf der echten Stellenbeschreibung",
+      ],
       screen: "/images/screen-04-coach.jpg",
-    },
-    {
-      title: "Today's Goals",
-      body: "Pulse Board, Pomodoro-Tracking, Drag-and-Drop Tasks — dein tägliches Cockpit für die Jobsuche.",
-      screen: "/images/screen-01-goals.jpg",
     },
   ],
 } as const;
 
-// ─── Differentiation Section ────────────────────────────────
+// ─── Differentiation Section (Comparison Table) ─────────────
 export const DIFFERENTIATION = {
-  sectionLabel: "Warum Pathly",
-  headline: "Was uns von anderen unterscheidet.",
-  items: [
-    {
-      title: "Mensch entscheidet — KI assistiert",
-      body: "Keine Bewerbung wird ohne deine Freigabe versendet. Du behältst immer die Kontrolle.",
-    },
-    {
-      title: "DSGVO by Design",
-      body: "EU-gehostet, PII-verschlüsselt, automatische Datenlöschung. Kein Tracking, kein Datenverkauf.",
-    },
-    {
-      title: "Dein Stil, nicht ChatGPT-Stil",
-      body: "Pathly lernt deinen Schreibstil und generiert Anschreiben, die nach dir klingen — nicht nach einer Maschine.",
-    },
-    {
-      title: "Transparent & Fair",
-      body: "Du siehst genau, welche KI was generiert hat. Audit Trail für jede Generation. Keine Black Box.",
-    },
+  headline: "Warum nicht einfach ChatGPT?",
+  subline: "Weil generisch der neue Ablehnungsgrund ist.",
+  rows: [
+    { feature: "Schreibstil", pathly: "Dein Stil", chatgpt: "Generisch" },
+    { feature: "ATS-Optimierung", pathly: "Pro Job", chatgpt: "Manuell" },
+    { feature: "Quellencheck", pathly: "Echtzeit", chatgpt: "Veraltet" },
+    { feature: "Hiring Manager", pathly: "Kritik", chatgpt: "Keins" },
+    { feature: "Datenschutz", pathly: "EU-DSGVO", chatgpt: "US-Server" },
+    { feature: "Job-Tracking", pathly: "Pipeline", chatgpt: "Keins" },
   ],
+  trustBadges: ["🔒 EU-gehostet", "🛡️ DSGVO-konform", "🇪🇺 NIS2-ready"],
 } as const;
 
 // ─── Testimonials ────────────────────────────────────────────
 export const TESTIMONIALS = {
-  sectionLabel: "Erfahrungen",
-  headline: "Von Early Adopters, die den Unterschied spüren.",
+  headline: "Was andere sagen.",
+  subline: "Echte Erfahrungen — kein Marketing-Text.",
   items: [
     {
       quote:
-        "Pathly hat mir in 2 Wochen 3 Vorstellungsgespräche gebracht. Vorher hatte ich in 3 Monaten kein einziges.",
+        "Ich habe mich 3 Monate lang beworben und kaum Antworten bekommen. Mit Pathly hatte ich in 2 Wochen zwei Interviews.",
       name: "Sarah K.",
-      role: "Marketing Managerin, München",
+      role: "Product Managerin",
+      initials: "SK",
     },
     {
       quote:
-        "Endlich ein Tool, das mir nicht das Gefühl gibt, meine Daten zu verschenken. EU-gehostet, DSGVO-konform — genau was ich gesucht habe.",
-      name: "Lukas M.",
-      role: "Software Engineer, Berlin",
+        "Das Anschreiben klingt tatsächlich wie ich. Nicht wie ein Roboter. Das ist der Unterschied.",
+      name: "Marcus T.",
+      role: "UX Designer",
+      initials: "MT",
     },
     {
       quote:
-        "Das Interview-Coaching hat mir gezeigt, wo ich in Gesprächen Schwächen habe. Die Gap-Analyse war ein Augenöffner.",
-      name: "Nina R.",
-      role: "Product Designerin, Wien",
+        "Endlich weiß ich welche Jobs wirklich zu mir passen — und nicht nur welche zufällig auf LinkedIn auftauchen.",
+      name: "Lena R.",
+      role: "Data Analyst",
+      initials: "LR",
     },
   ],
+  disclaimer: "* Platzhalter bis Beta-Testimonials verfügbar",
 } as const;
 
 // ─── Final CTA ───────────────────────────────────────────────
 export const FINAL_CTA = {
-  headline: "Bereit, gesehen zu werden?",
-  subheadline:
-    "Trag dich in die Warteliste ein und gehöre zu den Ersten, die Pathly nutzen dürfen.",
-  cta: "Jetzt Warteliste beitreten",
-  note: "Kostenlos. Keine Kreditkarte. Jederzeit kündbar.",
+  headline: "Hör auf, ins Leere zu bewerben.",
+  body: "Pathly ist aktuell in der Beta-Phase. Trage dich jetzt ein und sei einer der Ersten.",
+  cta: "Kostenlos zur Warteliste →",
+  note: "Kein Spam. Keine Kreditkarte. Jederzeit abmeldbar.",
 } as const;
 
 // ─── Footer ──────────────────────────────────────────────────
@@ -201,9 +218,6 @@ export const FOOTER = {
   links: [
     { label: "Impressum", href: "/impressum" },
     { label: "Datenschutz", href: "/datenschutz" },
-  ],
-  socials: [
-    { label: "LinkedIn", href: "https://linkedin.com/company/pathly", icon: "linkedin" },
   ],
 } as const;
 

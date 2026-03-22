@@ -28,7 +28,7 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'", // required for Next.js inline hydration
+              "script-src 'self' 'unsafe-inline' https://tally.so", // Next.js inline hydration + Tally popup
               "style-src 'self' 'unsafe-inline'",  // required for Tailwind
               "img-src 'self' data: blob:",
               "font-src 'self'",

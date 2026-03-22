@@ -1,69 +1,92 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { FEATURES } from "@/lib/constants";
-import { SectionWrapper } from "@/components/ui/SectionWrapper";
 
+/**
+ * Section 06 — Features (Tab-based)
+ * 4 horizontal tabs that switch content: left side has headline + 3 bullets,
+ * right side shows a placeholder/screenshot image.
+ * No Framer Motion AnimatePresence — uses CSS transitions for tab switching.
+ */
 export function Features() {
   const [active, setActive] = useState(0);
+  const tab = FEATURES.tabs[active];
 
   return (
-    <SectionWrapper id="features" ariaLabel={FEATURES.sectionLabel}>
-      <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-        <p className="text-small font-semibold text-navy uppercase tracking-wider mb-4">
-          {FEATURES.sectionLabel}
-        </p>
-        <h2 className="text-h2-mobile lg:text-h2-desktop font-bold text-text">
-          {FEATURES.headline}
-        </h2>
-      </div>
+    <section id="features" aria-label="Features" className="bg-white px-6 py-16 md:py-24">
+      <div className="mx-auto max-w-site">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-[32px] md:text-[40px] font-bold text-text leading-tight">
+            {FEATURES.headline}
+          </h2>
+          <p className="mt-4 text-[16px] text-muted">
+            {FEATURES.subline}
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Tab List */}
-        <div className="flex flex-col gap-4">
-          {FEATURES.items.map((item, i) => (
+        {/* Tab Navigation */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {FEATURES.tabs.map((t, i) => (
             <button
-              key={item.title}
+              key={t.label}
               onClick={() => setActive(i)}
-              className={`text-left rounded-lg border p-6 transition-all duration-200 ${
+              className={`px-5 py-2.5 rounded-md text-[14px] font-medium transition-all duration-200 ${
                 active === i
-                  ? "border-navy bg-navy-tint shadow-md"
-                  : "border-border bg-white hover:border-navy/30 hover:shadow-sm"
+                  ? "bg-navy text-white shadow-sm"
+                  : "bg-transparent text-muted hover:text-navy hover:bg-navy-tint"
               }`}
             >
-              <h3 className={`text-h3-mobile lg:text-h3-desktop font-semibold ${
-                active === i ? "text-navy" : "text-text"
-              }`}>
-                {item.title}
-              </h3>
-              <p className="mt-2 text-body text-muted">{item.body}</p>
+              {t.label}
             </button>
           ))}
         </div>
 
-        {/* Screenshot Preview */}
-        <div className="relative aspect-[4/3] rounded-xl border border-border bg-bg-soft overflow-hidden shadow-lg">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-            >
-              <Image
-                src={FEATURES.items[active].screen}
-                alt={FEATURES.items[active].title}
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-          </AnimatePresence>
+        {/* Tab Content — CSS transition instead of AnimatePresence */}
+        <div
+          key={active}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-fade-in"
+        >
+          {/* Left: Text */}
+          <div>
+            <h3 className="text-[24px] font-semibold text-text leading-snug">
+              {tab.headline}
+            </h3>
+            <ul className="mt-6 space-y-4">
+              {tab.bullets.map((bullet) => (
+                <li key={bullet} className="flex items-start gap-3">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-navy shrink-0 mt-0.5"
+                  >
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  <span className="text-[16px] text-muted leading-relaxed">{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right: Screenshot */}
+          <div className="relative aspect-[4/3] rounded-xl border border-border bg-bg-soft overflow-hidden shadow-lg">
+            <Image
+              src={tab.screen}
+              alt={tab.label}
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }
