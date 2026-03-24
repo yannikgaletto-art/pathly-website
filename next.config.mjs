@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
+
+const isDev = process.env.NODE_ENV === 'development';
+
 const nextConfig = {
+  transpilePackages: ['gsap', '@gsap/react'],
   // F-02: local assets are served from /public — no remote domains needed
   images: {
     unoptimized: true, // static export compatible; swap to remotePatterns if CDN is added
@@ -22,13 +26,16 @@ const nextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
-          // Basic Content Security Policy — tightened for landing page
-          // Allows: self, inline styles (Tailwind), Tally.so iframe
+          // Content Security Policy
+          // Dev: unsafe-eval required for Webpack hot-module replacement (eval-source-map)
+          // Prod: unsafe-eval removed — webpack uses non-eval bundling in production builds
           {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' https://tally.so", // Next.js inline hydration + Tally popup
+              isDev
+                ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tally.so" // webpack HMR needs eval in dev
+                : "script-src 'self' 'unsafe-inline' https://tally.so",              // prod: no eval
               "style-src 'self' 'unsafe-inline'",  // required for Tailwind
               "img-src 'self' data: blob:",
               "font-src 'self'",

@@ -25,7 +25,7 @@ export const NAV_CTA = "Jetzt starten →" as const;
 
 // ─── Hero Section ────────────────────────────────────────────
 export const HERO = {
-  headline: "Jeder verdient es,\ngesehen zu werden.",
+  headline: "Jeder Mensch verdient es,\ngesehen zu werden.",
   subheadline:
     "Pathly bereitet deinen Lebenslauf, dein Anschreiben und dein Profil so auf, dass Recruiting-KIs dich nicht übersehen können.",
   cta: "Kostenlos starten →",
@@ -48,35 +48,33 @@ export const TRUST_TICKER = {
 
 // ─── Problem Section ────────────────────────────────────────
 export const PROBLEMS = {
-  headline: "Das Recruiting-System ist strukturell kaputt.",
-  subline: "Nicht deine Qualifikation ist das Problem.",
+  headline: "Weißt Du, was mit deiner Bewerbung passiert, bevor ein Mensch sie liest?",
   items: [
     {
       id: "01",
       tag: "ATS-Filter",
-      headline: "75% werden aussortiert, bevor ein Mensch deine Bewerbung liest",
-      body: "Applicant Tracking Systems (ATS) scannen deinen CV in Sekunden. Ohne die richtigen Keywords bist du raus; egal wie qualifiziert du bist.",
-      solution: "Pathly optimiert deinen CV mit ATS-Keywords pro Stelle.",
-      source: "Studie: Harvard Business School, 2021",
-      sourceUrl: "https://www.hbs.edu/managing-the-future-of-work/Documents/research/hiddenworkers09032021.pdf",
+      headline: "Eine **KI** liest deinen **CV** zuerst. Recruiter nehmen sich im Schnitt **7,4 Sekunden** Zeit.",
+      body: "**98%** der Fortune-500-Unternehmen nutzen **Applicant Tracking Systems** (ATS), die CVs nach Keywords ranken, bevor ein Mensch sie sieht. Kommt dein CV durch, scannt ein Recruiter im Schnitt nur 7,4 Sekunden, dabei folgt das Auge dem **F-Pattern**: Jobtitel, aktuelle Stelle, Keywords oben links. Was dort fehlt, wird nie gelesen.",
+      source: "Resume Statistics Report, 2026",
+      sourceUrl: "https://www.resume-now.com/job-resources/jobs/resume-statistics#:~:text=11.,keyword%20alignment%20before%20submitting%20applications.",
+      sourceUrlSecondary: "https://www.bu.edu/com/files/2018/10/TheLadders-EyeTracking-StudyC2.pdf",
+      sourceSecondaryLabel: "TheLadders Eye-Tracking Study, 2012 ↗",
     },
     {
       id: "02",
       tag: "Generische Bewerbung",
-      headline: "Gleicher CV und CL für jede Stelle = Rekrutier kennen das Wording von GBT Texten",
-      body: "Recruiter erkennen Copy-Paste sofort. Ohne individuellen Bezug zur Stelle hast du keine Chance gegen optimierte Konkurrenz.",
-      solution: "Pathly generiert Anschreiben in deinem Stil — pro Job.",
-      source: "Studie: Stepstone Recruiting Report, 2023",
-      sourceUrl: "https://www.stepstone.de/e-recruiting/hr-report/",
+      headline: "Durch ein **personalisiertes Anschreiben**, steigt die Chance auf ein Interview um **+53%**.",
+      body: "Ein **Feldexperiment** mit **7.287** echten **Bewerbungen** zeigt: Maßgeschneiderte Anschreiben führten zu 53% mehr Interview-Einladungen. Generische Copy-Paste-Texte brachten nur +17%. 78% der Recruiter erkennen KI-generierte Standardtexte sofort und werten sie als **Zeichen mangelnder Motivation**.",
+      source: "ResumeGo Field Experiment, 2020 (n = 7.287)",
+      sourceUrl: "https://www.resumego.net/research/cover-letters/",
     },
     {
       id: "03",
-      tag: "Blindes Bewerben",
-      headline: "Keine Recherche, kein Gespräch.",
-      body: "Du bewirbst dich ohne zu wissen, was das Unternehmen wirklich sucht. Ohne Kontext klingst du wie alle anderen.",
-      solution: "Pathly recherchiert das Unternehmen automatisch für dich.",
-      source: "Studie: LinkedIn Talent Trends, 2024",
-      sourceUrl: "https://business.linkedin.com/talent-solutions/global-talent-trends",
+      tag: "Zahlen im CV",
+      headline: "**81–92%** aller CVs enthalten keine einzige Zahl.",
+      body: "Recruiter und ATS-Systeme bevorzugen messbare Erfolge statt Aufgabenlisten. Wer Metriken einsetzt, z.B. \"Kosten um 23% gesenkt\", hat bis zu **40% bessere Chancen** auf ein Interview. Fast niemand macht es. **34%** der Recruiter nennen fehlende Zahlen explizit als Ablehnungsgrund.",
+      source: "Resume Statistics Report, 2026",
+      sourceUrl: "https://www.resume-now.com/job-resources/jobs/resume-statistics",
     },
   ],
 } as const;

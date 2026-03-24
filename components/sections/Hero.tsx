@@ -28,10 +28,15 @@ export function Hero() {
           <h1
             className="hero-fade-in-delay-1 text-[clamp(1.75rem,4.2vw,3.5rem)] font-bold text-text leading-[1.15] tracking-[-0.03em] whitespace-nowrap"
           >
-            Jeder verdient es,{" "}
-            <HighlightText color="#CADCF2" delay={400} badge="Pathly" badgeColor="#CADCF2">
-              gesehen zu werden.
-            </HighlightText>
+            <span data-hero-word>Jeder</span>{" "}
+            <span data-hero-word>Mensch</span>{" "}
+            <span data-hero-word>verdient</span>{" "}
+            <span data-hero-word>es,</span>{" "}
+            <span data-hero-word data-hero-highlight>
+              <HighlightText color="#CADCF2" badge="Pathly" badgeColor="#CADCF2">
+                gesehen zu werden.
+              </HighlightText>
+            </span>
           </h1>
 
 
