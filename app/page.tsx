@@ -1,9 +1,9 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { TrustTicker } from "@/components/sections/TrustTicker";
 import { Problem } from "@/components/sections/Problem";
 import { ScrollSection } from "@/components/sections/ScrollSection";
+import { Comparison } from "@/components/sections/Comparison";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
 import { Differentiation } from "@/components/sections/Differentiation";
@@ -19,7 +19,7 @@ export default function HomePage() {
           <Hero />
           <Problem />
         </ScrollSection>
-        <TrustTicker />
+        <Comparison />
         <HowItWorks />
         <Features />
         <Differentiation />

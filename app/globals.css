@@ -157,6 +157,33 @@
     from { opacity: 0; }
     to   { opacity: 1; }
   }
+
+  /* ── Typewriter cursor blink ────────────────────────────────────────────── */
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* Blinking | cursor — toggled visible/hidden via JS (ScrollSection) */
+  .typewriter-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background-color: currentColor;
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    border-radius: 1px;
+    animation: cursor-blink 0.7s step-end infinite;
+    /* Hidden by default — GSAP sets visibility during animation */
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Finite blink: 7 times then stops (cursor stays visible = opacity 1 at end) */
+  .cursor-blink-7 {
+    animation: cursor-blink 0.7s step-end 7 forwards;
+  }
+
   /* ── Marker highlight sweep (HighlightText.tsx) ──────────────────────── */
   @keyframes marker-sweep {
     from { background-size: 0% 90%; }

@@ -233,3 +233,63 @@ export const STATS = [
   { value: 3, suffix: "x", label: "mehr Vorstellungsgespräche mit optimiertem CV" },
   { value: 12, suffix: "s", label: "durchschnittliche CV-Prüfzeit durch HR" },
 ] as const;
+
+// ─── Comparison (Before/After) ───────────────────────────────
+export const COMPARISON = {
+  manualTitle: "Wie ich es gemacht habe",
+  pathlyTitle: "Wie ich es jetzt mache",
+  steps: [
+    {
+      id: "01",
+      title: "Jobsuche",
+      description: "4 Portale, 20 Tabs, Unternehmensanalyse...",
+      iconKey: "search",
+    },
+    {
+      id: "02",
+      title: "Lebenslauf anpassen",
+      description: "ATS-Keywords, Stichpunkte und Zahlen zuordnen.",
+      iconKey: "document",
+    },
+    {
+      id: "03",
+      title: "Anschreiben generieren",
+      description: "KI prompten, Re-Prompten, Output anpassen: nicht generisch klingen.",
+      iconKey: "pen",
+    },
+    {
+      id: "04",
+      title: "Formatieren",
+      description: "Anschreiben in Word formatieren, letzte Änderungen, PDF Export",
+      iconKey: "file",
+    },
+    {
+      id: "05",
+      title: "Verwaltung",
+      description: "E-Mails senden, Follow-Ups, Tracking",
+      iconKey: "folder",
+    },
+    {
+      id: "06",
+      title: "Nächste Stelle",
+      description: "Von vorne beginnen. Jeden Tag.",
+      iconKey: "refresh",
+    },
+    {
+      id: "07",
+      title: "Warten",
+      description: "Keine Antwort, kein Feedback. Kein Grund.",
+      iconKey: "calendar",
+    },
+  ],
+  pathlyCard: {
+    checks: [
+      "Job analysiert",
+      "CV auf Stelle optimiert",
+      "Anschreiben in deinem Stil",
+      "Bewerbung ready in 15min",
+    ],
+    subtext: "3× mehr Interviews. In der Hälfte der Zeit. Klingt trotzdem wie du.",
+    cta: "Probier es jetzt!",
+  },
+} as const;

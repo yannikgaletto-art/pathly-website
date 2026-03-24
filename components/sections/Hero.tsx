@@ -5,40 +5,30 @@ import { ShimmerButton } from "@/components/ui/ShimmerButton";
 import { FeatureChip } from "@/components/ui/FeatureChip";
 import { PhoneCarousel } from "@/components/ui/PhoneCarousel";
 import { CountUp } from "@/components/ui/CountUp";
-import { HighlightText } from "@/components/ui/HighlightText";
 
 /**
  * Hero section.
  *
- * Layout: The headline fills the viewport as a single line, no
- * distractions — no badges, no subline, no CTAs above the fold.
- * "gesehen zu werden." has a marker-highlight + "Pathly" badge
- * that sweeps in (inspired by ready.so Febby animation).
+ * Layout: The headline fills the viewport as a single line.
+ * The typewriter animation is handled by ScrollSection — this
+ * component only provides the above-fold layout shell.
  */
 export function Hero() {
   return (
     <section
       aria-label="Hero"
-      className="relative overflow-hidden bg-white"
+      className="relative bg-white"
     >
       {/* ── Full-viewport Headline Block ──────────────────────── */}
       <div className="flex items-center justify-center min-h-[100svh] px-6">
         <div className="text-center w-full">
-          {/* Headline — single line, smaller font to fit */}
+          {/* Headline — hidden initially, ScrollSection shows the typewriter version */}
           <h1
-            className="hero-fade-in-delay-1 text-[clamp(1.75rem,4.2vw,3.5rem)] font-bold text-text leading-[1.15] tracking-[-0.03em] whitespace-nowrap"
+            className="text-[clamp(1.75rem,4.2vw,3.5rem)] font-bold text-text leading-[1.15] tracking-[-0.03em]"
+            style={{ visibility: "hidden" }}
           >
-            <span data-hero-word>Jeder</span>{" "}
-            <span data-hero-word>Mensch</span>{" "}
-            <span data-hero-word>verdient</span>{" "}
-            <span data-hero-word>es,</span>{" "}
-            <span data-hero-word data-hero-highlight>
-              <HighlightText color="#CADCF2" badge="Pathly" badgeColor="#CADCF2">
-                gesehen zu werden.
-              </HighlightText>
-            </span>
+            Jeder Mensch verdient es, gesehen zu werden.
           </h1>
-
 
         </div>
       </div>
