@@ -25,6 +25,7 @@ export function Problem() {
           key={item.id}
           data-toggle-item
           className="pathly-toggle group"
+          open={i === 0}
           style={{ opacity: 0, transform: "translateY(20px)" }}
         >
           {/* Summary / Toggle Header */}

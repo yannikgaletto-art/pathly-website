@@ -3,8 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Problem } from "@/components/sections/Problem";
 import { ScrollSection } from "@/components/sections/ScrollSection";
-import { Comparison } from "@/components/sections/Comparison";
-import { HowItWorks } from "@/components/sections/HowItWorks";
+import { ComparisonToggle } from "@/components/sections/ComparisonToggle";
 import { Features } from "@/components/sections/Features";
 import { Differentiation } from "@/components/sections/Differentiation";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -19,8 +18,7 @@ export default function HomePage() {
           <Hero />
           <Problem />
         </ScrollSection>
-        <Comparison />
-        <HowItWorks />
+        <ComparisonToggle />
         <Features />
         <Differentiation />
         <Testimonials />

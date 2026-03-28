@@ -39,16 +39,17 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               isDev
-                ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tally.so" // webpack HMR needs eval in dev
-                : "script-src 'self' 'unsafe-inline' https://tally.so",              // prod: no eval
+                ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tally.so https://cdn.spline.design blob:" // webpack HMR needs eval in dev
+                : "script-src 'self' 'unsafe-inline' https://tally.so https://cdn.spline.design blob:",              // prod: canvas-confetti + spline
               "style-src 'self' 'unsafe-inline'",  // required for Tailwind
               "img-src 'self' data: blob:",
               "font-src 'self'",
               "frame-src https://tally.so",          // Tally.so waitlist embed
-              "connect-src 'self'",
+              "connect-src 'self' https://prod.spline.design https://cdn.spline.design", // Spline scene + viewer
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self' https://tally.so",
+              "worker-src 'self' blob:",                 // canvas-confetti blob worker
             ].join("; "),
           },
         ],

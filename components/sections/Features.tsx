@@ -3,12 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FEATURES } from "@/lib/constants";
+import { FeatureTabIcons } from "@/components/ui/FeatureTabIcons";
+import { FeatureCardStack } from "@/components/ui/FeatureCardStack";
 
 /**
  * Section 06 — Features (Tab-based)
- * 4 horizontal tabs that switch content: left side has headline + 3 bullets,
- * right side shows a placeholder/screenshot image.
- * No Framer Motion AnimatePresence — uses CSS transitions for tab switching.
+ * 4 glassmorphism icon tabs that switch content: left side has headline + 3 bullets,
+ * right side shows a swipeable card stack or single screenshot fallback.
  */
 export function Features() {
   const [active, setActive] = useState(0);
@@ -27,21 +28,9 @@ export function Features() {
           </p>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {FEATURES.tabs.map((t, i) => (
-            <button
-              key={t.label}
-              onClick={() => setActive(i)}
-              className={`px-5 py-2.5 rounded-md text-[14px] font-medium transition-all duration-200 ${
-                active === i
-                  ? "bg-navy text-white shadow-sm"
-                  : "bg-transparent text-muted hover:text-navy hover:bg-navy-tint"
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
+        {/* Tab Navigation — Glassmorphism Icon Cards */}
+        <div className="mb-12">
+          <FeatureTabIcons activeIndex={active} onTabChange={setActive} />
         </div>
 
         {/* Tab Content — CSS transition instead of AnimatePresence */}
@@ -76,15 +65,19 @@ export function Features() {
             </ul>
           </div>
 
-          {/* Right: Screenshot */}
-          <div className="relative aspect-[4/3] rounded-xl border border-border bg-bg-soft overflow-hidden shadow-lg">
-            <Image
-              src={tab.screen}
-              alt={tab.label}
-              fill
-              className="object-cover"
-            />
-          </div>
+          {/* Right: Card Stack or Screenshot fallback */}
+          {"cards" in tab && tab.cards ? (
+            <FeatureCardStack images={tab.cards} />
+          ) : (
+            <div className="relative aspect-[4/3] rounded-lg border border-border bg-bg-soft overflow-hidden shadow-md">
+              <Image
+                src={tab.screen}
+                alt={tab.label}
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

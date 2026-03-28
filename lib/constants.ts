@@ -80,77 +80,71 @@ export const PROBLEMS = {
 } as const;
 
 // ─── How It Works ────────────────────────────────────────────
-export const HOW_IT_WORKS = {
-  headline: "So funktioniert Pathly.",
-  subline: "Vier Schritte. Kein Chaos.",
-  steps: [
-    {
-      step: "01",
-      title: "Job finden & einfügen",
-      body: "Füge eine Stellenanzeige ein — Pathly extrahiert automatisch alle relevanten Infos und erstellt einen strukturierten Steckbrief.",
-    },
-    {
-      step: "02",
-      title: "CV optimieren",
-      body: "Dein Lebenslauf wird für jede Stelle individuell optimiert. ATS-Keywords, klare Struktur, professionelles Format.",
-    },
-    {
-      step: "03",
-      title: "Anschreiben generieren",
-      body: "KI-gestützt, aber in deiner Sprache. Mit Unternehmensbezug, persönlichem Stil und ohne Floskeln.",
-    },
-    {
-      step: "04",
-      title: "Interview vorbereiten",
-      body: "Mock-Interviews mit KI-Coach. Gap-Analyse, PREP-Framework und personalisiertes Feedback nach jeder Session.",
-    },
-  ],
-} as const;
-
 // ─── Features Section (Tab-based) ───────────────────────────
 export const FEATURES = {
   headline: "Alles in einem System.",
   subline: "Kein Tab-Switching. Kein manuelles Tracking.",
   tabs: [
     {
-      label: "Job Queue",
-      headline: "Deine Bewerbungs-Pipeline auf einen Blick",
+      label: "Job Search",
+      headline: "Der sichtbarste Kandidat gewinnt.",
       bullets: [
-        "Automatisches Job-Matching nach deinem Profil",
-        "Status-Tracking für jede Bewerbung",
-        "Bis zu 5 aktive Jobs parallel verwalten",
+        "Nie wieder 4 Portale, 20 Tabs, kein Überblick.",
+        "Andere scrollen LinkedIn. Du hast bereits eine Queue.",
+        "Hat dich eine KI aussortiert? Eine KI holt dich zurück.",
       ],
       screen: "/images/screen-02-queue.jpg",
+      cards: [
+        { src: "/images/feature-js-1.png", alt: "Job Search — Keyword & Filter" },
+        { src: "/images/feature-js-2.png", alt: "Job Search — Add Job Modal" },
+        { src: "/images/feature-js-3.png", alt: "Job Search — Job Preview" },
+      ],
     },
     {
       label: "CV Optimizer",
-      headline: "Dein CV, optimiert für jeden Job einzeln",
+      headline: "ATS sortiert aus. Pathly sortiert ein.",
       bullets: [
-        "ATS-Keyword Alignment pro Stelle",
-        "Match-Score Anzeige vor dem Absenden",
-        "Originale Formatierung bleibt erhalten",
+        "Der Unterschied zwischen Absage und Interview: 3 Keywords.",
+        "Gleiche Erfahrung. Anderes CV. Mehr Interviews.",
+        "7,4 Sekunden Aufmerksamkeit. Dein CV muss sie gewinnen.",
       ],
       screen: "/images/screen-01-goals.jpg",
+      cards: [
+        { src: "/images/feature-cv-1.png", alt: "CV Optimizer — Match Score & Analyse" },
+        { src: "/images/feature-cv-2.png", alt: "CV Optimizer — Review Changes" },
+        { src: "/images/feature-cv-3.png", alt: "CV Optimizer — Preview & Template" },
+      ],
     },
     {
       label: "Cover Letter",
-      headline: "Anschreiben in deinem Stil — nicht in KI-Sprache",
+      headline: "Recruiter erkennen KI-Texte in 3 Sekunden. Unseren nicht.",
       bullets: [
-        "Schreibstil-Analyse aus deinen eigenen Texten",
-        "Skeptical Hiring Manager Critique eingebaut",
-        "Fertig in unter 3 Minuten",
+        "Unternehmensanalyse + Zitat = echte Personalisierung.",
+        "Fertig in 3 Minuten. Klingt nach 30 Minuten Arbeit.",
+        "Schreibstil-Analyse aus deinen eigenen Texten — keine Templates.",
+        "Skeptical Hiring Manager prüft jeden Satz bevor du es siehst.",
       ],
       screen: "/images/screen-03-cover.jpg",
+      cards: [
+        { src: "/images/feature-cl-1.png", alt: "Cover Letter — Hook & Quotes" },
+        { src: "/images/feature-cl-2.png", alt: "Cover Letter — Tone & Sprache" },
+        { src: "/images/feature-cl-3.png", alt: "Cover Letter — Ergebnis" },
+      ],
     },
     {
       label: "Coaching",
-      headline: "Interview-Training, das dich wirklich vorbereitet",
+      headline: "Alle sind nervös. Du bist vorbereitet.",
       bullets: [
-        "KI-Gesprächspartner simuliert echte Interviews",
-        "Analyse deiner Antworten nach dem Gespräch",
-        "Basiert auf der echten Stellenbeschreibung",
+        "Üben ohne Risiko. Performen wenn es zählt.",
+        "KI-Gesprächspartner simuliert echte Interviews.",
+        "Antwort-Analyse nach jedem Gespräch. Nicht nach der Absage.",
       ],
       screen: "/images/screen-04-coach.jpg",
+      cards: [
+        { src: "/images/feature-co-1.png", alt: "Coaching — Mock Interview" },
+        { src: "/images/feature-co-2.pg.png", alt: "Coaching — Feedback & Gap-Analyse" },
+        { src: "/images/feature-co-3.png", alt: "Coaching — Session Report" },
+      ],
     },
   ],
 } as const;
@@ -177,28 +171,77 @@ export const TESTIMONIALS = {
   items: [
     {
       quote:
-        "Ich habe mich 3 Monate lang beworben und kaum Antworten bekommen. Mit Pathly hatte ich in 2 Wochen zwei Interviews.",
-      name: "Sarah K.",
-      role: "Product Managerin",
-      initials: "SK",
+        "Ich hab morgens aufgemacht, Pathly hat mir direkt 4 passende Stellen rausgesucht. Mittags hatte ich 2 davon angeschrieben — mit einem Anschreiben, das sich anfühlt als hätte ich selbst eine Stunde reingesteckt. Das hat so nicht mal meine alte Stelle gekostet.",
+      name: "Bastian",
+      age: 31,
+      location: "München",
+      role: "Wirtschaftsingenieur auf Jobsuche",
+      initials: "B",
+      src: "/images/Bastian.jpg",
     },
     {
       quote:
-        "Das Anschreiben klingt tatsächlich wie ich. Nicht wie ein Roboter. Das ist der Unterschied.",
-      name: "Marcus T.",
-      role: "UX Designer",
-      initials: "MT",
+        "Der ATS-Scanner hat mein CV auf 34% eingeschätzt. Ich dachte, das Tool spinnt. Dann hab ich die Änderungen übernommen — und plötzlich 3 Rückmeldungen in einer Woche. Davor: Funkstille seit 6 Wochen.",
+      name: "Clara",
+      age: 27,
+      location: "Berlin",
+      role: "Marketing Managerin",
+      initials: "C",
+      src: "/images/Clara_Riedel.jpg",
     },
     {
       quote:
-        "Endlich weiß ich welche Jobs wirklich zu mir passen — und nicht nur welche zufällig auf LinkedIn auftauchen.",
-      name: "Lena R.",
-      role: "Data Analyst",
-      initials: "LR",
+        "Ich bin 52 und dachte ehrlich, KI-Tools sind nichts für mich. Aber Pathly hat mir beim Mock-Interview gezeigt, dass ich auf die Frage nach meiner Schwäche seit Jahren dieselbe falsche Antwort gebe. Ein Programm. Das hat mir das gesagt.",
+      name: "Dorothea",
+      age: 52,
+      location: "Köln",
+      role: "Projektleiterin im Maschinenbau",
+      initials: "D",
+      src: "/images/Dorothea.jpg",
+    },
+    {
+      quote:
+        "Ich hab dem Anschreiben-Generator meinen eigenen Schreibstil gegeben — ein altes Motivationsschreiben und zwei E-Mails. Das Ergebnis klang tatsächlich nach mir. Nicht nach 'sehr geehrte Damen und Herren, hiermit bewerbe ich mich'.",
+      name: "Elenor",
+      age: 29,
+      location: "Hamburg",
+      role: "UX Researcherin",
+      initials: "E",
+      src: "/images/Elenor_Becker.jpg",
+    },
+    {
+      quote:
+        "3 Monate auf Stellen beworben, die ich auf LinkedIn gesehen habe. Dann zwei Wochen mit Pathly. Der Unterschied war nicht das Glück — es war, dass ich aufgehört hab, irgendwo hineinzupassen, und angefangen hab, gezielt zu suchen.",
+      name: "Franziska",
+      age: 34,
+      location: "Frankfurt",
+      role: "Controllerin",
+      initials: "F",
+      src: "/images/Franziska.jpg",
+    },
+    {
+      quote:
+        "Das Coaching hat mich auf eine Frage vorbereitet, die ich im echten Interview tatsächlich bekommen habe — fast wortgleich. Ich hab gelacht. Innerlich. Nach außen: ruhig, strukturiert, vorbereitet.",
+      name: "Jack",
+      age: 26,
+      location: "Stuttgart",
+      role: "Software Developer",
+      initials: "J",
+      src: "/images/Jack.jpg",
+    },
+    {
+      quote:
+        "Ich war 14 Jahre im selben Unternehmen. Erste Bewerbung seit 2010. Pathly hat mir gezeigt, dass mein CV zwar erfahren wirkt — aber komplett auf die falsche Zielgruppe ausgerichtet war. In zwei Stunden war das anders.",
+      name: "Joachim",
+      age: 47,
+      location: "Düsseldorf",
+      role: "Vertriebsleiter",
+      initials: "J",
+      src: "/images/Joachim_Rabe.jpg",
     },
   ],
-  disclaimer: "* Platzhalter bis Beta-Testimonials verfügbar",
 } as const;
+
 
 // ─── Final CTA ───────────────────────────────────────────────
 export const FINAL_CTA = {
@@ -222,7 +265,7 @@ export const FOOTER = {
 // ─── Phone Carousel Screens ─────────────────────────────────
 export const PHONE_SCREENS = [
   { src: "/images/screen-01-goals.jpg", alt: "Today's Goals — Pulse Board und Tagesübersicht" },
-  { src: "/images/screen-02-queue.jpg", alt: "Job Queue — Pipeline und Steckbrief" },
+  { src: "/images/screen-02-queue.jpg", alt: "Job Search — Pipeline und Steckbrief" },
   { src: "/images/screen-03-cover.jpg", alt: "Cover Letter — KI-generiertes Anschreiben" },
   { src: "/images/screen-04-coach.jpg", alt: "Coaching — Mock-Interview mit KI" },
 ] as const;
@@ -236,7 +279,7 @@ export const STATS = [
 
 // ─── Comparison (Before/After) ───────────────────────────────
 export const COMPARISON = {
-  manualTitle: "Wie ich es gemacht habe",
+  manualTitle: "Wie ich es bisher gemacht habe",
   pathlyTitle: "Wie ich es jetzt mache",
   steps: [
     {
