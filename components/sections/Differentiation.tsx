@@ -1,12 +1,125 @@
+"use client";
+
+import { useRef, useEffect, useCallback } from "react";
 import { DIFFERENTIATION } from "@/lib/constants";
 
 /**
  * Section 07 — Differentiation
- * Navy background with glassmorphism comparison table (Pathly vs ChatGPT)
- * and trust badges underneath.
- * No Framer Motion — fully server-rendered for reliable visibility.
+ * One pill per row, full-width, slight horizontal drift + rotation.
+ * Pills fall from above the container (clipped by overflow-hidden) and stack.
+ * No text cut-off, no shadow.
  */
+
+const NOISE_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
+
+// Small horizontal drift (px) and rotation (deg) per pill index
+// — enough to look organic, never enough to clip text
+const DRIFT  = [8, -14, 18, -6, 12, -18, 6, -10, 14];
+const ROT    = [-2, 3, -1, 2, -3, 1, -2, 3, -1];
+
 export function Differentiation() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  const animateDrop = useCallback(() => {
+    const el = sectionRef.current;
+    if (!el || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const pills = el.querySelectorAll<HTMLElement>("[data-pill]");
+    pills.forEach((pill, i) => {
+      setTimeout(() => {
+        pill.style.transition =
+          "transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease-out";
+        pill.style.opacity = "1";
+        pill.style.transform = `translateY(0) rotate(${pill.dataset.rot}deg)`;
+      }, i * 150);
+    });
+  }, []);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) { animateDrop(); observer.disconnect(); }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [animateDrop]);
+
+  const rows = DIFFERENTIATION.rows;
+
+  /* ── shared pill renderer ── */
+  const renderPill = (
+    label: string,
+    mark: "check" | "cross",
+    i: number,
+    side: "left" | "right"
+  ) => {
+    const drift = side === "left" ? DRIFT[i % DRIFT.length] : -DRIFT[i % DRIFT.length];
+    const rot   = side === "left" ? ROT[i % ROT.length]   : -ROT[i % ROT.length];
+
+    const isCheck = mark === "check";
+
+    return (
+      <div
+        key={`${side}-${i}`}
+        data-pill
+        data-rot={rot}
+        className="opacity-0"
+        style={{
+          transform: `translateY(-520px) rotate(${rot}deg)`,
+          marginLeft: drift,
+        }}
+      >
+        <div
+          className={`relative flex items-center gap-2 rounded-full overflow-hidden px-5 py-3 ${
+            isCheck
+              ? "border border-white/60"
+              : "border border-white/15"
+          }`}
+        >
+          {/* Radial glow */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: isCheck
+                ? "radial-gradient(circle at 0% 100%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.08) 100%)"
+                : "radial-gradient(circle at 0% 100%, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 50%, rgba(0,0,0,0.1) 100%)",
+            }}
+          />
+          {/* Noise texture */}
+          <div
+            className="absolute inset-0 opacity-[0.3] mix-blend-overlay pointer-events-none"
+            style={{
+              backgroundImage: NOISE_SVG,
+              WebkitMaskImage: "radial-gradient(circle at 0% 100%, black 0%, transparent 60%)",
+              maskImage: "radial-gradient(circle at 0% 100%, black 0%, transparent 60%)",
+            }}
+          />
+
+          <span
+            className={`relative z-10 font-bold text-[15px] ${
+              isCheck ? "text-[#00B870]" : "text-red-400/90"
+            }`}
+          >
+            {isCheck ? "✓" : "✕"}
+          </span>
+          <span
+            className={`relative z-10 font-semibold text-[14px] whitespace-nowrap ${
+              isCheck ? "text-navy" : "text-white/55"
+            }`}
+          >
+            {label}
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section
       id="differentiation"
@@ -24,56 +137,47 @@ export function Differentiation() {
           </p>
         </div>
 
-        {/* Comparison Table — Glassmorphism */}
-        <div className="max-w-3xl mx-auto rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm overflow-hidden">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-white/15">
-                <th className="px-6 py-4 text-[13px] font-medium text-white/50 uppercase tracking-wider">
-                  Feature
-                </th>
-                <th className="px-6 py-4 text-[13px] font-semibold text-white uppercase tracking-wider text-center">
-                  Pathly
-                </th>
-                <th className="px-6 py-4 text-[13px] font-medium text-white/50 uppercase tracking-wider text-center">
-                  ChatGPT
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {DIFFERENTIATION.rows.map((row) => (
-                <tr key={row.feature} className="border-b border-white/10 last:border-0">
-                  <td className="px-6 py-4">
-                    <span className="text-[15px] text-white font-medium">{row.feature}</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="inline-flex items-center gap-1.5 text-[14px] text-success font-medium">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M20 6L9 17l-5-5" />
-                      </svg>
-                      {row.pathly}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="inline-flex items-center gap-1.5 text-[14px] text-white/30 font-medium">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M18 6L6 18M6 6l12 12" />
-                      </svg>
-                      {row.chatgpt}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* Two-card comparison */}
+        <div
+          ref={sectionRef}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-16 max-w-5xl mx-auto"
+        >
+          {/* ─── Left card: Pathly ─── */}
+          <div className="bg-white/[0.06] border border-white/15 backdrop-blur-sm rounded-[2rem] p-8 overflow-hidden">
+            <h3 className="text-white font-bold text-[22px] mb-6">
+              {DIFFERENTIATION.leftTitle}
+            </h3>
+            {/* overflow-hidden clips pills as they fall in from above */}
+            <div className="overflow-hidden">
+              <div className="flex flex-col gap-3">
+                {rows.map((row, i) =>
+                  renderPill(row.pathly, "check", i, "left")
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* ─── Right card: Andere KI-Tools ─── */}
+          <div className="bg-black/20 border border-white/10 rounded-[2rem] p-8 overflow-hidden">
+            <h3 className="text-white/50 font-normal text-[22px] mb-6">
+              {DIFFERENTIATION.rightTitle}
+            </h3>
+            <div className="overflow-hidden">
+              <div className="flex flex-col gap-3">
+                {rows.map((row, i) =>
+                  renderPill(row.others, "cross", i, "right")
+                )}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Trust Badges */}
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
           {DIFFERENTIATION.trustBadges.map((badge) => (
             <span
               key={badge}
-              className="inline-flex items-center rounded-full bg-white/15 px-4 py-2 text-[13px] font-medium text-white"
+              className="inline-flex items-center rounded-full bg-white/10 backdrop-blur-sm border border-white/10 px-5 py-2.5 text-[13px] md:text-[14px] font-medium text-white/90"
             >
               {badge}
             </span>

@@ -274,4 +274,13 @@
   .pathly-toggle-content {
     padding: 0 4px 20px 26px;
   }
+
+  /* ── FAQ Scrollbar hide ────────────────────────────────────── */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

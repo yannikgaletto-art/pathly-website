@@ -100,34 +100,36 @@ export function Testimonials() {
 
           {/* Right — Quote + controls */}
           <div className="flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                {/* Name + meta */}
-                <p className="text-[13px] font-medium text-navy uppercase tracking-wider mb-1">
-                  {current.name}, {current.age} · {current.location}
-                </p>
-                <p className="text-[13px] text-muted mb-6">{current.role}</p>
-
-                {/* Quote */}
-                <blockquote>
-                  <span
-                    className="text-[56px] font-serif text-navy/20 leading-none select-none"
-                    aria-hidden="true"
-                  >
-                    &ldquo;
-                  </span>
-                  <p className="text-[17px] text-text leading-relaxed -mt-4">
-                    {current.quote}
+            <div className="min-h-[280px] md:min-h-[240px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  {/* Name + meta */}
+                  <p className="text-[13px] font-medium text-navy uppercase tracking-wider mb-1">
+                    {current.name}, {current.age} · {current.location}
                   </p>
-                </blockquote>
-              </motion.div>
-            </AnimatePresence>
+                  <p className="text-[13px] text-muted mb-6">{current.role}</p>
+
+                  {/* Quote */}
+                  <blockquote>
+                    <span
+                      className="text-[56px] font-serif text-navy/20 leading-none select-none"
+                      aria-hidden="true"
+                    >
+                      &ldquo;
+                    </span>
+                    <p className="text-[17px] text-text leading-relaxed -mt-4">
+                      {current.quote}
+                    </p>
+                  </blockquote>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Arrow controls */}
             <div className="flex items-center gap-3 mt-10">

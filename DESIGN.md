@@ -60,8 +60,9 @@
 | 06 | Features         | `#FFFFFF`           |
 | 07 | Differentiation  | `#133C7B` (navy)    |
 | 08 | Testimonials     | `#F9FAFB`           |
-| 09 | Final CTA        | `#FFFFFF`           |
-| 10 | Footer           | `#F9FAFB`           |
+| 09 | FAQ              | `#F9FAFB` (bg-soft) |
+| 10 | Final CTA        | `#FFFFFF`           |
+| 11 | Footer           | `#F9FAFB`           |
 
 ---
 
