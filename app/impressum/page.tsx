@@ -67,10 +67,10 @@ export default function ImpressumPage() {
           <p className="text-[16px] text-muted leading-relaxed">
             E-Mail:{" "}
             <a
-              href={`mailto:hello@${SITE.domain}`}
+              href={`mailto:contact@${SITE.domain}`}
               className="text-navy hover:underline"
             >
-              hello@{SITE.domain}
+              contact@{SITE.domain}
             </a>
             <br />
             Telefon:{" "}

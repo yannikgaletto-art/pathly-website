@@ -23,14 +23,26 @@
 
 ## Typography
 
-| Role       | Font              | Weight    | Size (Desktop) | Size (Mobile) |
-|------------|-------------------|-----------|----------------|---------------|
-| H1         | Inter Variable    | 700       | 56px / 3.5rem  | 36px / 2.25rem |
-| H2         | Inter Variable    | 700       | 40px / 2.5rem  | 28px / 1.75rem |
-| H3         | Inter Variable    | 600       | 24px / 1.5rem  | 20px / 1.25rem |
-| Body       | Inter Variable    | 400       | 18px / 1.125rem| 16px / 1rem    |
-| Small      | Inter Variable    | 400       | 14px / 0.875rem| 14px / 0.875rem|
-| Code       | JetBrains Mono    | 400       | 14px / 0.875rem| 13px / 0.8125rem|
+| Role           | Font                    | Weight     | Size (Desktop)  | Size (Mobile)   | Usage                                  |
+|----------------|-------------------------|------------|-----------------|-----------------|----------------------------------------|
+| Display        | Geist Variable          | 600–900    | 56px / 3.5rem   | 36px / 2.25rem  | H1, H2, H3 — all section headlines    |
+| Body           | Inter Variable          | 100–900    | 18px / 1.125rem | 16px / 1rem     | Body text, labels, UI elements, H4–H6 |
+| Serif Accent   | Instrument Serif Italic | 400 Italic | —               | —               | Max. 1 word per headline as accent     |
+| Mono           | JetBrains Mono          | 400–700    | 14px / 0.875rem | 13px / 0.8125rem| Code snippets, technical labels        |
+
+### CSS Custom Properties
+```css
+--font-sans:          'Inter', system-ui, -apple-system, sans-serif;
+--font-display:       'Geist', 'Inter', system-ui, sans-serif;
+--font-serif-accent:  'Instrument Serif', Georgia, serif;
+--font-mono:          'JetBrains Mono', ui-monospace, monospace;
+```
+
+### Font Rules
+- **Serif accent** via `<span className="font-serif-accent">` — NOT `<em>` (wrong semantics for screen readers)
+- `font-display: optional` on Geist + Instrument Serif — no CLS, system font as fallback
+- `font-display: swap` on Inter — guarantees brand font loads even on slow connections
+- Geist is preloaded in layout.tsx for above-the-fold Hero headline
 
 ---
 

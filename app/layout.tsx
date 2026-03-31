@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { SITE } from "@/lib/constants";
+import dynamic from "next/dynamic";
+import { SITE, COOKIE_CONSENT } from "@/lib/constants";
 import "./globals.css";
+
+const CookieBanner = dynamic(() => import("@/components/ui/CookieBanner"), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: `${SITE.name} — ${SITE.tagline}`,
@@ -31,7 +36,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-      <body className="font-sans antialiased">{children}</body>
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/Geist-Variable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className="font-sans antialiased">
+        {children}
+        <CookieBanner />
+        <noscript>
+          <div
+            className="fixed bottom-0 left-0 right-0 z-[100]
+                       bg-white border-t border-border px-6 py-4
+                       text-[13px] text-muted text-center"
+          >
+            {COOKIE_CONSENT.noscript}
+          </div>
+        </noscript>
+      </body>
     </html>
   );
 }

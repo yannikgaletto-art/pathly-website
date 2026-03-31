@@ -498,3 +498,29 @@ export const IMPRESSUM = {
     datenschutzHref: "/datenschutz",
   },
 } as const;
+
+// ─── Cookie Consent ───────────────────────────────────────────
+export const COOKIE_CONSENT = {
+  STORAGE_KEY: "pathly_consent",
+  VERSION: 1,
+  // Version erhöhen bei Datenschutzänderungen → re-prompt
+  banner: {
+    title: "Wir respektieren deine Privatsphäre.",
+    body: "Wir nutzen Cookies für technisch notwendige Funktionen. Analytics-Cookies setzen wir nur mit deiner Einwilligung ein.",
+    acceptAll: "Alles akzeptieren",
+    necessary: "Nur notwendige",
+    settings: "Einstellungen",
+    settingsTitle: "Cookie-Einstellungen",
+    necessaryLabel: "Notwendige Cookies",
+    necessaryDesc:
+      "Technisch erforderlich für die Grundfunktionen der Website. Kann nicht deaktiviert werden.",
+    analyticsLabel: "Analytics-Cookies",
+    analyticsDesc:
+      "Helfen uns zu verstehen, wie Besucher die Website nutzen (z.\u00A0B. Vercel Analytics).",
+    save: "Einstellungen speichern",
+    privacyLink: "Datenschutzerklärung",
+    privacyHref: "/datenschutz",
+  },
+  noscript:
+    "Diese Website verwendet technisch notwendige Cookies.",
+} as const;
