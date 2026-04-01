@@ -265,7 +265,6 @@ export const PRICING = {
     {
       id: "free",
       name: "Free",
-      emoji: "✦",
       monthlyPrice: 0,
       quarterlyPrice: 0,
       description: "Perfekt zum Ausprobieren.",
@@ -273,7 +272,7 @@ export const PRICING = {
         { text: "6 Credits / Monat", included: true },
         { text: "CV Optimizer", included: true },
         { text: "Cover Letter Generator", included: true },
-        { text: "Job-Queue", included: true },
+        { text: "Video Letter / Pitch", included: false },
         { text: "Interview Coaching", included: false },
         { text: "Job Search (Google Jobs)", included: false },
       ],
@@ -281,7 +280,6 @@ export const PRICING = {
     {
       id: "starter",
       name: "Starter",
-      emoji: "⚡",
       monthlyPrice: 9.90,
       quarterlyPrice: 8.42,
       description: "Für aktive Jobsuche.",
@@ -289,7 +287,7 @@ export const PRICING = {
         { text: "20 Credits / Monat", included: true },
         { text: "CV Optimizer", included: true },
         { text: "Cover Letter Generator", included: true },
-        { text: "Job-Queue", included: true },
+        { text: "Video Letter / Pitch", included: true },
         { text: "3 Coaching Sessions", included: true },
         { text: "20 Job Searches", included: true },
       ],
@@ -297,7 +295,6 @@ export const PRICING = {
     {
       id: "durchstarter",
       name: "Durchstarter",
-      emoji: "🚀",
       monthlyPrice: 19.90,
       quarterlyPrice: 16.92,
       description: "Maximale Power für deine Karriere.",
@@ -306,13 +303,13 @@ export const PRICING = {
         { text: "50 Credits / Monat", included: true },
         { text: "CV Optimizer", included: true },
         { text: "Cover Letter Generator", included: true },
-        { text: "Job-Queue", included: true },
+        { text: "Video Letter / Pitch", included: true },
         { text: "10 Coaching Sessions", included: true },
         { text: "50 Job Searches", included: true },
       ],
     },
   ],
-  trustSignals: ["🔒 14 Tage Geld-zurück", "🇪🇺 EU-gehostet", "🛡️ DSGVO-konform"],
+  trustSignals: ["14 Tage Geld-zurück", "EU-gehostet", "DSGVO-konform"],
 } as const;
 
 // ─── Browser Extension ────────────────────────────────────────
