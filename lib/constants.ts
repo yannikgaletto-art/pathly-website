@@ -247,6 +247,73 @@ export const TESTIMONIALS = {
   ],
 } as const;
 
+// ─── Pricing ─────────────────────────────────────────────────
+export const PRICING = {
+  headline: "Transparente Preise.",
+  subline: "Kein Abo-Dschungel. Wähle deinen Takt.",
+  intervalLabels: {
+    monthly: "Monatlich",
+    quarterly: "Quartalsweise",
+  },
+  quarterlyBadge: "−15%",
+  perMonth: "/ Monat",
+  perQuarter: "/ Quartal",
+  popular: "Beliebt",
+  freeCta: "Kostenlos starten",
+  paidCta: "Plan wählen",
+  plans: [
+    {
+      id: "free",
+      name: "Free",
+      emoji: "✦",
+      monthlyPrice: 0,
+      quarterlyPrice: 0,
+      description: "Perfekt zum Ausprobieren.",
+      features: [
+        { text: "6 Credits / Monat", included: true },
+        { text: "CV Optimizer", included: true },
+        { text: "Cover Letter Generator", included: true },
+        { text: "Job-Queue", included: true },
+        { text: "Interview Coaching", included: false },
+        { text: "Job Search (Google Jobs)", included: false },
+      ],
+    },
+    {
+      id: "starter",
+      name: "Starter",
+      emoji: "⚡",
+      monthlyPrice: 9.90,
+      quarterlyPrice: 8.42,
+      description: "Für aktive Jobsuche.",
+      features: [
+        { text: "20 Credits / Monat", included: true },
+        { text: "CV Optimizer", included: true },
+        { text: "Cover Letter Generator", included: true },
+        { text: "Job-Queue", included: true },
+        { text: "3 Coaching Sessions", included: true },
+        { text: "20 Job Searches", included: true },
+      ],
+    },
+    {
+      id: "durchstarter",
+      name: "Durchstarter",
+      emoji: "🚀",
+      monthlyPrice: 19.90,
+      quarterlyPrice: 16.92,
+      description: "Maximale Power für deine Karriere.",
+      popular: true,
+      features: [
+        { text: "50 Credits / Monat", included: true },
+        { text: "CV Optimizer", included: true },
+        { text: "Cover Letter Generator", included: true },
+        { text: "Job-Queue", included: true },
+        { text: "10 Coaching Sessions", included: true },
+        { text: "50 Job Searches", included: true },
+      ],
+    },
+  ],
+  trustSignals: ["🔒 14 Tage Geld-zurück", "🇪🇺 EU-gehostet", "🛡️ DSGVO-konform"],
+} as const;
 
 // ─── Final CTA ───────────────────────────────────────────────
 export const FINAL_CTA = {

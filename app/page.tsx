@@ -7,6 +7,7 @@ import { ComparisonToggle } from "@/components/sections/ComparisonToggle";
 import { Features } from "@/components/sections/Features";
 import { Differentiation } from "@/components/sections/Differentiation";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { Pricing } from "@/components/sections/Pricing";
 import { FAQSection } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
@@ -23,6 +24,7 @@ export default function HomePage() {
         <Features />
         <Differentiation />
         <Testimonials />
+        <Pricing />
         <FAQSection />
         <FinalCTA />
       </main>
@@ -30,3 +32,4 @@ export default function HomePage() {
     </>
   );
 }
+
