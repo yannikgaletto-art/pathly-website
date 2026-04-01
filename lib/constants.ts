@@ -315,6 +315,50 @@ export const PRICING = {
   trustSignals: ["🔒 14 Tage Geld-zurück", "🇪🇺 EU-gehostet", "🛡️ DSGVO-konform"],
 } as const;
 
+// ─── Browser Extension ────────────────────────────────────────
+export const BROWSER_EXTENSION = {
+  badge: "Neu — Chrome Extension",
+  headline: "Ein Klick.",
+  headlineAccent: "Job gespeichert.",
+  subline: "Du scrollst LinkedIn. Pathly denkt mit. Mit einem Klick landet jede Stelle direkt in deiner Queue — inklusive KI-Analyse.",
+  cta: "Extension installieren",
+  ctaNote: "Kostenlos · Chrome & Edge · Kein Account nötig",
+  platforms: [
+    { name: "LinkedIn", icon: "linkedin" },
+    { name: "StepStone", icon: "stepstone" },
+    { name: "Indeed", icon: "indeed" },
+    { name: "Xing", icon: "xing" },
+  ],
+  steps: [
+    {
+      number: "01",
+      title: "Extension installieren",
+      description: "Im Chrome Web Store — kostenlos, 30 Sekunden.",
+    },
+    {
+      number: "02",
+      title: "Job-Seite öffnen",
+      description: "LinkedIn, StepStone, Indeed oder Xing — wie immer.",
+    },
+    {
+      number: "03",
+      title: "Pathly-Button klicken",
+      description: "Jobtitel, Firma, Standort — alles wird automatisch erkannt.",
+    },
+    {
+      number: "04",
+      title: "KI übernimmt",
+      description: "ATS-Score, Cover Letter, Coaching — alles wartet schon auf dich.",
+    },
+  ],
+  features: [
+    "Kein Copy-Paste mehr",
+    "Automatische Duplikat-Erkennung",
+    "DSGVO-konform — kein Tracking",
+    "Funktioniert offline",
+  ],
+} as const;
+
 // ─── Final CTA ───────────────────────────────────────────────
 export const FINAL_CTA = {
   headlinePart1: "Dein nächstes Interview.",
