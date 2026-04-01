@@ -34,3 +34,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large media — serve from CDN, not git
+public/videos/*.mp4
+public/videos/*.webm
+public/videos/*.mov
+*.mp4
+*.mov
+*.webm
