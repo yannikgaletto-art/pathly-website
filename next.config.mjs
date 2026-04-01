@@ -3,6 +3,11 @@
 const isDev = process.env.NODE_ENV === 'development';
 
 const nextConfig = {
+  // Ignore ESLint errors during production builds (lint separately in CI)
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   transpilePackages: ['gsap', '@gsap/react'],
   // F-02: local assets are served from /public — no remote domains needed
   images: {
