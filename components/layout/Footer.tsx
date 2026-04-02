@@ -1,4 +1,7 @@
-import { SITE, FOOTER } from "@/lib/constants";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { SITE } from "@/lib/constants";
 
 /**
  * Footer — #F9FAFB BG, border-top, 48px vertical padding.
@@ -6,6 +9,7 @@ import { SITE, FOOTER } from "@/lib/constants";
  * Year evaluated at render time (not SSG-frozen).
  */
 export function Footer() {
+  const t = useTranslations("footer");
   const year = new Date().getFullYear();
 
   return (
@@ -15,7 +19,6 @@ export function Footer() {
 
           {/* Left: Logo + Domain */}
           <div className="flex items-center gap-3">
-            {/* P Icon */}
             <div className="w-8 h-8 rounded-lg bg-navy flex items-center justify-center">
               <span className="text-white text-[14px] font-bold">P</span>
             </div>
@@ -27,21 +30,21 @@ export function Footer() {
 
           {/* Center: Copyright */}
           <p className="text-[12px] text-muted">
-            © {year} {FOOTER.copyrightBase}
+            © {year} {t("copyrightBase")}
           </p>
 
           {/* Right: Legal Links */}
           <ul className="flex items-center gap-4">
-            {FOOTER.links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="text-[12px] text-muted hover:text-navy transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            <li>
+              <a href="/impressum" className="text-[12px] text-muted hover:text-navy transition-colors duration-200">
+                {t("impressum")}
+              </a>
+            </li>
+            <li>
+              <a href="/datenschutz" className="text-[12px] text-muted hover:text-navy transition-colors duration-200">
+                {t("datenschutz")}
+              </a>
+            </li>
           </ul>
 
         </div>

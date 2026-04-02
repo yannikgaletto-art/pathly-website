@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { COMPARISON, SITE } from "@/lib/constants";
 
 /* ── Confetti (side burst — Pathly SaaS pattern) ─────────────── */
@@ -84,6 +85,7 @@ function StepIcon({ iconKey }: { iconKey: string }) {
 /* ── Main Component ──────────────────────────────────────────── */
 
 export function ComparisonToggle() {
+  const t = useTranslations("comparison");
   const [isActive, setIsActive] = useState(false);
 
   const handleToggle = useCallback(() => {
@@ -132,7 +134,7 @@ export function ComparisonToggle() {
                 isActive ? "text-white/30" : "text-text"
               }`}
             >
-              {COMPARISON.manualTitle}
+              {t("manualTitle")}
             </h2>
 
             {/* Liquid Radio Toggle */}
@@ -202,7 +204,7 @@ export function ComparisonToggle() {
                 isActive ? "text-white" : "text-muted"
               }`}
             >
-              {COMPARISON.pathlyTitle}
+              {t("pathlyTitle")}
             </h2>
           </div>
 
@@ -213,15 +215,15 @@ export function ComparisonToggle() {
             }`}
           >
             {isActive
-              ? COMPARISON.pathlyCard.subtext
-              : "Jeden Tag. Für jede Stelle. Von vorne."}
+              ? t("pathlyCard.subtext")
+              : "—"}
           </p>
 
           {/* ── Step Rows ── */}
           <div className="space-y-2.5">
             {isActive
               ? /* ── AFTER: Pathly checks (4 items) ── */
-                COMPARISON.pathlyCard.checks.map((check, i) => (
+                [t("pathlyCard.checks.0"), t("pathlyCard.checks.1"), t("pathlyCard.checks.2"), t("pathlyCard.checks.3")].map((check, i) => (
                   <div
                     key={`pathly-${i}`}
                     className="flex items-center gap-3 rounded-xl px-4 py-3.5 border"
@@ -231,7 +233,6 @@ export function ComparisonToggle() {
                       transitionDelay: `${i * 70}ms`,
                     }}
                   >
-                    {/* Green check circle */}
                     <div className="w-7 h-7 rounded-full bg-[#00B870]/20 flex items-center justify-center shrink-0">
                       <svg
                         className="w-3.5 h-3.5 text-[#00B870]"
@@ -265,10 +266,10 @@ export function ComparisonToggle() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-[14px] font-semibold text-text leading-snug">
-                        {step.title}
+                        {t(`steps.${step.id}.title`)}
                       </p>
                       <p className="text-[12px] text-muted leading-relaxed">
-                        {step.description}
+                        {t(`steps.${step.id}.description`)}
                       </p>
                     </div>
                   </div>
@@ -282,7 +283,7 @@ export function ComparisonToggle() {
                 href={SITE.appUrl}
                 className="inline-block px-7 py-3 rounded-xl bg-[#A8C4E6] text-navy font-semibold text-[14px] hover:bg-[#93B5DC] transition-colors duration-200 shadow-md"
               >
-                {COMPARISON.pathlyCard.cta}
+                {t("pathlyCard.cta")}
               </a>
             </div>
           )}

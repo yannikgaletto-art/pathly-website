@@ -1,0 +1,326 @@
+{
+  "site": {
+    "tagline": "Dein Weg. Deine Bewerbung. Deine KI.",
+    "description": "Pathly ist die DSGVO-konforme KI-Plattform, die Lebenslauf, Anschreiben und Profil so aufbereitet, dass Bewerber gesehen werden — EU-gehostet, ohne Datenmissbrauch."
+  },
+  "nav": {
+    "features": "Features",
+    "howItWorks": "So geht's",
+    "aboutUs": "Über uns",
+    "cta": "Jetzt starten →"
+  },
+  "hero": {
+    "headline": "Jeder Mensch verdient es,\ngesehen zu werden.",
+    "subheadline": "Pathly bereitet deinen Lebenslauf, dein Anschreiben und dein Profil so auf, dass Recruiting-KIs dich nicht übersehen können.",
+    "cta": "Kostenlos starten →",
+    "ctaSecondary": "Demo ansehen",
+    "chips": {
+      "cv": "CV Optimizer",
+      "dsgvo": "DSGVO-konform",
+      "coverLetter": "Cover Letter KI",
+      "coaching": "Interview Coaching"
+    }
+  },
+  "trustTicker": {
+    "quote": "Harvard × Accenture (2021): Millionen qualifizierter Kandidaten werden durch automatisierte Systeme aussortiert — nicht wegen mangelnder Qualifikation.",
+    "linkLabel": "Studie lesen →"
+  },
+  "problems": {
+    "headline": "Weißt Du, was mit deiner Bewerbung passiert, bevor ein Mensch sie liest?",
+    "items": {
+      "01": {
+        "tag": "ATS-Filter",
+        "headline": "Eine **KI** liest deinen **CV** zuerst. Recruiter nehmen sich im Schnitt **7,4 Sekunden** Zeit.",
+        "body": "**98%** der Fortune-500-Unternehmen nutzen **Applicant Tracking Systems** (ATS), die CVs nach Keywords ranken, bevor ein Mensch sie sieht. Kommt dein CV durch, scannt ein Recruiter im Schnitt nur 7,4 Sekunden, dabei folgt das Auge dem **F-Pattern**: Jobtitel, aktuelle Stelle, Keywords oben links. Was dort fehlt, wird nie gelesen.",
+        "source": "Resume Statistics Report, 2026"
+      },
+      "02": {
+        "tag": "Generische Bewerbung",
+        "headline": "Durch ein **personalisiertes Anschreiben**, steigt die Chance auf ein Interview um **+53%**.",
+        "body": "Ein **Feldexperiment** mit **7.287** echten **Bewerbungen** zeigt: Maßgeschneiderte Anschreiben führten zu 53% mehr Interview-Einladungen. Generische Copy-Paste-Texte brachten nur +17%. 78% der Recruiter erkennen KI-generierte Standardtexte sofort und werten sie als **Zeichen mangelnder Motivation**.",
+        "source": "ResumeGo Field Experiment, 2020 (n = 7.287)"
+      },
+      "03": {
+        "tag": "Zahlen im CV",
+        "headline": "**81–92%** aller CVs enthalten keine einzige Zahl.",
+        "body": "Recruiter und ATS-Systeme bevorzugen messbare Erfolge statt Aufgabenlisten. Wer Metriken einsetzt, z.B. \"Kosten um 23% gesenkt\", hat bis zu **40% bessere Chancen** auf ein Interview. Fast niemand macht es. **34%** der Recruiter nennen fehlende Zahlen explizit als Ablehnungsgrund.",
+        "source": "Resume Statistics Report, 2026"
+      }
+    }
+  },
+  "features": {
+    "headline": "Alles in einem System.",
+    "subline": "Kein Tab-Switching. Kein manuelles Tracking.",
+    "tabs": {
+      "jobSearch": {
+        "label": "Job Search",
+        "headline": "Der sichtbarste Kandidat gewinnt.",
+        "bullets": [
+          "Nie wieder 4 Portale, 20 Tabs, kein Überblick.",
+          "Andere scrollen LinkedIn. Du hast bereits eine Queue.",
+          "Hat dich eine KI aussortiert? Eine KI holt dich zurück."
+        ]
+      },
+      "cvOptimizer": {
+        "label": "CV Optimizer",
+        "headline": "ATS sortiert aus. Pathly sortiert ein.",
+        "bullets": [
+          "Der Unterschied zwischen Absage und Interview: 3 Keywords.",
+          "Gleiche Erfahrung. Anderes CV. Mehr Interviews.",
+          "7,4 Sekunden Aufmerksamkeit. Dein CV muss sie gewinnen."
+        ]
+      },
+      "coverLetter": {
+        "label": "Cover Letter",
+        "headline": "Recruiter erkennen KI-Texte in 3 Sekunden. Unseren nicht.",
+        "bullets": [
+          "Unternehmensanalyse + Zitat = echte Personalisierung.",
+          "Fertig in 3 Minuten. Klingt nach 30 Minuten Arbeit.",
+          "Schreibstil-Analyse aus deinen eigenen Texten — keine Templates.",
+          "Skeptical Hiring Manager prüft jeden Satz bevor du es siehst."
+        ]
+      },
+      "coaching": {
+        "label": "Coaching",
+        "headline": "Alle sind nervös. Du bist vorbereitet.",
+        "bullets": [
+          "Üben ohne Risiko. Performen wenn es zählt.",
+          "KI-Gesprächspartner simuliert echte Interviews.",
+          "Antwort-Analyse nach jedem Gespräch. Nicht nach der Absage."
+        ]
+      }
+    }
+  },
+  "differentiation": {
+    "headline": "Was Pathly kann. Was andere nicht.",
+    "subline": "Kein generischer Output. Kein US-Server. Kein Alleingang.",
+    "leftTitle": "Pathly",
+    "rightTitle": "Andere KI-Tools",
+    "rows": {
+      "writingStyle": { "feature": "Schreibstil", "pathly": "Dein Stil", "others": "Generischer Output" },
+      "ats": { "feature": "ATS-Optimierung", "pathly": "Pro Job individuell", "others": "Manuell nacharbeiten" },
+      "privacy": { "feature": "Datenschutz", "pathly": "EU-gehostet & DSGVO", "others": "US-Server, keine Garantie" },
+      "tracking": { "feature": "Job-Tracking", "pathly": "Pipeline & Workflow", "others": "Kein Tracking" },
+      "coaching": { "feature": "Coaching", "pathly": "KI-Interview-Coaching", "others": "Kein Coaching" },
+      "video": { "feature": "Video Pitch", "pathly": "Video Letter / Pitch", "others": "Nicht vorhanden" },
+      "pomodoro": { "feature": "Pomodoro Workflow", "pathly": "Integrierter Fokus-Timer", "others": "Kein Produktivitäts-Tool" },
+      "gaps": { "feature": "Ehrenamt & Gaps", "pathly": "Lücken intelligent erklären", "others": "Keine Gap-Unterstützung" },
+      "community": { "feature": "Community", "pathly": "Pathly Community & Support", "others": "Alleine" }
+    },
+    "trustBadges": ["🔒 EU-gehostet", "🛡️ DSGVO-konform", "🇪🇺 NIS2-ready"]
+  },
+  "testimonials": {
+    "headline": "Was andere sagen.",
+    "subline": "Echte Erfahrungen — kein Marketing-Text.",
+    "items": {
+      "bastian": {
+        "quote": "Ich hab morgens aufgemacht, Pathly hat mir direkt 4 passende Stellen rausgesucht. Mittags hatte ich 2 davon angeschrieben — mit einem Anschreiben, das sich anfühlt als hätte ich selbst eine Stunde reingesteckt. Das hat so nicht mal meine alte Stelle gekostet.",
+        "role": "Wirtschaftsingenieur auf Jobsuche"
+      },
+      "clara": {
+        "quote": "Der ATS-Scanner hat mein CV auf 34% eingeschätzt. Ich dachte, das Tool spinnt. Dann hab ich die Änderungen übernommen — und plötzlich 3 Rückmeldungen in einer Woche. Davor: Funkstille seit 6 Wochen.",
+        "role": "Marketing Managerin"
+      },
+      "dorothea": {
+        "quote": "Ich bin 52 und dachte ehrlich, KI-Tools sind nichts für mich. Aber Pathly hat mir beim Mock-Interview gezeigt, dass ich auf die Frage nach meiner Schwäche seit Jahren dieselbe falsche Antwort gebe. Ein Programm. Das hat mir das gesagt.",
+        "role": "Projektleiterin im Maschinenbau"
+      },
+      "elenor": {
+        "quote": "Ich hab dem Anschreiben-Generator meinen eigenen Schreibstil gegeben — ein altes Motivationsschreiben und zwei E-Mails. Das Ergebnis klang tatsächlich nach mir. Nicht nach 'sehr geehrte Damen und Herren, hiermit bewerbe ich mich'.",
+        "role": "UX Researcherin"
+      },
+      "franziska": {
+        "quote": "3 Monate auf Stellen beworben, die ich auf LinkedIn gesehen habe. Dann zwei Wochen mit Pathly. Der Unterschied war nicht das Glück — es war, dass ich aufgehört hab, irgendwo hineinzupassen, und angefangen hab, gezielt zu suchen.",
+        "role": "Controllerin"
+      },
+      "jack": {
+        "quote": "Das Coaching hat mich auf eine Frage vorbereitet, die ich im echten Interview tatsächlich bekommen habe — fast wortgleich. Ich hab gelacht. Innerlich. Nach außen: ruhig, strukturiert, vorbereitet.",
+        "role": "Software Developer"
+      },
+      "joachim": {
+        "quote": "Ich war 14 Jahre im selben Unternehmen. Erste Bewerbung seit 2010. Pathly hat mir gezeigt, dass mein CV zwar erfahren wirkt — aber komplett auf die falsche Zielgruppe ausgerichtet war. In zwei Stunden war das anders.",
+        "role": "Vertriebsleiter"
+      }
+    }
+  },
+  "pricing": {
+    "headline": "Transparente Preise.",
+    "subline": "Kein Abo-Dschungel. Wähle deinen Takt.",
+    "monthly": "Monatlich",
+    "quarterly": "Quartalsweise",
+    "quarterlyBadge": "−15%",
+    "perMonth": "/ Monat",
+    "perQuarter": "/ Quartal",
+    "popular": "Beliebt",
+    "freeCta": "Kostenlos starten",
+    "paidCta": "Plan wählen",
+    "freeLabel": "Kostenlos",
+    "plans": {
+      "free": {
+        "description": "Perfekt zum Ausprobieren.",
+        "features": [
+          "6 Credits / Monat",
+          "CV Optimizer",
+          "Cover Letter Generator",
+          "Video Letter / Pitch",
+          "Interview Coaching",
+          "Job Search (Google Jobs)"
+        ]
+      },
+      "starter": {
+        "description": "Für aktive Jobsuche.",
+        "features": [
+          "20 Credits / Monat",
+          "CV Optimizer",
+          "Cover Letter Generator",
+          "Video Letter / Pitch",
+          "3 Coaching Sessions",
+          "20 Job Searches"
+        ]
+      },
+      "durchstarter": {
+        "description": "Maximale Power für deine Karriere.",
+        "features": [
+          "50 Credits / Monat",
+          "CV Optimizer",
+          "Cover Letter Generator",
+          "Video Letter / Pitch",
+          "10 Coaching Sessions",
+          "50 Job Searches"
+        ]
+      }
+    },
+    "trustSignals": ["14 Tage Geld-zurück", "EU-gehostet", "DSGVO-konform"]
+  },
+  "browserExtension": {
+    "badge": "Neu — Chrome Extension",
+    "headline": "Ein Klick.",
+    "headlineAccent": "Job gespeichert.",
+    "subline": "Du scrollst LinkedIn. Pathly denkt mit. Mit einem Klick landet jede Stelle direkt in deiner Queue — inklusive KI-Analyse.",
+    "cta": "Extension installieren",
+    "ctaNote": "Kostenlos · Chrome & Edge · Kein Account nötig",
+    "steps": {
+      "01": { "title": "Extension installieren", "description": "Im Chrome Web Store — kostenlos, 30 Sekunden." },
+      "02": { "title": "Job-Seite öffnen", "description": "LinkedIn, StepStone, Indeed oder Xing — wie immer." },
+      "03": { "title": "Pathly-Button klicken", "description": "Jobtitel, Firma, Standort — alles wird automatisch erkannt." },
+      "04": { "title": "KI übernimmt", "description": "ATS-Score, Cover Letter, Coaching — alles wartet schon auf dich." }
+    },
+    "features": [
+      "Kein Copy-Paste mehr",
+      "Automatische Duplikat-Erkennung",
+      "DSGVO-konform — kein Tracking",
+      "Funktioniert offline"
+    ],
+    "worksOn": "Funktioniert auf:",
+    "mockup": {
+      "connected": "Verbunden",
+      "position": "Position",
+      "company": "Unternehmen",
+      "addToQueue": "Job zur Queue hinzufügen",
+      "saved": "Job gespeichert!",
+      "analyzing": "KI-Analyse läuft…"
+    }
+  },
+  "comparison": {
+    "manualTitle": "Wie ich es bisher gemacht habe",
+    "pathlyTitle": "Wie ich es jetzt mache",
+    "steps": {
+      "01": { "title": "Jobsuche", "description": "4 Portale, 20 Tabs, Unternehmensanalyse..." },
+      "02": { "title": "Lebenslauf anpassen", "description": "ATS-Keywords, Stichpunkte und Zahlen zuordnen." },
+      "03": { "title": "Anschreiben generieren", "description": "KI prompten, Re-Prompten, Output anpassen: nicht generisch klingen." },
+      "04": { "title": "Formatieren", "description": "Anschreiben in Word formatieren, letzte Änderungen, PDF Export" },
+      "05": { "title": "Verwaltung", "description": "E-Mails senden, Follow-Ups, Tracking" },
+      "06": { "title": "Nächste Stelle", "description": "Von vorne beginnen. Jeden Tag." },
+      "07": { "title": "Warten", "description": "Keine Antwort, kein Feedback. Kein Grund." }
+    },
+    "pathlyCard": {
+      "checks": [
+        "Job analysiert",
+        "CV auf Stelle optimiert",
+        "Anschreiben in deinem Stil",
+        "Bewerbung ready in 15min"
+      ],
+      "subtext": "3× mehr Interviews. In der Hälfte der Zeit. Klingt trotzdem wie du.",
+      "cta": "Probier es jetzt!"
+    }
+  },
+  "finalCta": {
+    "headlinePart1": "Dein nächstes Interview.",
+    "headlinePart2": "Nicht irgendwann:",
+    "headlineAccent": "jetzt.",
+    "body": "Pathly ist in der Beta. Trag dich ein und du bekommst als Erste:r Zugang — kostenlos, ohne Verpflichtung.",
+    "inputPlaceholder": "E-Mail-Adresse",
+    "cta": "Ich will frühen Zugang →",
+    "trustSignals": ["Keine Kreditkarte", "Jederzeit abmeldbar", "EU-Server"]
+  },
+  "footer": {
+    "copyrightBase": "Pathly. Alle Rechte vorbehalten.",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz"
+  },
+  "stats": {
+    "ats": { "value": "74", "suffix": "%", "label": "der Bewerbungen werden von ATS-Systemen aussortiert" },
+    "interviews": { "value": "3", "suffix": "x", "label": "mehr Vorstellungsgespräche mit optimiertem CV" },
+    "scanTime": { "value": "12", "suffix": "s", "label": "durchschnittliche CV-Prüfzeit durch HR" }
+  },
+  "faq": {
+    "headline": "Häufige Fragen.",
+    "items": {
+      "01": {
+        "tag": "Datenschutz",
+        "question": "Wo liegen meine Daten — und liest Pathly meinen Lebenslauf?",
+        "answer": "Deine Daten werden ausschließlich auf EU-Servern gespeichert. Pathly ist vollständig DSGVO-konform und NIS2-ready. Dein Lebenslauf wird nur verarbeitet, um dir bessere Bewerbungen zu ermöglichen — niemals weitergegeben, verkauft oder für das Training von KI-Modellen genutzt. Du kannst deine Daten jederzeit vollständig löschen."
+      },
+      "02": {
+        "tag": "Datenschutz",
+        "question": "Wird mein CV für KI-Training verwendet?",
+        "answer": "Nein. Deine Dokumente, Texte und persönlichen Daten werden niemals für das Training von KI-Modellen verwendet — weder von Pathly noch von unseren KI-Partnern. Das ist vertraglich garantiert. Deine Bewerbungsunterlagen gehören dir."
+      },
+      "03": {
+        "tag": "KI & Stil",
+        "question": "Klingt das Anschreiben wirklich nach mir — oder nach KI?",
+        "answer": "Pathly analysiert deinen Schreibstil anhand deiner eigenen Texte — Satzlänge, Wortwahl, Ton. Das generierte Anschreiben wird zusätzlich durch eine Skeptical Hiring Manager-Kritik geprüft, die generische Formulierungen aktiv herausfiltert. Das Ergebnis klingt wie du — nicht wie ein Chatbot."
+      },
+      "04": {
+        "tag": "Vergleich",
+        "question": "Was macht Pathly anders als andere KI-Tools?",
+        "answer": "Andere KI-Tools kennen dich nicht, kennen den Job nicht und wissen nicht, was Recruiter wirklich sehen wollen. Pathly kombiniert dein individuelles Profil, die konkrete Stellenbeschreibung und Echtzeit-Unternehmensrecherche — und erstellt daraus eine Bewerbung, die ATS-Systeme passiert und trotzdem nach dir klingt. Dazu kommt EU-Datenschutz, Job-Tracking und Interview-Coaching in einem System."
+      },
+      "05": {
+        "tag": "Produkt",
+        "question": "Funktioniert Pathly auch für meine Branche?",
+        "answer": "Ja. Pathly wurde für alle Berufsfelder entwickelt — von Marketing über Tech bis hin zu Design, Finanzen oder dem öffentlichen Dienst. Das System passt sich an deine Branche, deinen Karrierelevel und deine Ziele an. Auch Quereinsteiger, Berufsrückkehrer und Menschen mit Lücken im Lebenslauf werden gezielt unterstützt."
+      },
+      "06": {
+        "tag": "Warteliste",
+        "question": "Was passiert nach der Warteliste?",
+        "answer": "Sobald Pathly in die Beta startet, bekommst du als Erste:r eine persönliche Einladung per E-Mail. Beta-Nutzer erhalten vollen Zugang zu allen Features — inklusive CV-Optimizer, Cover Letter, Interview-Coaching und Job-Queue. Dein Platz auf der Liste bleibt gesichert."
+      },
+      "07": {
+        "tag": "Vertrauen",
+        "question": "Warum sollte ich einer neuen KI-Plattform vertrauen?",
+        "answer": "Weil wir selbst erlebt haben, wie frustrierend der Bewerbungsprozess ist — und wie wenig bestehende Tools wirklich helfen. Pathly wurde nicht gebaut, um einen weiteren KI-Wrapper auf den Markt zu bringen, sondern um das zu lösen, was wirklich im Weg steht: unsichtbare Hürden durch ATS-Filter, generische Texte und kein Überblick. Transparenz und Datenschutz sind dabei keine Features — sie sind die Grundlage."
+      }
+    }
+  },
+  "cookieConsent": {
+    "title": "Wir respektieren deine Privatsphäre.",
+    "body": "Wir nutzen Cookies für technisch notwendige Funktionen. Analytics-Cookies setzen wir nur mit deiner Einwilligung ein.",
+    "acceptAll": "Alles akzeptieren",
+    "necessary": "Nur notwendige",
+    "settings": "Einstellungen",
+    "settingsTitle": "Cookie-Einstellungen",
+    "necessaryLabel": "Notwendige Cookies",
+    "necessaryDesc": "Technisch erforderlich für die Grundfunktionen der Website. Kann nicht deaktiviert werden.",
+    "analyticsLabel": "Analytics-Cookies",
+    "analyticsDesc": "Helfen uns zu verstehen, wie Besucher die Website nutzen (z.\u00A0B. Vercel Analytics).",
+    "save": "Einstellungen speichern",
+    "privacyLink": "Datenschutzerklärung",
+    "noscript": "Diese Website verwendet technisch notwendige Cookies."
+  },
+  "languageSwitcher": {
+    "de": "Deutsch",
+    "en": "English",
+    "es": "Español"
+  }
+}

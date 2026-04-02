@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { BROWSER_EXTENSION, SITE } from "@/lib/constants";
 
 /**
@@ -10,6 +11,7 @@ import { BROWSER_EXTENSION, SITE } from "@/lib/constants";
  */
 
 export function BrowserExtension() {
+  const t = useTranslations("browserExtension");
   return (
     <section
       id="extension"
@@ -29,7 +31,7 @@ export function BrowserExtension() {
           >
             <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
             <span className="text-[13px] font-semibold text-navy">
-              {BROWSER_EXTENSION.badge}
+              {t("badge")}
             </span>
           </motion.div>
 
@@ -40,8 +42,8 @@ export function BrowserExtension() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-[32px] md:text-[44px] font-bold text-text leading-tight"
           >
-            {BROWSER_EXTENSION.headline}{" "}
-            <span className="text-navy">{BROWSER_EXTENSION.headlineAccent}</span>
+            {t("headline")}{" "}
+            <span className="text-navy">{t("headlineAccent")}</span>
           </motion.h2>
 
           <motion.p
@@ -51,7 +53,7 @@ export function BrowserExtension() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-[16px] text-muted max-w-xl mx-auto"
           >
-            {BROWSER_EXTENSION.subline}
+            {t("subline")}
           </motion.p>
         </div>
 
@@ -61,7 +63,7 @@ export function BrowserExtension() {
           <div>
             {/* Platform support */}
             <div className="flex items-center gap-2 mb-10 flex-wrap">
-              <span className="text-[13px] text-muted font-medium mr-1">Funktioniert auf:</span>
+              <span className="text-[13px] text-muted font-medium mr-1">{t("worksOn")}</span>
               {BROWSER_EXTENSION.platforms.map((p, i) => (
                 <motion.span
                   key={p.name}
@@ -94,8 +96,8 @@ export function BrowserExtension() {
                   </div>
                   {/* Content */}
                   <div className="pt-1">
-                    <p className="text-[15px] font-bold text-text">{step.title}</p>
-                    <p className="text-[14px] text-muted mt-0.5">{step.description}</p>
+                    <p className="text-[15px] font-bold text-text">{t(`steps.${step.number}.title`)}</p>
+                    <p className="text-[14px] text-muted mt-0.5">{t(`steps.${step.number}.description`)}</p>
                   </div>
                 </motion.div>
               ))}
@@ -103,7 +105,7 @@ export function BrowserExtension() {
 
             {/* Feature pills */}
             <div className="flex flex-wrap gap-2 mb-10">
-              {BROWSER_EXTENSION.features.map((f) => (
+              {[t("features.0"), t("features.1"), t("features.2"), t("features.3")].map((f) => (
                 <span
                   key={f}
                   className="inline-flex items-center gap-1.5 text-[13px] text-text font-medium"
@@ -135,7 +137,7 @@ export function BrowserExtension() {
                   <span className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:left-[200%] transition-all duration-700" />
                 </span>
                 <ChromeIcon />
-                <span className="relative z-10">{BROWSER_EXTENSION.cta}</span>
+                <span className="relative z-10">{t("cta")}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
                   strokeLinejoin="round"
@@ -143,7 +145,7 @@ export function BrowserExtension() {
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
-              <span className="text-[13px] text-muted">{BROWSER_EXTENSION.ctaNote}</span>
+              <span className="text-[13px] text-muted">{t("ctaNote")}</span>
             </motion.div>
           </div>
 
@@ -165,6 +167,7 @@ export function BrowserExtension() {
 
 /* ─── Animated Popup Mockup ─── */
 function PopupMockup() {
+  const t = useTranslations("browserExtension");
   return (
     <div className="relative w-full max-w-[400px]">
       {/* Glow behind popup */}
@@ -221,7 +224,7 @@ function PopupMockup() {
                 </div>
                 <span className="text-[13px] font-bold text-navy">Pathly</span>
               </div>
-              <span className="text-[11px] text-success font-semibold">● Verbunden</span>
+              <span className="text-[11px] text-success font-semibold">● {t("mockup.connected")}</span>
             </div>
 
             {/* Detected job data */}
@@ -234,7 +237,7 @@ function PopupMockup() {
                   <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
                 </svg>
                 <div>
-                  <p className="text-[12px] text-muted">Position</p>
+                  <p className="text-[12px] text-muted">{t("mockup.position")}</p>
                   <p className="text-[13px] font-semibold text-text">Software Engineer (m/w/d)</p>
                 </div>
               </div>
@@ -245,7 +248,7 @@ function PopupMockup() {
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 </svg>
                 <div>
-                  <p className="text-[12px] text-muted">Unternehmen</p>
+                  <p className="text-[12px] text-muted">{t("mockup.company")}</p>
                   <p className="text-[13px] font-semibold text-text">Acme GmbH · Berlin</p>
                 </div>
               </div>
@@ -276,7 +279,7 @@ function PopupMockup() {
                   strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 5v14M5 12l7 7 7-7"/>
                 </svg>
-                Job zur Queue hinzufügen
+                {t("mockup.addToQueue")}
               </motion.button>
             </div>
           </motion.div>
@@ -298,8 +301,8 @@ function PopupMockup() {
           </svg>
         </div>
         <div>
-          <p className="text-[12px] font-bold text-text">Job gespeichert!</p>
-          <p className="text-[11px] text-muted">KI-Analyse läuft…</p>
+          <p className="text-[12px] font-bold text-text">{t("mockup.saved")}</p>
+          <p className="text-[11px] text-muted">{t("mockup.analyzing")}</p>
         </div>
       </motion.div>
     </div>

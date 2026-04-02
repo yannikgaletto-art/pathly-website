@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { PRICING, SITE } from "@/lib/constants";
 
 /**
@@ -22,8 +23,9 @@ function formatPrice(price: number): string {
 }
 
 export function Pricing() {
+  const t = useTranslations("pricing");
   const [interval, setInterval] = useState<Interval>("monthly");
-  const [activeIndex, setActiveIndex] = useState(1); // Start with Starter in center
+  const [activeIndex, setActiveIndex] = useState(1);
 
   const goTo = useCallback(
     (idx: number) => {
@@ -42,10 +44,10 @@ export function Pricing() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-[32px] md:text-[44px] font-bold text-text leading-tight tracking-tight">
-            {PRICING.headline}
+            {t("headline")}
           </h2>
           <p className="mt-4 text-[16px] text-muted leading-relaxed">
-            {PRICING.subline}
+            {t("subline")}
           </p>
         </div>
 
@@ -64,7 +66,7 @@ export function Pricing() {
                 />
               )}
               <span className={`relative z-10 ${interval === "monthly" ? "text-white" : "text-navy"}`}>
-                {PRICING.intervalLabels.monthly}
+                {t("monthly")}
               </span>
             </button>
             <button
@@ -79,13 +81,13 @@ export function Pricing() {
                 />
               )}
               <span className={`relative z-10 flex items-center gap-2 ${interval === "quarterly" ? "text-white" : "text-navy"}`}>
-                {PRICING.intervalLabels.quarterly}
+                {t("quarterly")}
                 <span
                   className={`text-[11px] px-2 py-0.5 rounded-full font-bold transition-all duration-200 ${
                     interval === "quarterly" ? "bg-white/20 text-white" : "bg-success/15 text-success"
                   }`}
                 >
-                  {PRICING.quarterlyBadge}
+                  {t("quarterlyBadge")}
                 </span>
               </span>
             </button>
@@ -131,6 +133,13 @@ export function Pricing() {
                     offset={offset}
                     isActive={idx === activeIndex}
                     onClick={() => goTo(idx)}
+                    popularLabel={t("popular")}
+                    perMonthLabel={t("perMonth")}
+                    freeCtaLabel={t("freeCta")}
+                    paidCtaLabel={t("paidCta")}
+                    freeLabel={t("freeLabel")}
+                    planDescription={t(`plans.${plan.id}.description`)}
+                    featureTexts={plan.features.map((_, fi) => t(`plans.${plan.id}.features.${fi}`))}
                   />
                 );
               })}
@@ -156,7 +165,7 @@ export function Pricing() {
 
         {/* ─── Trust Signals ─── */}
         <div className="mt-10 flex flex-wrap justify-center gap-6">
-          {PRICING.trustSignals.map((signal) => (
+          {[t("trustSignals.0"), t("trustSignals.1"), t("trustSignals.2")].map((signal) => (
             <span key={signal} className="flex items-center gap-1.5 text-[13px] text-muted font-medium">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-success">
@@ -178,12 +187,26 @@ function CarouselCard({
   offset,
   isActive,
   onClick,
+  popularLabel,
+  perMonthLabel,
+  freeCtaLabel,
+  paidCtaLabel,
+  freeLabel,
+  planDescription,
+  featureTexts,
 }: {
   plan: Plan;
   interval: Interval;
   offset: number;
   isActive: boolean;
   onClick: () => void;
+  popularLabel: string;
+  perMonthLabel: string;
+  freeCtaLabel: string;
+  paidCtaLabel: string;
+  freeLabel: string;
+  planDescription: string;
+  featureTexts: string[];
 }) {
   const isPopular = "popular" in plan && plan.popular;
   const isFree = plan.id === "free";
@@ -234,7 +257,7 @@ function CarouselCard({
           animate={{ opacity: 1, y: 0 }}
           className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-navy text-white text-[11px] font-semibold uppercase tracking-wider whitespace-nowrap"
         >
-          {PRICING.popular}
+          {popularLabel}
         </motion.div>
       )}
 
@@ -243,7 +266,7 @@ function CarouselCard({
         <h3 className="text-[22px] font-bold text-text tracking-tight">
           {plan.name}
         </h3>
-        <p className="text-[14px] text-muted mt-0.5">{plan.description}</p>
+        <p className="text-[14px] text-muted mt-0.5">{planDescription}</p>
       </div>
 
       {/* Price */}
@@ -259,7 +282,7 @@ function CarouselCard({
           >
             {isFree ? (
               <span className="text-[36px] font-extrabold text-text leading-none tracking-tight">
-                Kostenlos
+                {freeLabel}
               </span>
             ) : (
               <>
@@ -271,7 +294,7 @@ function CarouselCard({
                     €{formatPrice(originalMonthlyPrice)}
                   </span>
                 )}
-                <span className="text-[14px] text-muted">{PRICING.perMonth}</span>
+                <span className="text-[14px] text-muted">{perMonthLabel}</span>
               </>
             )}
           </motion.div>
@@ -283,8 +306,8 @@ function CarouselCard({
 
       {/* Feature list */}
       <ul className="space-y-2.5 mb-7 flex-1">
-        {plan.features.map((feature) => (
-          <li key={feature.text} className="flex items-center gap-2.5">
+        {plan.features.map((feature, fi) => (
+          <li key={fi} className="flex items-center gap-2.5">
             {feature.included ? (
               <div className="w-4.5 h-4.5 rounded-full bg-success/12 flex items-center justify-center flex-shrink-0">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -302,7 +325,7 @@ function CarouselCard({
               </div>
             )}
             <span className={`text-[13.5px] ${feature.included ? "text-text" : "text-muted/50"}`}>
-              {feature.text}
+              {featureTexts[fi]}
             </span>
           </li>
         ))}
@@ -316,10 +339,10 @@ function CarouselCard({
               href={SITE.appUrl}
               className="block w-full py-3 rounded-xl text-center text-[14px] font-semibold border border-navy/15 text-navy bg-navy-tint hover:bg-navy hover:text-white transition-all duration-300"
             >
-              {PRICING.freeCta}
+              {freeCtaLabel}
             </a>
           ) : (
-            <SlideToConfirm href={SITE.appUrl} label={PRICING.paidCta} />
+            <SlideToConfirm href={SITE.appUrl} label={paidCtaLabel} />
           )}
         </motion.div>
       )}

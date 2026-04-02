@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useCallback } from "react";
-import { DIFFERENTIATION } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 
 /**
  * Section 07 — Differentiation
@@ -14,10 +14,12 @@ const NOISE_SVG = `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='h
 
 // Small horizontal drift (px) and rotation (deg) per pill index
 // — enough to look organic, never enough to clip text
-const DRIFT  = [8, -14, 18, -6, 12, -18, 6, -10, 14];
-const ROT    = [-2, 3, -1, 2, -3, 1, -2, 3, -1];
+const ROT = [-2, 3, -1, 2, -3, 1, -2, 3, -1];
+
+const ROW_KEYS = ["writingStyle", "ats", "privacy", "tracking", "coaching", "video", "pomodoro", "gaps", "community"] as const;
 
 export function Differentiation() {
+  const t = useTranslations("differentiation");
   const sectionRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
@@ -50,7 +52,10 @@ export function Differentiation() {
     return () => observer.disconnect();
   }, [animateDrop]);
 
-  const rows = DIFFERENTIATION.rows;
+  const rows = ROW_KEYS.map((key) => ({
+    pathly: t(`rows.${key}.pathly`),
+    others: t(`rows.${key}.others`),
+  }));
 
   /* ── shared pill renderer ── */
   const renderPill = (
@@ -59,8 +64,7 @@ export function Differentiation() {
     i: number,
     side: "left" | "right"
   ) => {
-    const drift = side === "left" ? DRIFT[i % DRIFT.length] : -DRIFT[i % DRIFT.length];
-    const rot   = side === "left" ? ROT[i % ROT.length]   : -ROT[i % ROT.length];
+    const rot = side === "left" ? ROT[i % ROT.length] : -ROT[i % ROT.length];
 
     const isCheck = mark === "check";
 
@@ -69,14 +73,13 @@ export function Differentiation() {
         key={`${side}-${i}`}
         data-pill
         data-rot={rot}
-        className="opacity-0"
+        className="opacity-0 w-full"
         style={{
           transform: `translateY(-520px) rotate(${rot}deg)`,
-          marginLeft: drift,
         }}
       >
         <div
-          className={`relative flex items-center gap-2 rounded-full overflow-hidden px-5 py-3 ${
+          className={`relative flex items-center justify-between gap-3 rounded-full overflow-hidden px-5 py-3 w-full ${
             isCheck
               ? "border border-white/60"
               : "border border-white/15"
@@ -101,19 +104,35 @@ export function Differentiation() {
             }}
           />
 
+          {/* Label */}
           <span
-            className={`relative z-10 font-bold text-[15px] ${
-              isCheck ? "text-[#00B870]" : "text-red-400/90"
-            }`}
-          >
-            {isCheck ? "✓" : "✕"}
-          </span>
-          <span
-            className={`relative z-10 font-semibold text-[14px] whitespace-nowrap ${
+            className={`relative z-10 font-semibold text-[14px] ${
               isCheck ? "text-navy" : "text-white/55"
             }`}
           >
             {label}
+          </span>
+
+          {/* Icon — white liquid SVG, far right */}
+          <span className="relative z-10 shrink-0 w-5 h-5 flex items-center justify-center">
+            {isCheck ? (
+              <svg
+                width="14" height="14" viewBox="0 0 24 24"
+                fill="none" stroke="rgba(255,255,255,0.85)"
+                strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"
+              >
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            ) : (
+              <svg
+                width="12" height="12" viewBox="0 0 24 24"
+                fill="none" stroke="rgba(255,255,255,0.45)"
+                strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            )}
           </span>
         </div>
       </div>
@@ -130,10 +149,10 @@ export function Differentiation() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-[32px] md:text-[40px] font-bold text-white leading-tight">
-            {DIFFERENTIATION.headline}
+            {t("headline")}
           </h2>
           <p className="mt-4 text-[16px] text-white/70">
-            {DIFFERENTIATION.subline}
+            {t("subline")}
           </p>
         </div>
 
@@ -145,7 +164,7 @@ export function Differentiation() {
           {/* ─── Left card: Pathly ─── */}
           <div className="bg-white/[0.06] border border-white/15 backdrop-blur-sm rounded-[2rem] p-8 overflow-hidden">
             <h3 className="text-white font-bold text-[22px] mb-6">
-              {DIFFERENTIATION.leftTitle}
+              {t("leftTitle")}
             </h3>
             {/* overflow-hidden clips pills as they fall in from above */}
             <div className="overflow-hidden">
@@ -160,7 +179,7 @@ export function Differentiation() {
           {/* ─── Right card: Andere KI-Tools ─── */}
           <div className="bg-black/20 border border-white/10 rounded-[2rem] p-8 overflow-hidden">
             <h3 className="text-white/50 font-normal text-[22px] mb-6">
-              {DIFFERENTIATION.rightTitle}
+              {t("rightTitle")}
             </h3>
             <div className="overflow-hidden">
               <div className="flex flex-col gap-3">
@@ -174,7 +193,7 @@ export function Differentiation() {
 
         {/* Trust Badges */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          {DIFFERENTIATION.trustBadges.map((badge) => (
+          {[t("trustBadges.0"), t("trustBadges.1"), t("trustBadges.2")].map((badge) => (
             <span
               key={badge}
               className="inline-flex items-center rounded-full bg-white/10 backdrop-blur-sm border border-white/10 px-5 py-2.5 text-[13px] md:text-[14px] font-medium text-white/90"

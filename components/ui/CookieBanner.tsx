@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { COOKIE_CONSENT } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 import { getConsent, setConsent } from "@/lib/consent";
 
 /**
@@ -13,6 +13,7 @@ import { getConsent, setConsent } from "@/lib/consent";
  * - prefers-reduced-motion: handled by global CSS block in globals.css
  */
 export default function CookieBanner() {
+  const t = useTranslations("cookieConsent");
   // null = unknown (SSR/initial), true = show, false = hide
   const [show, setShow] = useState<boolean | null>(null);
   const [showSettings, setShowSettings] = useState(false);
@@ -73,15 +74,15 @@ export default function CookieBanner() {
                 id="cookie-banner-title"
                 className="text-[15px] font-semibold text-text mb-1"
               >
-                {COOKIE_CONSENT.banner.title}
+                {t("title")}
               </p>
               <p className="text-[13px] text-muted leading-relaxed">
-                {COOKIE_CONSENT.banner.body}{" "}
+                {t("body")}{" "}
                 <a
-                  href={COOKIE_CONSENT.banner.privacyHref}
+                  href="/datenschutz"
                   className="text-navy hover:underline"
                 >
-                  {COOKIE_CONSENT.banner.privacyLink}
+                  {t("privacyLink")}
                 </a>
               </p>
             </div>
@@ -95,7 +96,7 @@ export default function CookieBanner() {
                            underline underline-offset-2
                            transition-colors order-3 sm:order-1"
               >
-                {COOKIE_CONSENT.banner.settings}
+                {t("settings")}
               </button>
 
               {/* Necessary only — Secondary */}
@@ -107,7 +108,7 @@ export default function CookieBanner() {
                            hover:bg-navy-tint transition-colors
                            order-2"
               >
-                {COOKIE_CONSENT.banner.necessary}
+                {t("necessary")}
               </button>
 
               {/* Accept all — Primary */}
@@ -119,7 +120,7 @@ export default function CookieBanner() {
                            hover:bg-navy-hover transition-colors
                            order-1 sm:order-3"
               >
-                {COOKIE_CONSENT.banner.acceptAll}
+                {t("acceptAll")}
               </button>
             </div>
           </div>
@@ -129,17 +130,17 @@ export default function CookieBanner() {
         {showSettings && (
           <div className="space-y-4">
             <p className="text-[15px] font-semibold text-text">
-              {COOKIE_CONSENT.banner.settingsTitle}
+              {t("settingsTitle")}
             </p>
 
             {/* Necessary — always on, disabled */}
             <div className="flex items-start justify-between gap-4 py-3 border-t border-border">
               <div>
                 <p className="text-[14px] font-medium text-text">
-                  {COOKIE_CONSENT.banner.necessaryLabel}
+                  {t("necessaryLabel")}
                 </p>
                 <p className="text-[12px] text-muted mt-0.5">
-                  {COOKIE_CONSENT.banner.necessaryDesc}
+                  {t("necessaryDesc")}
                 </p>
               </div>
               <input
@@ -148,7 +149,7 @@ export default function CookieBanner() {
                 checked={true}
                 disabled={true}
                 aria-disabled="true"
-                aria-label={COOKIE_CONSENT.banner.necessaryLabel}
+                aria-label={t("necessaryLabel")}
                 className="mt-1 h-4 w-4 accent-navy cursor-not-allowed
                            opacity-60 shrink-0"
               />
@@ -158,10 +159,10 @@ export default function CookieBanner() {
             <div className="flex items-start justify-between gap-4 py-3 border-t border-border">
               <div>
                 <p className="text-[14px] font-medium text-text">
-                  {COOKIE_CONSENT.banner.analyticsLabel}
+                  {t("analyticsLabel")}
                 </p>
                 <p className="text-[12px] text-muted mt-0.5">
-                  {COOKIE_CONSENT.banner.analyticsDesc}
+                  {t("analyticsDesc")}
                 </p>
               </div>
               <input
@@ -169,7 +170,7 @@ export default function CookieBanner() {
                 role="switch"
                 checked={analyticsEnabled}
                 onChange={(e) => setAnalyticsEnabled(e.target.checked)}
-                aria-label={COOKIE_CONSENT.banner.analyticsLabel}
+                aria-label={t("analyticsLabel")}
                 className="mt-1 h-4 w-4 accent-navy cursor-pointer shrink-0"
               />
             </div>
@@ -182,7 +183,7 @@ export default function CookieBanner() {
                            font-semibold bg-navy text-white
                            hover:bg-navy-hover transition-colors"
               >
-                {COOKIE_CONSENT.banner.save}
+                {t("save")}
               </button>
             </div>
           </div>

@@ -1,18 +1,21 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { TRUST_TICKER } from "@/lib/constants";
 
 /**
  * Section 03 — Trust Ticker
  * Thin horizontal band with Harvard study reference.
- * No Framer Motion needed — static content.
  */
 export function TrustTicker() {
+  const t = useTranslations("trustTicker");
+
   return (
     <section
-      aria-label="Studien-Referenz"
+      aria-label="Study Reference"
       className="bg-bg-soft border-y border-border"
     >
       <div className="mx-auto max-w-site px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        {/* Harvard Shield Icon */}
         <div className="shrink-0">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-navy">
             <path
@@ -31,19 +34,17 @@ export function TrustTicker() {
           </svg>
         </div>
 
-        {/* Quote */}
         <p className="text-[13px] text-muted italic text-center md:text-left flex-1">
-          {TRUST_TICKER.quote}
+          {t("quote")}
         </p>
 
-        {/* Study Link */}
         <a
           href={TRUST_TICKER.url}
           target="_blank"
           rel="noopener noreferrer"
           className="shrink-0 text-[13px] font-semibold text-navy hover:underline transition-colors duration-200"
         >
-          {TRUST_TICKER.linkLabel}
+          {t("linkLabel")}
         </a>
       </div>
     </section>

@@ -2,25 +2,35 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SITE, NAV_LINKS, NAV_CTA } from "@/lib/constants";
+import { useTranslations } from "next-intl";
+import { SITE } from "@/lib/constants";
 import { ShimmerButton } from "@/components/ui/ShimmerButton";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { cn } from "@/lib/utils";
 
+const NAV_HREFS = ["#features", "#how-it-works", "#differentiation"] as const;
+
 export function Navbar() {
+  const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Scroll-aware border: show border-bottom + blur only after 20px scroll
+  const links = [
+    { label: t("features"), href: NAV_HREFS[0] },
+    { label: t("howItWorks"), href: NAV_HREFS[1] },
+    { label: t("aboutUs"), href: NAV_HREFS[2] },
+  ];
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll(); // initial state
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
-      aria-label="Hauptnavigation"
+      aria-label="Main Navigation"
       className={cn(
         "sticky top-0 z-50 transition-all duration-200",
         scrolled
@@ -29,18 +39,15 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex max-w-site items-center justify-between px-6 py-4">
-        {/* Logo: "P" Icon + Wortmarke */}
-        <a href="/" className="flex items-center gap-2" aria-label="Zurück zur Startseite">
-          {/* Square "P" icon — placeholder until logo.svg is delivered */}
+        <a href="/" className="flex items-center gap-2" aria-label="Home">
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-navy text-sm font-bold text-white">
             P
           </span>
           <span className="text-xl font-bold text-text">{SITE.name}</span>
         </a>
 
-        {/* Desktop Links (center) */}
         <ul className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
+          {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -52,18 +59,17 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA (right) */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageSwitcher />
           <ShimmerButton href="#waitlist" size="md">
-            {NAV_CTA}
+            {t("cta")}
           </ShimmerButton>
         </div>
 
-        {/* Mobile Hamburger — inline SVG, no external icon lib */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden p-2 text-text"
-          aria-label={open ? "Menü schließen" : "Menü öffnen"}
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -80,7 +86,6 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu — animated slide-down */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -91,7 +96,7 @@ export function Navbar() {
             className="md:hidden overflow-hidden border-t border-border bg-white"
           >
             <ul className="flex flex-col gap-4 px-6 py-6">
-              {NAV_LINKS.map((link) => (
+              {links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -102,9 +107,12 @@ export function Navbar() {
                   </a>
                 </li>
               ))}
+              <li className="flex items-center gap-3">
+                <LanguageSwitcher />
+              </li>
               <li>
                 <ShimmerButton href="#waitlist" size="md" className="w-full text-center">
-                  {NAV_CTA}
+                  {t("cta")}
                 </ShimmerButton>
               </li>
             </ul>

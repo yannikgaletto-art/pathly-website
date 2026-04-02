@@ -1,8 +1,10 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { PROBLEMS } from "@/lib/constants";
 
 /**
  * Parses **bold** markers in text and returns JSX with <strong> tags.
- * Keeps all text in constants.ts (REGEL 7) while supporting inline emphasis.
  */
 function renderBold(text: string) {
   const parts = text.split(/\*\*(.*?)\*\*/g);
@@ -15,20 +17,22 @@ function renderBold(text: string) {
  * Problem toggles — Notion-style accordion.
  * Headline is rendered by ScrollSection (same-line typewriter).
  * This component only renders the toggle items.
- * Each toggle has data-toggle-item for GSAP stagger-in control.
  */
 export function Problem() {
+  const t = useTranslations("problems");
+
+  const itemIds = ["01", "02", "03"] as const;
+
   return (
     <>
-      {PROBLEMS.items.map((item, i) => (
+      {itemIds.map((id, i) => (
         <details
-          key={item.id}
+          key={id}
           data-toggle-item
           className="pathly-toggle group"
           open={i === 0}
           style={{ opacity: 0, transform: "translateY(20px)" }}
         >
-          {/* Summary / Toggle Header */}
           <summary className="pathly-toggle-summary">
             <svg
               className="pathly-toggle-arrow"
@@ -47,35 +51,33 @@ export function Problem() {
               />
             </svg>
             <span>
-              <strong className="text-navy">{item.tag}:</strong>{" "}
-              {renderBold(item.headline)}
+              <strong className="text-navy">{t(`items.${id}.tag`)}:</strong>{" "}
+              {renderBold(t(`items.${id}.headline`))}
             </span>
           </summary>
 
-          {/* Expanded Content */}
           <div className="pathly-toggle-content">
             <p className="text-[15px] text-text leading-[1.75]">
-              {renderBold(item.body)}
+              {renderBold(t(`items.${id}.body`))}
             </p>
 
-            {/* Source Links */}
             <div className="mt-4 flex flex-col gap-1">
               <a
-                href={item.sourceUrl}
+                href={PROBLEMS.items[i].sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[13px] text-muted hover:text-navy transition-colors duration-200"
               >
-                Studie: {item.source} ↗
+                {t(`items.${id}.source`)} ↗
               </a>
-              {"sourceUrlSecondary" in item && item.sourceUrlSecondary && (
+              {i === 0 && "sourceUrlSecondary" in PROBLEMS.items[0] && (
                 <a
-                  href={item.sourceUrlSecondary}
+                  href={(PROBLEMS.items[0] as any).sourceUrlSecondary}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[13px] text-muted hover:text-navy transition-colors duration-200"
                 >
-                  {"sourceSecondaryLabel" in item ? item.sourceSecondaryLabel : "Weitere Quelle ↗"}
+                  {(PROBLEMS.items[0] as any).sourceSecondaryLabel || "Source ↗"}
                 </a>
               )}
             </div>

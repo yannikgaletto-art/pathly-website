@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, type ReactNode, Children } from "react";
-import { HERO, PROBLEMS } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 
 /**
  * ScrollSection — Sticky scroll container for Hero + Problem.
@@ -14,17 +14,19 @@ import { HERO, PROBLEMS } from "@/lib/constants";
  * Children: [Hero (above-fold shell), ProblemToggles]
  */
 
-// ── Split texts into character arrays ──
-const heroText = HERO.headline.replace(/\n/g, " ");
-const heroChars = heroText.split("");
-const problemText = PROBLEMS.headline;
-const problemChars = problemText.split("");
-
 interface ScrollSectionProps {
   children: ReactNode;
 }
 
 export function ScrollSection({ children }: ScrollSectionProps) {
+  const tHero = useTranslations("hero");
+  const tProblems = useTranslations("problems");
+
+  const heroText = tHero("headline").replace(/\n/g, " ");
+  const heroChars = heroText.split("");
+  const problemText = tProblems("headline");
+  const problemChars = problemText.split("");
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   const childArray = Children.toArray(children);

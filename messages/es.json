@@ -1,0 +1,326 @@
+{
+  "site": {
+    "tagline": "Tu Camino. Tu Candidatura. Tu IA.",
+    "description": "Pathly es la plataforma de IA compatible con el RGPD que optimiza tu currículum, carta de presentación y perfil para que los reclutadores te vean — alojada en la UE, sin explotación de datos."
+  },
+  "nav": {
+    "features": "Funciones",
+    "howItWorks": "Cómo funciona",
+    "aboutUs": "Sobre nosotros",
+    "cta": "Empieza ya →"
+  },
+  "hero": {
+    "headline": "Toda persona merece\nser vista.",
+    "subheadline": "Pathly optimiza tu currículum, carta de presentación y perfil para que las IAs de reclutamiento no te pasen por alto.",
+    "cta": "Empezar gratis →",
+    "ctaSecondary": "Ver demo",
+    "chips": {
+      "cv": "CV Optimizer",
+      "dsgvo": "Compatible RGPD",
+      "coverLetter": "Carta de Presentación IA",
+      "coaching": "Coaching de Entrevistas"
+    }
+  },
+  "trustTicker": {
+    "quote": "Harvard × Accenture (2021): Millones de candidatos cualificados son filtrados por sistemas automatizados — no por falta de cualificación.",
+    "linkLabel": "Leer el estudio →"
+  },
+  "problems": {
+    "headline": "¿Sabes qué pasa con tu candidatura antes de que un humano la lea?",
+    "items": {
+      "01": {
+        "tag": "Filtro ATS",
+        "headline": "Una **IA** lee tu **CV** primero. Los reclutadores dedican una media de **7,4 segundos**.",
+        "body": "El **98%** de las empresas Fortune 500 utilizan **Applicant Tracking Systems** (ATS) que clasifican los CV por palabras clave antes de que un humano los vea. Si tu CV pasa, un reclutador lo escanea en solo 7,4 segundos, siguiendo el **patrón F**: título del puesto, puesto actual, palabras clave arriba a la izquierda. Lo que falta ahí, nunca se lee.",
+        "source": "Resume Statistics Report, 2026"
+      },
+      "02": {
+        "tag": "Candidatura genérica",
+        "headline": "Con una **carta personalizada**, la probabilidad de entrevista aumenta un **+53%**.",
+        "body": "Un **experimento de campo** con **7.287** **candidaturas** reales demuestra: las cartas personalizadas generaron un 53% más de invitaciones a entrevistas. Los textos genéricos solo aportaron un +17%. El 78% de los reclutadores reconocen al instante los textos estándar generados por IA y los interpretan como **falta de motivación**.",
+        "source": "ResumeGo Field Experiment, 2020 (n = 7.287)"
+      },
+      "03": {
+        "tag": "Números en el CV",
+        "headline": "El **81–92%** de todos los CV no contienen ni un solo número.",
+        "body": "Los reclutadores y sistemas ATS prefieren logros medibles en lugar de listas de tareas. Quienes usan métricas, p. ej. \"costes reducidos en un 23%\", tienen hasta un **40% más de probabilidades** de conseguir una entrevista. Casi nadie lo hace. El **34%** de los reclutadores citan explícitamente la falta de números como motivo de rechazo.",
+        "source": "Resume Statistics Report, 2026"
+      }
+    }
+  },
+  "features": {
+    "headline": "Todo en un solo sistema.",
+    "subline": "Sin cambiar de pestaña. Sin seguimiento manual.",
+    "tabs": {
+      "jobSearch": {
+        "label": "Búsqueda de empleo",
+        "headline": "El candidato más visible gana.",
+        "bullets": [
+          "Nunca más 4 portales, 20 pestañas, sin visión general.",
+          "Otros navegan LinkedIn. Tú ya tienes una cola.",
+          "¿Una IA te filtró? Una IA te recupera."
+        ]
+      },
+      "cvOptimizer": {
+        "label": "CV Optimizer",
+        "headline": "ATS filtra. Pathly te incluye.",
+        "bullets": [
+          "La diferencia entre rechazo y entrevista: 3 palabras clave.",
+          "Misma experiencia. CV diferente. Más entrevistas.",
+          "7,4 segundos de atención. Tu CV debe ganarlos."
+        ]
+      },
+      "coverLetter": {
+        "label": "Carta de Presentación",
+        "headline": "Los reclutadores detectan textos de IA en 3 segundos. Los nuestros no.",
+        "bullets": [
+          "Análisis de empresa + cita = personalización real.",
+          "Lista en 3 minutos. Suena como 30 minutos de trabajo.",
+          "Análisis del estilo de escritura a partir de tus propios textos — sin plantillas.",
+          "Un Hiring Manager escéptico revisa cada frase antes de que la veas."
+        ]
+      },
+      "coaching": {
+        "label": "Coaching",
+        "headline": "Todos están nerviosos. Tú estás preparado.",
+        "bullets": [
+          "Practicar sin riesgo. Rendir cuando importa.",
+          "Compañero de conversación IA simula entrevistas reales.",
+          "Análisis de respuestas después de cada sesión. No después del rechazo."
+        ]
+      }
+    }
+  },
+  "differentiation": {
+    "headline": "Lo que Pathly puede. Lo que otros no.",
+    "subline": "Sin output genérico. Sin servidores en EE.UU. Sin ir solo.",
+    "leftTitle": "Pathly",
+    "rightTitle": "Otras herramientas IA",
+    "rows": {
+      "writingStyle": { "feature": "Estilo de escritura", "pathly": "Tu estilo", "others": "Output genérico" },
+      "ats": { "feature": "Optimización ATS", "pathly": "Personalizado por puesto", "others": "Rehacer manualmente" },
+      "privacy": { "feature": "Privacidad", "pathly": "Alojado en UE y RGPD", "others": "Servidores en EE.UU., sin garantía" },
+      "tracking": { "feature": "Seguimiento de empleo", "pathly": "Pipeline y flujo de trabajo", "others": "Sin seguimiento" },
+      "coaching": { "feature": "Coaching", "pathly": "Coaching IA para entrevistas", "others": "Sin coaching" },
+      "video": { "feature": "Video Pitch", "pathly": "Video Letter / Pitch", "others": "No disponible" },
+      "pomodoro": { "feature": "Flujo Pomodoro", "pathly": "Temporizador de enfoque integrado", "others": "Sin herramienta de productividad" },
+      "gaps": { "feature": "Voluntariado y vacíos", "pathly": "Explicar vacíos inteligentemente", "others": "Sin soporte para vacíos" },
+      "community": { "feature": "Comunidad", "pathly": "Comunidad y soporte Pathly", "others": "Solo" }
+    },
+    "trustBadges": ["🔒 Alojado en UE", "🛡️ Compatible RGPD", "🇪🇺 NIS2-ready"]
+  },
+  "testimonials": {
+    "headline": "Lo que otros dicen.",
+    "subline": "Experiencias reales — sin textos de marketing.",
+    "items": {
+      "bastian": {
+        "quote": "Lo abrí por la mañana, Pathly me encontró 4 puestos adecuados directamente. A mediodía ya había aplicado a 2 — con una carta de presentación que parece que le dediqué una hora. Eso ni siquiera costó lo que mi antiguo puesto.",
+        "role": "Ingeniero industrial en búsqueda de empleo"
+      },
+      "clara": {
+        "quote": "El escáner ATS valoró mi CV en un 34%. Pensé que la herramienta estaba mal. Luego apliqué los cambios — y de repente 3 respuestas en una semana. Antes: silencio total durante 6 semanas.",
+        "role": "Marketing Manager"
+      },
+      "dorothea": {
+        "quote": "Tengo 52 años y pensaba honestamente que las herramientas de IA no eran para mí. Pero Pathly me mostró en una entrevista simulada que llevo años dando la misma respuesta incorrecta a la pregunta sobre mis debilidades. Un programa. Eso me lo dijo.",
+        "role": "Directora de Proyectos, Ingeniería Mecánica"
+      },
+      "elenor": {
+        "quote": "Le di al generador de cartas mi propio estilo de escritura — una carta de motivación antigua y dos correos electrónicos. El resultado realmente sonaba como yo. No como 'Estimado/a, por la presente me dirijo a usted'.",
+        "role": "Investigadora UX"
+      },
+      "franziska": {
+        "quote": "3 meses aplicando a puestos que vi en LinkedIn. Luego dos semanas con Pathly. La diferencia no fue la suerte — fue que dejé de intentar encajar en todas partes y empecé a buscar estratégicamente.",
+        "role": "Controladora"
+      },
+      "jack": {
+        "quote": "El coaching me preparó para una pregunta que realmente me hicieron en la entrevista real — casi palabra por palabra. Me reí. Por dentro. Por fuera: tranquilo, estructurado, preparado.",
+        "role": "Desarrollador de Software"
+      },
+      "joachim": {
+        "quote": "Trabajé 14 años en la misma empresa. Primera candidatura desde 2010. Pathly me mostró que mi CV parece experimentado — pero estaba dirigido al público completamente equivocado. En dos horas, eso cambió.",
+        "role": "Director de Ventas"
+      }
+    }
+  },
+  "pricing": {
+    "headline": "Precios transparentes.",
+    "subline": "Sin jungla de suscripciones. Elige tu ritmo.",
+    "monthly": "Mensual",
+    "quarterly": "Trimestral",
+    "quarterlyBadge": "−15%",
+    "perMonth": "/ mes",
+    "perQuarter": "/ trimestre",
+    "popular": "Popular",
+    "freeCta": "Empezar gratis",
+    "paidCta": "Elegir plan",
+    "freeLabel": "Gratis",
+    "plans": {
+      "free": {
+        "description": "Perfecto para probar.",
+        "features": [
+          "6 Créditos / mes",
+          "CV Optimizer",
+          "Generador de Cartas",
+          "Video Letter / Pitch",
+          "Coaching de Entrevistas",
+          "Búsqueda de empleo (Google Jobs)"
+        ]
+      },
+      "starter": {
+        "description": "Para búsqueda activa de empleo.",
+        "features": [
+          "20 Créditos / mes",
+          "CV Optimizer",
+          "Generador de Cartas",
+          "Video Letter / Pitch",
+          "3 Sesiones de Coaching",
+          "20 Búsquedas de empleo"
+        ]
+      },
+      "durchstarter": {
+        "description": "Máximo poder para tu carrera.",
+        "features": [
+          "50 Créditos / mes",
+          "CV Optimizer",
+          "Generador de Cartas",
+          "Video Letter / Pitch",
+          "10 Sesiones de Coaching",
+          "50 Búsquedas de empleo"
+        ]
+      }
+    },
+    "trustSignals": ["14 días de devolución", "Alojado en UE", "Compatible RGPD"]
+  },
+  "browserExtension": {
+    "badge": "Nuevo — Extensión Chrome",
+    "headline": "Un clic.",
+    "headlineAccent": "Empleo guardado.",
+    "subline": "Navegas LinkedIn. Pathly piensa contigo. Con un clic, cada puesto llega directamente a tu cola — incluyendo análisis de IA.",
+    "cta": "Instalar extensión",
+    "ctaNote": "Gratis · Chrome y Edge · Sin cuenta necesaria",
+    "steps": {
+      "01": { "title": "Instalar extensión", "description": "En Chrome Web Store — gratis, 30 segundos." },
+      "02": { "title": "Abrir página de empleo", "description": "LinkedIn, StepStone, Indeed o Xing — como siempre." },
+      "03": { "title": "Clic en botón Pathly", "description": "Título, empresa, ubicación — todo detectado automáticamente." },
+      "04": { "title": "La IA se encarga", "description": "Puntuación ATS, carta, coaching — todo te espera." }
+    },
+    "features": [
+      "Sin más copiar y pegar",
+      "Detección automática de duplicados",
+      "Compatible RGPD — sin rastreo",
+      "Funciona sin conexión"
+    ],
+    "worksOn": "Funciona en:",
+    "mockup": {
+      "connected": "Conectado",
+      "position": "Puesto",
+      "company": "Empresa",
+      "addToQueue": "Añadir empleo a la cola",
+      "saved": "¡Empleo guardado!",
+      "analyzing": "Análisis IA en curso…"
+    }
+  },
+  "comparison": {
+    "manualTitle": "Cómo lo hacía antes",
+    "pathlyTitle": "Cómo lo hago ahora",
+    "steps": {
+      "01": { "title": "Búsqueda de empleo", "description": "4 portales, 20 pestañas, análisis de empresas..." },
+      "02": { "title": "Adaptar currículum", "description": "Palabras clave ATS, viñetas y métricas." },
+      "03": { "title": "Generar carta", "description": "Promptear IA, re-promptear, ajustar: no sonar genérico." },
+      "04": { "title": "Formatear", "description": "Carta en Word, últimos cambios, exportar PDF" },
+      "05": { "title": "Administración", "description": "Enviar emails, seguimientos, tracking" },
+      "06": { "title": "Siguiente puesto", "description": "Empezar de nuevo. Cada día." },
+      "07": { "title": "Esperar", "description": "Sin respuesta, sin feedback. Sin razón." }
+    },
+    "pathlyCard": {
+      "checks": [
+        "Empleo analizado",
+        "CV optimizado para el puesto",
+        "Carta en tu estilo",
+        "Candidatura lista en 15min"
+      ],
+      "subtext": "3× más entrevistas. En la mitad del tiempo. Sigue sonando como tú.",
+      "cta": "¡Pruébalo ahora!"
+    }
+  },
+  "finalCta": {
+    "headlinePart1": "Tu próxima entrevista.",
+    "headlinePart2": "No algún día:",
+    "headlineAccent": "ahora.",
+    "body": "Pathly está en beta. Regístrate y obtendrás acceso anticipado — gratis, sin compromiso.",
+    "inputPlaceholder": "Dirección de correo",
+    "cta": "Quiero acceso anticipado →",
+    "trustSignals": ["Sin tarjeta de crédito", "Cancelar en cualquier momento", "Servidores UE"]
+  },
+  "footer": {
+    "copyrightBase": "Pathly. Todos los derechos reservados.",
+    "impressum": "Aviso Legal",
+    "datenschutz": "Política de Privacidad"
+  },
+  "stats": {
+    "ats": { "value": "74", "suffix": "%", "label": "de las candidaturas son filtradas por sistemas ATS" },
+    "interviews": { "value": "3", "suffix": "x", "label": "más entrevistas con un CV optimizado" },
+    "scanTime": { "value": "12", "suffix": "s", "label": "tiempo promedio de revisión de CV por RRHH" }
+  },
+  "faq": {
+    "headline": "Preguntas frecuentes.",
+    "items": {
+      "01": {
+        "tag": "Privacidad",
+        "question": "¿Dónde están mis datos — y Pathly lee mi currículum?",
+        "answer": "Tus datos se almacenan exclusivamente en servidores de la UE. Pathly es totalmente compatible con el RGPD y NIS2-ready. Tu currículum solo se procesa para ayudarte a crear mejores candidaturas — nunca se comparte, vende ni se usa para entrenar modelos de IA. Puedes eliminar tus datos completamente en cualquier momento."
+      },
+      "02": {
+        "tag": "Privacidad",
+        "question": "¿Se usa mi CV para entrenar IA?",
+        "answer": "No. Tus documentos, textos y datos personales nunca se utilizan para entrenar modelos de IA — ni por Pathly ni por nuestros socios de IA. Esto está garantizado por contrato. Tus documentos de candidatura te pertenecen."
+      },
+      "03": {
+        "tag": "IA y Estilo",
+        "question": "¿La carta realmente suena como yo — o como IA?",
+        "answer": "Pathly analiza tu estilo de escritura a partir de tus propios textos — longitud de oraciones, elección de palabras, tono. La carta generada es revisada adicionalmente por una crítica de Hiring Manager Escéptico que filtra activamente formulaciones genéricas. El resultado suena como tú — no como un chatbot."
+      },
+      "04": {
+        "tag": "Comparación",
+        "question": "¿Qué hace Pathly diferente de otras herramientas IA?",
+        "answer": "Otras herramientas de IA no te conocen, no conocen el puesto y no saben qué quieren ver realmente los reclutadores. Pathly combina tu perfil individual, la descripción específica del puesto e investigación en tiempo real de la empresa — creando una candidatura que pasa los sistemas ATS y sigue sonando como tú. Además: protección de datos UE, seguimiento de empleo y coaching de entrevistas en un solo sistema."
+      },
+      "05": {
+        "tag": "Producto",
+        "question": "¿Pathly funciona para mi sector?",
+        "answer": "Sí. Pathly fue diseñado para todos los campos profesionales — desde marketing hasta tecnología, diseño, finanzas o administración pública. El sistema se adapta a tu sector, nivel profesional y objetivos. También se apoya específicamente a quienes cambian de carrera, regresan al mercado laboral y personas con vacíos en el currículum."
+      },
+      "06": {
+        "tag": "Lista de espera",
+        "question": "¿Qué pasa después de la lista de espera?",
+        "answer": "Una vez que Pathly lance su beta, serás de los primeros en recibir una invitación personal por correo electrónico. Los usuarios beta obtienen acceso completo a todas las funciones — incluyendo CV Optimizer, Carta de Presentación, Coaching de Entrevistas y Cola de empleos. Tu lugar en la lista está asegurado."
+      },
+      "07": {
+        "tag": "Confianza",
+        "question": "¿Por qué debería confiar en una nueva plataforma de IA?",
+        "answer": "Porque hemos experimentado de primera mano lo frustrante que es el proceso de candidatura — y lo poco que ayudan realmente las herramientas existentes. Pathly no se construyó para lanzar otro wrapper de IA, sino para resolver lo que realmente estorba: barreras invisibles de filtros ATS, textos genéricos y falta de visión general. La transparencia y la privacidad no son funciones — son la base."
+      }
+    }
+  },
+  "cookieConsent": {
+    "title": "Respetamos tu privacidad.",
+    "body": "Utilizamos cookies para funciones técnicamente necesarias. Solo establecemos cookies analíticas con tu consentimiento.",
+    "acceptAll": "Aceptar todo",
+    "necessary": "Solo necesarias",
+    "settings": "Configuración",
+    "settingsTitle": "Configuración de cookies",
+    "necessaryLabel": "Cookies necesarias",
+    "necessaryDesc": "Técnicamente necesarias para las funciones básicas del sitio web. No se pueden desactivar.",
+    "analyticsLabel": "Cookies analíticas",
+    "analyticsDesc": "Nos ayudan a entender cómo los visitantes usan el sitio web (p. ej. Vercel Analytics).",
+    "save": "Guardar configuración",
+    "privacyLink": "Política de Privacidad",
+    "noscript": "Este sitio web utiliza cookies técnicamente necesarias."
+  },
+  "languageSwitcher": {
+    "de": "Deutsch",
+    "en": "English",
+    "es": "Español"
+  }
+}

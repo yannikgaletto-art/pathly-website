@@ -3,15 +3,19 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { TESTIMONIALS } from "@/lib/constants";
 
+type Item = (typeof TESTIMONIALS.items)[number];
+
+const ITEM_KEYS = ["bastian", "clara", "dorothea", "elenor", "franziska", "jack", "joachim"] as const;
 /**
  * Section 08 — Testimonials (Animated)
  * Photo-stack left + quote right, autoplay 5s, arrow nav.
  * Below-the-fold → Framer Motion allowed per AGENTS.md.
  */
 
-type Item = (typeof TESTIMONIALS.items)[number];
+
 
 // Seeded pseudo-random per index so SSR and client match (no hydration mismatch)
 function getRotation(index: number, seed: number): string {
@@ -20,6 +24,7 @@ function getRotation(index: number, seed: number): string {
 }
 
 export function Testimonials() {
+  const t = useTranslations("testimonials");
   const items = TESTIMONIALS.items as unknown as Item[];
   const [active, setActive] = useState(0);
 
@@ -49,10 +54,10 @@ export function Testimonials() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-[32px] md:text-[40px] font-bold text-text leading-tight">
-            {TESTIMONIALS.headline}
+            {t("headline")}
           </h2>
           <p className="mt-4 text-[16px] text-muted">
-            {TESTIMONIALS.subline}
+            {t("subline")}
           </p>
         </div>
 
@@ -113,7 +118,7 @@ export function Testimonials() {
                   <p className="text-[13px] font-medium text-navy uppercase tracking-wider mb-1">
                     {current.name}, {current.age} · {current.location}
                   </p>
-                  <p className="text-[13px] text-muted mb-6">{current.role}</p>
+                  <p className="text-[13px] text-muted mb-6">{t(`items.${ITEM_KEYS[active]}.role`)}</p>
 
                   {/* Quote */}
                   <blockquote>
@@ -124,7 +129,7 @@ export function Testimonials() {
                       &ldquo;
                     </span>
                     <p className="text-[17px] text-text leading-relaxed -mt-4">
-                      {current.quote}
+                      {t(`items.${ITEM_KEYS[active]}.quote`)}
                     </p>
                   </blockquote>
                 </motion.div>
