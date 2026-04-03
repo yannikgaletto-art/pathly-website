@@ -12,6 +12,8 @@ import { BrowserExtension } from "@/components/sections/BrowserExtension";
 import { FAQSection } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 
+const SHOW_PRICING = process.env.NEXT_PUBLIC_SHOW_PRICING === 'true';
+
 export default function HomePage() {
   return (
     <>
@@ -25,10 +27,10 @@ export default function HomePage() {
         <Features />
         <Differentiation />
         <Testimonials />
-        <Pricing />
+        {SHOW_PRICING ? <Pricing /> : <FinalCTA />}
         <BrowserExtension />
         <FAQSection />
-        <FinalCTA />
+        {SHOW_PRICING && <FinalCTA />}
       </main>
       <Footer />
     </>
