@@ -251,6 +251,9 @@
     "body": "Pathly ist in der Beta. Trag dich ein und du bekommst als Erste:r Zugang — kostenlos, ohne Verpflichtung.",
     "inputPlaceholder": "E-Mail-Adresse",
     "cta": "Ich will frühen Zugang →",
+    "successMessage": "📧 Check deine E-Mails — wir haben dir eine Bestätigung geschickt!",
+    "duplicateMessage": "Du bist bereits auf der Warteliste ✓",
+    "errorMessage": "Etwas ist schiefgelaufen. Bitte versuche es nochmal.",
     "trustSignals": ["Keine Kreditkarte", "Jederzeit abmeldbar", "EU-Server"]
   },
   "footer": {

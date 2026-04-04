@@ -251,6 +251,9 @@
     "body": "Pathly está en beta. Regístrate y obtendrás acceso anticipado — gratis, sin compromiso.",
     "inputPlaceholder": "Dirección de correo",
     "cta": "Quiero acceso anticipado →",
+    "successMessage": "📧 Revisa tu correo — te enviamos una confirmación!",
+    "duplicateMessage": "Ya estás en la lista de espera ✓",
+    "errorMessage": "Algo salió mal. Por favor, inténtalo de nuevo.",
     "trustSignals": ["Sin tarjeta de crédito", "Cancelar en cualquier momento", "Servidores UE"]
   },
   "footer": {

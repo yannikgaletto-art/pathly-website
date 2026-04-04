@@ -251,6 +251,9 @@
     "body": "Pathly is in beta. Sign up and you'll get early access — free, no commitment.",
     "inputPlaceholder": "Email address",
     "cta": "I want early access →",
+    "successMessage": "📧 Check your email — we sent you a confirmation!",
+    "duplicateMessage": "You're already on the waitlist ✓",
+    "errorMessage": "Something went wrong. Please try again.",
     "trustSignals": ["No credit card", "Cancel anytime", "EU servers"]
   },
   "footer": {

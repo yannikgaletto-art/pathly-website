@@ -48,7 +48,9 @@ const nextConfig = {
               "img-src 'self' data: blob:",
               "font-src 'self'",
               "frame-src https://tally.so",          // Tally.so waitlist embed
-              "connect-src 'self' https://prod.spline.design https://cdn.spline.design", // Spline scene + viewer
+              isDev
+                ? "connect-src 'self' https://prod.spline.design https://cdn.spline.design https://app.path-ly.eu http://localhost:3000" // dev: local SaaS API
+                : "connect-src 'self' https://prod.spline.design https://cdn.spline.design https://app.path-ly.eu", // prod: only real SaaS domain
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self' https://tally.so",

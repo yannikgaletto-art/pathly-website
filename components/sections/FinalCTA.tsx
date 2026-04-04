@@ -1,28 +1,56 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 
 /**
  * Section 10 — Final CTA
  * Inline email capture with urgency-driven copy.
+ *
+ * Sends email to SaaS API: POST /api/waitlist/subscribe
+ * Bot protection: Honeypot field (invisible input)
+ * DOI: User receives confirmation email via Resend
  */
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.path-ly.eu";
+
 export function FinalCTA() {
   const t = useTranslations("finalCta");
+  const locale = useLocale();
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "submitting" | "done">("idle");
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [honeypot, setHoneypot] = useState(""); // Bot trap
+  const [state, setState] = useState<"idle" | "submitting" | "done" | "duplicate" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim() || state === "submitting") return;
 
     setState("submitting");
-    // Simulate — replace with real endpoint later
-    setTimeout(() => {
-      setState("done");
-      setEmail("");
-    }, 1200);
+
+    try {
+      const res = await fetch(`${APP_URL}/api/waitlist/subscribe`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          locale,
+          honeypot, // Empty = human, filled = bot
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setState(data.duplicate ? "duplicate" : "done");
+        setEmail("");
+      } else {
+        console.error("[FinalCTA] Submit failed:", data.error);
+        setState("error");
+      }
+    } catch (err) {
+      console.error("[FinalCTA] Network error:", err);
+      setState("error");
+    }
   };
 
   const trustSignals = [
@@ -50,9 +78,20 @@ export function FinalCTA() {
           onSubmit={handleSubmit}
           className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-[480px] mx-auto"
         >
+          {/* Honeypot — invisible to humans, bots fill it */}
+          <input
+            type="text"
+            name="company_url"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute opacity-0 w-0 h-0 pointer-events-none"
+          />
+
           <div className="relative flex-1">
             <input
-              ref={inputRef}
               type="email"
               required
               disabled={state !== "idle"}
@@ -70,7 +109,7 @@ export function FinalCTA() {
 
           <button
             type="submit"
-            disabled={state !== "idle"}
+            disabled={state === "submitting" || state === "done" || state === "duplicate"}
             className="h-[52px] px-7 text-[15px] font-semibold text-white bg-navy rounded-xl
                        hover:bg-navy-hover active:scale-[0.98]
                        focus-visible:outline-navy
@@ -86,7 +125,7 @@ export function FinalCTA() {
                 </svg>
                 …
               </span>
-            ) : state === "done" ? (
+            ) : state === "done" || state === "duplicate" ? (
               <span className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 6L9 17l-5-5" />
@@ -98,6 +137,23 @@ export function FinalCTA() {
             )}
           </button>
         </form>
+
+        {/* Success message — appears after submit */}
+        {state === "done" && (
+          <p className="mt-4 text-sm text-navy font-medium animate-fade-in">
+            {t("successMessage")}
+          </p>
+        )}
+        {state === "duplicate" && (
+          <p className="mt-4 text-sm text-muted font-medium animate-fade-in">
+            {t("duplicateMessage")}
+          </p>
+        )}
+        {state === "error" && (
+          <p className="mt-4 text-sm text-red-500 font-medium animate-fade-in">
+            {t("errorMessage")}
+          </p>
+        )}
 
         {/* Trust Signals */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
