@@ -167,7 +167,7 @@ export function Differentiation() {
               {t("leftTitle")}
             </h3>
             {/* overflow-hidden clips pills as they fall in from above */}
-            <div className="overflow-hidden">
+            <div className="overflow-hidden pt-3">
               <div className="flex flex-col gap-3">
                 {rows.map((row, i) =>
                   renderPill(row.pathly, "check", i, "left")
@@ -181,7 +181,7 @@ export function Differentiation() {
             <h3 className="text-white/50 font-normal text-[22px] mb-6">
               {t("rightTitle")}
             </h3>
-            <div className="overflow-hidden">
+            <div className="overflow-hidden pt-3">
               <div className="flex flex-col gap-3">
                 {rows.map((row, i) =>
                   renderPill(row.others, "cross", i, "right")

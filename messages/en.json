@@ -97,49 +97,93 @@
     "leftTitle": "Pathly",
     "rightTitle": "Other AI Tools",
     "rows": {
-      "writingStyle": { "feature": "Writing Style", "pathly": "Your Style", "others": "Generic Output" },
-      "ats": { "feature": "ATS Optimization", "pathly": "Tailored per Job", "others": "Manual Rework" },
-      "privacy": { "feature": "Data Privacy", "pathly": "EU-hosted & GDPR", "others": "US Servers, No Guarantee" },
-      "tracking": { "feature": "Job Tracking", "pathly": "Pipeline & Workflow", "others": "No Tracking" },
-      "coaching": { "feature": "Coaching", "pathly": "AI Interview Coaching", "others": "No Coaching" },
-      "video": { "feature": "Video Pitch", "pathly": "Video Letter / Pitch", "others": "Not Available" },
-      "pomodoro": { "feature": "Pomodoro Workflow", "pathly": "Integrated Focus Timer", "others": "No Productivity Tool" },
-      "gaps": { "feature": "Volunteering & Gaps", "pathly": "Explain Gaps Intelligently", "others": "No Gap Support" },
-      "community": { "feature": "Community", "pathly": "Pathly Community & Support", "others": "On Your Own" }
+      "writingStyle": {
+        "feature": "Writing Style",
+        "pathly": "Your Style",
+        "others": "Generic Output"
+      },
+      "ats": {
+        "feature": "ATS Optimization",
+        "pathly": "Tailored per Job",
+        "others": "Manual Rework"
+      },
+      "privacy": {
+        "feature": "Data Privacy",
+        "pathly": "EU-hosted & GDPR",
+        "others": "US Servers, No Guarantee"
+      },
+      "tracking": {
+        "feature": "Job Tracking",
+        "pathly": "Pipeline & Workflow",
+        "others": "No Tracking"
+      },
+      "coaching": {
+        "feature": "Coaching",
+        "pathly": "AI Interview Coaching",
+        "others": "No Coaching"
+      },
+      "video": {
+        "feature": "Video Pitch",
+        "pathly": "Video Letter / Pitch",
+        "others": "Not Available"
+      },
+      "pomodoro": {
+        "feature": "Pomodoro Workflow",
+        "pathly": "Integrated Focus Timer",
+        "others": "No Productivity Tool"
+      },
+      "gaps": {
+        "feature": "Volunteering & Gaps",
+        "pathly": "Explain Gaps Intelligently",
+        "others": "No Gap Support"
+      },
+      "community": {
+        "feature": "Community",
+        "pathly": "Pathly Community & Support",
+        "others": "On Your Own"
+      }
     },
-    "trustBadges": ["🔒 EU-hosted", "🛡️ GDPR Compliant", "🇪🇺 NIS2-ready"]
+    "trustBadges": [
+      "🔒 EU-hosted",
+      "🛡️ GDPR Compliant",
+      "🇪🇺 NIS2-ready"
+    ]
   },
   "testimonials": {
-    "headline": "What others say.",
-    "subline": "Real experiences — no marketing copy.",
+    "headline": "What our beta testers say.",
+    "subline": "",
     "items": {
-      "bastian": {
-        "quote": "I opened it in the morning, Pathly found 4 matching positions right away. By noon I had applied to 2 of them — with a cover letter that feels like I spent an hour on it. That didn't even cost what my old job did.",
-        "role": "Industrial Engineer, Job Searching"
+      "joachim": {
+        "quote": "At 57, starting over isn't something you embrace lightly. I was afraid my experience would look outdated on paper. And that was exactly the problem. Pathly put it into words I wouldn't have found myself. It sounded just like me.",
+        "role": "Sales Director"
       },
       "clara": {
-        "quote": "The ATS scanner rated my CV at 34%. I thought the tool was broken. Then I applied the changes — and suddenly 3 responses in one week. Before that: radio silence for 6 weeks.",
+        "quote": "Everyone wants three years of experience. I have one. Pathly made me realize I'd been highlighting the wrong things. It sounds trivial, but it got me to a job interview.",
         "role": "Marketing Manager"
       },
+      "bastian": {
+        "quote": "I'm not a fan of AI texts that sound like AI. But the cover letter Pathly produced sounded like me. No idea how, but it fit. Sent it twice, got two responses.",
+        "role": "Industrial Engineer, Job Searching"
+      },
       "dorothea": {
-        "quote": "I'm 52 and honestly thought AI tools weren't for me. But Pathly showed me in a mock interview that I've been giving the same wrong answer to the weakness question for years. A program. That told me.",
+        "quote": "Me in front of a camera, unprepared. I never would have done that. Pathly guided me through the video letter, almost like a coaching session. Afterwards I knew what I wanted to say and why. The recruiter wrote to me that I was the only one who had genuinely surprised her.",
         "role": "Project Manager, Mechanical Engineering"
       },
       "elenor": {
-        "quote": "I gave the cover letter generator my own writing style — an old motivation letter and two emails. The result actually sounded like me. Not like 'Dear Sir or Madam, I am writing to apply'.",
+        "quote": "I test products for usability. Pathly read my own writing style better than I could. No 'Dear Sir or Madam'. No generic nothing. Simply me. That stayed with me for a while.",
         "role": "UX Researcher"
       },
-      "franziska": {
-        "quote": "3 months applying to positions I saw on LinkedIn. Then two weeks with Pathly. The difference wasn't luck — it was that I stopped trying to fit in everywhere and started searching strategically.",
-        "role": "Controller"
-      },
       "jack": {
-        "quote": "The coaching prepared me for a question I actually got in the real interview — almost word for word. I laughed. Internally. On the outside: calm, structured, prepared.",
-        "role": "Software Developer"
+        "quote": "I once calculated how much time I invest per application. 1½ hours on average to meet my own standards. For twenty positions that would be almost a full working week. With Pathly it was one afternoon and the quality wasn't any worse.",
+        "role": "Analyst"
       },
-      "joachim": {
-        "quote": "I worked 14 years at the same company. First application since 2010. Pathly showed me that my CV looks experienced — but was aimed at completely the wrong audience. In two hours, that changed.",
-        "role": "Sales Director"
+      "laura": {
+        "quote": "After ten years of self-employment I know how to sell myself. Or so I thought. Pathly's critical eye told me my cover letter sounded like someone who prefers to work alone. That wasn't the message I wanted. And I hadn't seen it myself.",
+        "role": "HR"
+      },
+      "franziska": {
+        "quote": "3 months applying to positions I saw on LinkedIn with 'Easy Apply'. Out of around 50, two responses came back. With Pathly quality just shows, I believe recruiters also want personal cover letters, not generic AI texts.",
+        "role": "Controller"
       }
     }
   },
@@ -190,7 +234,11 @@
         ]
       }
     },
-    "trustSignals": ["14-Day Money-Back", "EU-hosted", "GDPR Compliant"]
+    "trustSignals": [
+      "14-Day Money-Back",
+      "EU-hosted",
+      "GDPR Compliant"
+    ]
   },
   "browserExtension": {
     "badge": "New — Chrome Extension",
@@ -199,39 +247,57 @@
     "subline": "You scroll LinkedIn. Pathly thinks along. With one click, every position lands directly in your queue — including AI analysis.",
     "cta": "Install Extension",
     "ctaNote": "Free · Chrome & Edge · No Account Needed",
-    "steps": {
-      "01": { "title": "Install Extension", "description": "In the Chrome Web Store — free, 30 seconds." },
-      "02": { "title": "Open Job Page", "description": "LinkedIn, StepStone, Indeed or Xing — as usual." },
-      "03": { "title": "Click Pathly Button", "description": "Job title, company, location — everything detected automatically." },
-      "04": { "title": "AI Takes Over", "description": "ATS score, cover letter, coaching — everything's already waiting for you." }
+    "features": {
+      "0": "No more copy-paste",
+      "1": "Automatic duplicate detection",
+      "2": "GDPR compliant — no tracking",
+      "3": "Works offline"
     },
-    "features": [
-      "No more copy-paste",
-      "Automatic duplicate detection",
-      "GDPR compliant — no tracking",
-      "Works offline"
-    ],
-    "worksOn": "Works on:",
-    "mockup": {
-      "connected": "Connected",
-      "position": "Position",
-      "company": "Company",
-      "addToQueue": "Add Job to Queue",
-      "saved": "Job saved!",
-      "analyzing": "AI analysis running…"
+    "demo": {
+      "buttonLabel": "Save Job",
+      "buttonHint": "Click — and the job is in your queue.",
+      "confirmTitle": "Add to your Queue?",
+      "confirmYes": "Yes, add",
+      "confirmNo": "Not now",
+      "keywordsLabel": "Keywords detected",
+      "pipelineMatch": "CV match prepared",
+      "pipelineLetter": "Cover letter ready",
+      "pipelineCoaching": "Coaching available",
+      "hintClick": "Click the Pathly Extension →"
     }
   },
   "comparison": {
     "manualTitle": "How I used to do it",
     "pathlyTitle": "How I do it now",
     "steps": {
-      "01": { "title": "Job Search", "description": "4 portals, 20 tabs, company research..." },
-      "02": { "title": "Adjust Resume", "description": "ATS keywords, bullet points and metrics mapping." },
-      "03": { "title": "Generate Cover Letter", "description": "Prompt AI, re-prompt, adjust output: don't sound generic." },
-      "04": { "title": "Format", "description": "Format cover letter in Word, final changes, PDF export" },
-      "05": { "title": "Administration", "description": "Send emails, follow-ups, tracking" },
-      "06": { "title": "Next Position", "description": "Start over. Every day." },
-      "07": { "title": "Wait", "description": "No response, no feedback. No reason." }
+      "01": {
+        "title": "Job Search",
+        "description": "4 portals, 20 tabs, company research..."
+      },
+      "02": {
+        "title": "Adjust Resume",
+        "description": "ATS keywords, bullet points and metrics mapping."
+      },
+      "03": {
+        "title": "Generate Cover Letter",
+        "description": "Prompt AI, re-prompt, adjust output: don't sound generic."
+      },
+      "04": {
+        "title": "Format",
+        "description": "Format cover letter in Word, final changes, PDF export"
+      },
+      "05": {
+        "title": "Administration",
+        "description": "Send emails, follow-ups, tracking"
+      },
+      "06": {
+        "title": "Next Position",
+        "description": "Start over. Every day."
+      },
+      "07": {
+        "title": "Wait",
+        "description": "No response, no feedback. No reason."
+      }
     },
     "pathlyCard": {
       "checks": [
@@ -254,7 +320,11 @@
     "successMessage": "📧 Check your email — we sent you a confirmation!",
     "duplicateMessage": "You're already on the waitlist ✓",
     "errorMessage": "Something went wrong. Please try again.",
-    "trustSignals": ["No credit card", "Cancel anytime", "EU servers"]
+    "trustSignals": [
+      "No credit card",
+      "Cancel anytime",
+      "EU servers"
+    ]
   },
   "footer": {
     "copyrightBase": "Pathly. All rights reserved.",
@@ -262,9 +332,21 @@
     "datenschutz": "Privacy Policy"
   },
   "stats": {
-    "ats": { "value": "74", "suffix": "%", "label": "of applications are filtered out by ATS systems" },
-    "interviews": { "value": "3", "suffix": "x", "label": "more interviews with an optimized CV" },
-    "scanTime": { "value": "12", "suffix": "s", "label": "average CV review time by HR" }
+    "ats": {
+      "value": "74",
+      "suffix": "%",
+      "label": "of applications are filtered out by ATS systems"
+    },
+    "interviews": {
+      "value": "3",
+      "suffix": "x",
+      "label": "more interviews with an optimized CV"
+    },
+    "scanTime": {
+      "value": "12",
+      "suffix": "s",
+      "label": "average CV review time by HR"
+    }
   },
   "faq": {
     "headline": "Frequently Asked Questions.",

@@ -13,6 +13,7 @@ import Image from "next/image";
 interface CardImage {
   readonly src: string;
   readonly alt: string;
+  readonly objectPosition?: string;
 }
 
 interface FeatureCardStackProps {
@@ -24,10 +25,6 @@ const STACK = [
   { rotate: 3, x: 8, y: 12, scale: 0.97, zIndex: 20, shadow: "shadow-md" },
   { rotate: 6, x: 16, y: 24, scale: 0.94, zIndex: 10, shadow: "shadow-sm" },
 ] as const;
-
-const RADIO_STEP = 32;
-const BALL_SIZE = 22;
-const TRACK_PAD = 10;
 
 export function FeatureCardStack({ images }: FeatureCardStackProps) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -103,13 +100,12 @@ export function FeatureCardStack({ images }: FeatureCardStackProps) {
   }, []);
 
   const imgAt = (pos: number) => (activeIndex + pos) % count;
-  const trackHeight = (count - 1) * RADIO_STEP + BALL_SIZE + TRACK_PAD * 2;
 
   return (
-    <div className="flex items-start gap-5">
+    <div className="flex flex-col gap-4">
       {/* Card stack */}
       <div
-        className="flex-1 relative w-full"
+        className="relative w-full"
         style={{ paddingBottom: "6%" }}
         role="region"
         aria-roledescription="carousel"
@@ -168,9 +164,10 @@ export function FeatureCardStack({ images }: FeatureCardStackProps) {
                       src={img.src}
                       alt={img.alt}
                       fill
-                      className={`object-cover object-top transition-transform ease-out ${
+                      className={`object-cover transition-transform ease-out ${
                         isTop ? "duration-[350ms] hover:scale-[1.8]" : "duration-0"
                       }`}
+                      style={{ objectPosition: img.objectPosition ?? "top" }}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       onError={() => handleImgError(imgIdx)}
                     />
@@ -182,53 +179,31 @@ export function FeatureCardStack({ images }: FeatureCardStackProps) {
         </div>
       </div>
 
-      {/* 3D Radio Selector */}
-      <div
-        className="flex items-start gap-2.5 shrink-0 pt-[40%]"
-        role="tablist"
-        aria-label="Card navigation"
-      >
-        {/* Glass pill track */}
-        <div
-          className="relative rounded-full"
-          style={{
-            width: 42,
-            height: trackHeight,
-            padding: 5,
-            backgroundColor: "rgba(200, 200, 200, 0.35)",
-            backdropFilter: "blur(8px)",
-            boxShadow:
-              "rgba(50,50,93,0.12) 0px 15px 30px -8px, rgba(0,0,0,0.15) 0px 6px 16px -8px, rgba(10,37,64,0.18) 0px -2px 5px 0px inset",
-          }}
+      {/* Arrow navigation — prev / next */}
+      <div className="flex items-center gap-3 mt-2">
+        {/* Prev arrow */}
+        <button
+          onClick={() => advanceCard(-1)}
+          aria-label="Previous screenshot"
+          className="
+            group flex items-center justify-center
+            w-10 h-10 rounded-full
+            border border-border bg-white
+            shadow-sm hover:shadow-md hover:border-navy/30
+            transition-all duration-200
+          "
         >
-          <div
-            className="w-full h-full rounded-full"
-            style={{ border: "5px solid rgba(245, 245, 245, 0.4)" }}
-          />
-          {/* Sliding ball */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: BALL_SIZE,
-              height: BALL_SIZE,
-              left: (42 - BALL_SIZE) / 2,
-              top: TRACK_PAD + activeIndex * RADIO_STEP,
-              transition: "top 800ms cubic-bezier(1, -0.4, 0, 1.4)",
-              background: "linear-gradient(180deg, #f0f0f0 0%, #c0c0c0 100%)",
-              boxShadow:
-                "rgba(0,0,0,0.15) 0px -6px 8px 0px inset, rgba(0,0,0,0.08) 0px -10px 12px 0px inset, rgba(0,0,0,0.05) 0px 2px 1px, rgba(0,0,0,0.07) 0px 4px 2px, rgba(0,0,0,0.07) 0px 8px 4px",
-            }}
-          />
-        </div>
+          <svg
+            width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            className="text-muted group-hover:text-navy transition-colors duration-200"
+          >
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
 
-        {/* Numbers */}
-        <div
-          className="flex flex-col justify-between"
-          style={{
-            height: trackHeight,
-            paddingBlock: TRACK_PAD + (BALL_SIZE - 20) / 2,
-          }}
-        >
+        {/* Dot indicators */}
+        <div className="flex items-center gap-1.5" role="tablist" aria-label="Card navigation">
           {images.map((img, i) => (
             <button
               key={i}
@@ -236,14 +211,37 @@ export function FeatureCardStack({ images }: FeatureCardStackProps) {
               aria-selected={i === activeIndex}
               aria-label={img.alt}
               onClick={() => setActiveIndex(i)}
-              className={`font-mono font-black text-xl leading-none cursor-pointer transition-colors duration-300 ${
-                i === activeIndex ? "text-gray-500" : "text-gray-300 hover:text-gray-400"
-              }`}
-            >
-              {i + 1}
-            </button>
+              className={`
+                rounded-full transition-all duration-300
+                ${i === activeIndex
+                  ? "w-5 h-2 bg-navy"
+                  : "w-2 h-2 bg-border hover:bg-muted/40"
+                }
+              `}
+            />
           ))}
         </div>
+
+        {/* Next arrow */}
+        <button
+          onClick={() => advanceCard(1)}
+          aria-label="Next screenshot"
+          className="
+            group flex items-center justify-center
+            w-10 h-10 rounded-full
+            border border-border bg-white
+            shadow-sm hover:shadow-md hover:border-navy/30
+            transition-all duration-200
+          "
+        >
+          <svg
+            width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            className="text-muted group-hover:text-navy transition-colors duration-200"
+          >
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
       </div>
     </div>
   );

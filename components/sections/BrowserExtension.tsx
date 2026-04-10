@@ -1,38 +1,90 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { BROWSER_EXTENSION, SITE } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
+import Image from "next/image";
 
 /**
- * Section — Browser Extension
- * Split layout: left = headline + 4-step flow + CTA, right = animated popup mockup.
- * Below-the-fold → Framer Motion OK per AGENTS.md.
+ * Section — Browser Extension (Redesigned V2)
+ *
+ * 4-phase interactive demo inside a single browser window:
+ *   Phase 0: Real LinkedIn screenshot — user sees a hint to click the P icon
+ *   Phase 1: "Job speichern" floating button appears over the screenshot
+ *   Phase 2: Slide-up "In Queue packen?" confirmation card (job matches screenshot)
+ *   Phase 3: Success steckbrief with keywords extracted from the real job
+ *
+ * Auto-play: Phase 0 → (5s) → Phase 1 → (5s) → Phase 2 → (3s) → Phase 3 → (4s) → loop.
+ * Stops permanently on user interaction.
+ *
+ * Job data matches the LinkedIn screenshot exactly:
+ *   Title: IT Business Consultant / Architekt
+ *   Company: zeb consulting · Berlin (Hybrid)
  */
+
+type Phase = 0 | 1 | 2 | 3;
+
+// Job data — matches the LinkedIn screenshot exactly
+const DEMO_JOB = {
+  title: "IT Business Consultant / Architekt",
+  company: "zeb consulting",
+  location: "Berlin (Hybrid)",
+  companyShort: "zeb consulting · Berlin",
+  keywords: ["IT-Architektur", "Banking", "Multi-Tier", "Consulting", "Finanzdienstleister"],
+} as const;
 
 export function BrowserExtension() {
   const t = useTranslations("browserExtension");
+  const [phase, setPhase] = useState<Phase>(0);
+  const [userInteracted, setUserInteracted] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  // Auto-play logic
+  useEffect(() => {
+    if (userInteracted) return;
+
+    const delays: Record<Phase, number> = { 0: 5000, 1: 5000, 2: 3000, 3: 4000 };
+    timerRef.current = setTimeout(() => {
+      setPhase((prev) => {
+        if (prev === 3) return 0; // loop
+        return (prev + 1) as Phase;
+      });
+    }, delays[phase]);
+
+    return clearTimer;
+  }, [phase, userInteracted, clearTimer]);
+
+  const handleUserAdvance = useCallback(
+    (nextPhase: Phase) => {
+      setUserInteracted(true);
+      clearTimer();
+      setPhase(nextPhase);
+    },
+    [clearTimer]
+  );
+
   return (
-    <section
-      id="extension"
-      aria-label="Browser Extension"
-      className="bg-navy-tint px-6 py-16 md:py-24 overflow-hidden"
-    >
+    <section id="extension" aria-label="Browser Extension" className="bg-white px-6 py-16 md:py-24">
       <div className="mx-auto max-w-site">
         {/* ─── Header ─── */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          {/* Badge */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-navy/10 border border-navy/15"
+            className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-navy/5 border border-navy/10"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-            <span className="text-[13px] font-semibold text-navy">
-              {t("badge")}
-            </span>
+            <span className="text-[13px] font-semibold text-navy">{t("badge")}</span>
           </motion.div>
 
           <motion.h2
@@ -42,8 +94,7 @@ export function BrowserExtension() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="text-[32px] md:text-[44px] font-bold text-text leading-tight"
           >
-            {t("headline")}{" "}
-            <span className="text-navy">{t("headlineAccent")}</span>
+            {t("headline")} <span className="text-navy">{t("headlineAccent")}</span>
           </motion.h2>
 
           <motion.p
@@ -57,299 +108,438 @@ export function BrowserExtension() {
           </motion.p>
         </div>
 
-        {/* ─── Main Split ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* LEFT: Steps + CTA */}
-          <div>
-            {/* Platform support */}
-            <div className="flex items-center gap-2 mb-10 flex-wrap">
-              <span className="text-[13px] text-muted font-medium mr-1">{t("worksOn")}</span>
-              {BROWSER_EXTENSION.platforms.map((p, i) => (
-                <motion.span
-                  key={p.name}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-border text-[13px] font-semibold text-text shadow-sm"
-                >
-                  <PlatformIcon name={p.icon} />
-                  {p.name}
-                </motion.span>
-              ))}
-            </div>
-
-            {/* 4-step flow */}
-            <div className="space-y-6 mb-10">
-              {BROWSER_EXTENSION.steps.map((step, i) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="flex gap-4 items-start"
-                >
-                  {/* Step number bubble */}
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-navy flex items-center justify-center">
-                    <span className="text-[12px] font-bold text-white">{step.number}</span>
-                  </div>
-                  {/* Content */}
-                  <div className="pt-1">
-                    <p className="text-[15px] font-bold text-text">{t(`steps.${step.number}.title`)}</p>
-                    <p className="text-[14px] text-muted mt-0.5">{t(`steps.${step.number}.description`)}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Feature pills */}
-            <div className="flex flex-wrap gap-2 mb-10">
-              {[t("features.0"), t("features.1"), t("features.2"), t("features.3")].map((f) => (
-                <span
-                  key={f}
-                  className="inline-flex items-center gap-1.5 text-[13px] text-text font-medium"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-                    strokeLinejoin="round" className="text-success flex-shrink-0">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                  {f}
+        {/* ─── Single Demo Window ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mx-auto max-w-[560px]"
+        >
+          <div className="rounded-2xl border border-border bg-white shadow-lg overflow-hidden">
+            {/* Browser chrome bar */}
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-bg-soft">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+              </div>
+              <div className="flex-1 mx-3 h-6 rounded-md bg-border/40 flex items-center px-3">
+                <span className="text-[11px] text-muted/60 truncate">
+                  linkedin.com/jobs/view/it-business-consultant
                 </span>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
-            >
-              <a
-                href={SITE.appUrl}
-                className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-navy text-white text-[15px] font-semibold overflow-hidden hover:bg-navy-hover transition-colors duration-300 shadow-md shadow-navy/20"
+              </div>
+              {/* Pathly extension icon in browser bar */}
+              <motion.div
+                className="w-6 h-6 rounded-md bg-navy flex items-center justify-center shrink-0 cursor-pointer"
+                animate={
+                  phase === 0
+                    ? { scale: [1, 1.2, 1], boxShadow: ["0 0 0 0 rgba(19,60,123,0)", "0 0 0 6px rgba(19,60,123,0.25)", "0 0 0 0 rgba(19,60,123,0)"] }
+                    : {}
+                }
+                transition={phase === 0 ? { duration: 1.8, repeat: Infinity, ease: "easeInOut" } : {}}
+                onClick={() => handleUserAdvance(1)}
               >
-                {/* Shimmer */}
-                <span className="absolute inset-0 overflow-hidden rounded-xl">
-                  <span className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:left-[200%] transition-all duration-700" />
-                </span>
-                <ChromeIcon />
-                <span className="relative z-10">{t("cta")}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="relative z-10 group-hover:translate-x-1 transition-transform duration-200">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-              <span className="text-[13px] text-muted">{t("ctaNote")}</span>
-            </motion.div>
-          </div>
+                <span className="text-[9px] font-bold text-white">P</span>
+              </motion.div>
+            </div>
 
-          {/* RIGHT: Animated popup mockup */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end"
+            {/* Content area */}
+            <div className="relative" style={{ minHeight: 380 }}>
+              <AnimatePresence mode="wait">
+                {phase === 0 && (
+                  <PhaseLinkedIn key="phase-0" onClickExtension={() => handleUserAdvance(1)} t={t} />
+                )}
+                {phase === 1 && (
+                  <PhaseButton key="phase-1" onAdvance={() => handleUserAdvance(2)} t={t} />
+                )}
+                {phase === 2 && (
+                  <PhaseConfirm key="phase-2" onAdvance={() => handleUserAdvance(3)} t={t} />
+                )}
+                {phase === 3 && <PhaseSuccess key="phase-3" t={t} />}
+              </AnimatePresence>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ─── Feature pills ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-10"
+        >
+          {[t("features.0"), t("features.1"), t("features.2"), t("features.3")].map((f) => (
+            <span key={f} className="inline-flex items-center gap-1.5 text-[13px] text-muted font-medium">
+              <CheckIcon size={14} className="text-success" />
+              {f}
+            </span>
+          ))}
+        </motion.div>
+
+        {/* ─── CTA Block ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="flex flex-col items-center gap-3 mt-10"
+        >
+          <a
+            href={SITE.appUrl}
+            className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-navy text-white text-[15px] font-semibold overflow-hidden hover:bg-navy-hover transition-colors duration-300 shadow-md shadow-navy/20"
           >
-            <PopupMockup />
-          </motion.div>
-        </div>
+            <span className="absolute inset-0 overflow-hidden rounded-xl">
+              <span className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:left-[200%] transition-all duration-700" />
+            </span>
+            <ChromeIcon />
+            <span className="relative z-10">{t("cta")}</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="relative z-10 group-hover:translate-x-1 transition-transform duration-200"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <span className="text-[13px] text-muted">{t("ctaNote")}</span>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-/* ─── Animated Popup Mockup ─── */
-function PopupMockup() {
-  const t = useTranslations("browserExtension");
+/* ═══════════════════════════════════════════════════
+   Phase 0 — Real LinkedIn screenshot with pulsing P icon hint
+   ═══════════════════════════════════════════════════ */
+function PhaseLinkedIn({
+  onClickExtension,
+  t,
+}: {
+  onClickExtension: () => void;
+  t: ReturnType<typeof useTranslations>;
+}) {
   return (
-    <div className="relative w-full max-w-[400px]">
-      {/* Glow behind popup */}
-      <div
-        aria-hidden
-        className="absolute -inset-8 rounded-full opacity-30 blur-3xl"
-        style={{ background: "radial-gradient(circle, #133C7B 0%, transparent 70%)" }}
-      />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.3 }}
+      className="absolute inset-0"
+    >
+      {/* LinkedIn screenshot */}
+      <div className="relative w-full h-full">
+        <Image
+          src="/demo-linkedin.png"
+          alt="LinkedIn Stellenanzeige — IT Business Consultant / Architekt bei zeb consulting, Berlin"
+          fill
+          className="object-cover object-top"
+          sizes="560px"
+          priority
+        />
 
-      {/* Browser chrome */}
-      <div className="relative rounded-2xl border border-border bg-white shadow-lg overflow-hidden">
-        {/* Browser bar */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-bg-soft">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-400/70" />
-            <div className="w-3 h-3 rounded-full bg-yellow-400/70" />
-            <div className="w-3 h-3 rounded-full bg-green-400/70" />
-          </div>
-          <div className="flex-1 mx-3 h-6 rounded-md bg-border/60 flex items-center px-3">
-            <span className="text-[11px] text-muted truncate">linkedin.com/jobs/view/software-engineer-berlin</span>
-          </div>
-          {/* Extension icon in toolbar */}
-          <div className="w-6 h-6 rounded-md bg-navy flex items-center justify-center flex-shrink-0">
-            <span className="text-[10px] font-bold text-white">P</span>
-          </div>
-        </div>
+        {/* Gradient overlay at bottom for hint text */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/95 via-white/70 to-transparent" />
 
-        {/* "LinkedIn Job Page" content (blurred) */}
-        <div className="relative px-5 py-5 bg-white">
-          {/* Fake job listing */}
-          <div className="space-y-2 opacity-40 blur-[1px] select-none pointer-events-none">
-            <div className="h-5 w-3/4 rounded bg-border" />
-            <div className="h-4 w-1/2 rounded bg-border" />
-            <div className="h-3 w-full rounded bg-border/60 mt-3" />
-            <div className="h-3 w-5/6 rounded bg-border/60" />
-            <div className="h-3 w-4/6 rounded bg-border/60" />
-            <div className="h-3 w-full rounded bg-border/60 mt-2" />
-            <div className="h-3 w-3/4 rounded bg-border/60" />
-          </div>
-
-          {/* Floating Pathly popup */}
+        {/* Hint text at bottom */}
+        <div className="absolute bottom-4 inset-x-0 flex justify-center">
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-            className="absolute inset-x-4 bottom-4 rounded-xl border border-navy/20 bg-white shadow-xl shadow-navy/10 overflow-hidden"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy/90 backdrop-blur-sm shadow-lg cursor-pointer hover:bg-navy transition-colors"
+            onClick={onClickExtension}
           >
-            {/* Popup header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-navy-tint">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-md bg-navy flex items-center justify-center">
-                  <span className="text-[10px] font-bold text-white">P</span>
-                </div>
-                <span className="text-[13px] font-bold text-navy">Pathly</span>
-              </div>
-              <span className="text-[11px] text-success font-semibold">● {t("mockup.connected")}</span>
-            </div>
-
-            {/* Detected job data */}
-            <div className="px-4 py-3 space-y-2">
-              <div className="flex items-start gap-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                  className="text-navy mt-0.5 flex-shrink-0">
-                  <rect x="2" y="7" width="20" height="14" rx="2"/>
-                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-                </svg>
-                <div>
-                  <p className="text-[12px] text-muted">{t("mockup.position")}</p>
-                  <p className="text-[13px] font-semibold text-text">Software Engineer (m/w/d)</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                  className="text-navy mt-0.5 flex-shrink-0">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                </svg>
-                <div>
-                  <p className="text-[12px] text-muted">{t("mockup.company")}</p>
-                  <p className="text-[13px] font-semibold text-text">Acme GmbH · Berlin</p>
-                </div>
-              </div>
-
-              {/* ATS score pill */}
-              <div className="flex items-center gap-2 pt-1">
-                <span className="text-[12px] text-muted">ATS-Score:</span>
-                <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "72%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                    className="h-full rounded-full bg-success"
-                  />
-                </div>
-                <span className="text-[12px] font-bold text-success">72%</span>
-              </div>
-            </div>
-
-            {/* Import button */}
-            <div className="px-4 pb-4">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                className="w-full py-2.5 rounded-lg bg-navy text-white text-[13px] font-bold flex items-center justify-center gap-2"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 5v14M5 12l7 7 7-7"/>
-                </svg>
-                {t("mockup.addToQueue")}
-              </motion.button>
-            </div>
+            <span className="w-5 h-5 rounded bg-white/20 flex items-center justify-center shrink-0">
+              <span className="text-[8px] font-bold text-white">P</span>
+            </span>
+            <span className="text-[13px] text-white font-medium">
+              {t("demo.hintClick")}
+            </span>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              className="text-white/70"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
           </motion.div>
         </div>
       </div>
-
-      {/* Success toast */}
-      <motion.div
-        initial={{ opacity: 0, y: 8, x: 20 }}
-        whileInView={{ opacity: 1, y: 0, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 1.2 }}
-        className="absolute -bottom-4 -right-4 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-border shadow-lg shadow-black/8"
-      >
-        <div className="w-6 h-6 rounded-full bg-success/15 flex items-center justify-center flex-shrink-0">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-success">
-            <path d="M20 6L9 17l-5-5" />
-          </svg>
-        </div>
-        <div>
-          <p className="text-[12px] font-bold text-text">{t("mockup.saved")}</p>
-          <p className="text-[11px] text-muted">{t("mockup.analyzing")}</p>
-        </div>
-      </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
-/* ─── Platform Icons (inline SVG) ─── */
-function PlatformIcon({ name }: { name: string }) {
-  switch (name) {
-    case "linkedin":
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A66C2">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      );
-    case "stepstone":
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="12" fill="#E8322A"/>
-          <path d="M7 9h10M7 12h7M7 15h10" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-        </svg>
-      );
-    case "indeed":
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-          <rect width="24" height="24" rx="4" fill="#2557A7"/>
-          <path d="M12 5v14M8 9l4-4 4 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      );
-    case "xing":
-      return (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="#026466">
-          <path d="M17.998 2h-3.04l-7.04 12.2L11.92 22h3.04l-3.04-7.8L17.998 2zM6.002 6.4H3l3.52 6-2.48 4h3l2.52-4-3.56-6z"/>
-        </svg>
-      );
-    default:
-      return null;
-  }
+/* ═══════════════════════════════════════════════════
+   Phase 1 — Floating "Job speichern" button over the screenshot
+   ═══════════════════════════════════════════════════ */
+function PhaseButton({
+  onAdvance,
+  t,
+}: {
+  onAdvance: () => void;
+  t: ReturnType<typeof useTranslations>;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
+      className="absolute inset-0"
+    >
+      {/* LinkedIn screenshot — dimmed */}
+      <div className="relative w-full h-full">
+        <Image
+          src="/demo-linkedin.png"
+          alt="LinkedIn Stellenanzeige — IT Business Consultant / Architekt bei zeb consulting, Berlin"
+          fill
+          className="object-cover object-top opacity-30 blur-[2px]"
+          sizes="560px"
+        />
+      </div>
+
+      {/* Floating button overlay */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <motion.button
+          onClick={onAdvance}
+          className="
+            relative z-10 flex items-center gap-3
+            px-6 py-3.5 rounded-2xl cursor-pointer
+            bg-navy text-white font-semibold text-[15px]
+            shadow-xl shadow-navy/25
+            hover:shadow-2xl hover:shadow-navy/35
+            hover:scale-105 active:scale-95
+            transition-all duration-200
+          "
+          animate={{
+            boxShadow: [
+              "0 8px 24px rgba(19,60,123,0.25)",
+              "0 8px 32px rgba(19,60,123,0.4)",
+              "0 8px 24px rgba(19,60,123,0.25)",
+            ],
+          }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+          <span>{t("demo.buttonLabel")}</span>
+        </motion.button>
+
+        <p className="relative z-10 mt-4 text-[13px] text-muted">{t("demo.buttonHint")}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Phase 2 — "In Queue packen?" confirmation card
+   Job data matches the LinkedIn screenshot exactly
+   ═══════════════════════════════════════════════════ */
+function PhaseConfirm({
+  onAdvance,
+  t,
+}: {
+  onAdvance: () => void;
+  t: ReturnType<typeof useTranslations>;
+}) {
+  const [typedTitle, setTypedTitle] = useState("");
+  const [typedCompany, setTypedCompany] = useState("");
+
+  // Typewriter effect — job data from the LinkedIn screenshot
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i <= DEMO_JOB.title.length) {
+        setTypedTitle(DEMO_JOB.title.slice(0, i));
+        i++;
+      } else if (i <= DEMO_JOB.title.length + DEMO_JOB.companyShort.length) {
+        const ci = i - DEMO_JOB.title.length - 1;
+        setTypedCompany(DEMO_JOB.companyShort.slice(0, ci + 1));
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 25);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="absolute inset-0 flex items-center justify-center px-8"
+    >
+      <div className="w-full max-w-[380px] rounded-2xl border border-border bg-white shadow-xl p-6 text-center">
+        <h3 className="text-[20px] font-bold text-text mb-5">{t("demo.confirmTitle")}</h3>
+
+        {/* Detected job info — typewriter */}
+        <div className="text-left mb-6 space-y-1 min-h-[52px]">
+          <p className="text-[15px] font-semibold text-text">
+            {typedTitle}
+            <span className="inline-block w-[2px] h-[14px] bg-navy ml-0.5 animate-pulse" />
+          </p>
+          {typedCompany && <p className="text-[14px] text-muted">{typedCompany}</p>}
+        </div>
+
+        {/* Buttons */}
+        <button
+          onClick={onAdvance}
+          className="
+            w-full py-3 rounded-xl bg-navy text-white text-[15px] font-semibold
+            hover:bg-navy-hover active:scale-[0.98] cursor-pointer
+            transition-all duration-200 mb-3
+          "
+        >
+          {t("demo.confirmYes")}
+        </button>
+        <button type="button" className="text-[14px] text-muted hover:text-text transition-colors cursor-pointer">
+          {t("demo.confirmNo")}
+        </button>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Phase 3 — Success steckbrief with real pipeline value
+   Keywords match the actual job on the LinkedIn screenshot
+   ═══════════════════════════════════════════════════ */
+function PhaseSuccess({ t }: { t: ReturnType<typeof useTranslations> }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="absolute inset-0 flex items-center justify-center px-8"
+    >
+      <div className="w-full max-w-[380px] rounded-2xl border border-border bg-white shadow-xl p-6">
+        {/* Success header — same job as LinkedIn screenshot */}
+        <div className="flex items-start gap-3 mb-5">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 400, damping: 15 }}
+            className="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center shrink-0 mt-0.5"
+          >
+            <CheckIcon size={16} className="text-success" strokeWidth={3} />
+          </motion.div>
+          <div>
+            <p className="text-[16px] font-bold text-text leading-snug">{DEMO_JOB.title}</p>
+            <p className="text-[14px] text-muted">{DEMO_JOB.companyShort}</p>
+          </div>
+        </div>
+
+        <div className="h-[1px] bg-border mb-5" />
+
+        {/* Keywords extracted — real buzzwords from the job */}
+        <div className="space-y-3">
+          <motion.div
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.3 }}
+          >
+            <p className="text-[12px] text-muted mb-1.5 font-medium">{t("demo.keywordsLabel")}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {DEMO_JOB.keywords.map((kw, i) => (
+                <motion.span
+                  key={kw}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 + i * 0.08 }}
+                  className="px-2.5 py-1 rounded-md bg-navy/5 border border-navy/10 text-[12px] font-medium text-navy"
+                >
+                  {kw}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Pipeline steps */}
+          <motion.div
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7, duration: 0.3 }}
+            className="space-y-2 pt-2"
+          >
+            {[
+              { label: t("demo.pipelineMatch"), done: true },
+              { label: t("demo.pipelineLetter"), done: true },
+              { label: t("demo.pipelineCoaching"), done: false },
+            ].map((step, i) => (
+              <motion.div
+                key={step.label}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 + i * 0.15 }}
+                className="flex items-center gap-2.5"
+              >
+                {step.done ? (
+                  <CheckIcon size={14} className="text-success" />
+                ) : (
+                  <div className="w-3.5 h-3.5 rounded-full border-2 border-navy/30 border-t-navy animate-spin shrink-0" />
+                )}
+                <span className={`text-[13px] ${step.done ? "text-text" : "text-muted"}`}>{step.label}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── Reusable Check Icon ─── */
+function CheckIcon({
+  size = 14,
+  className = "",
+  strokeWidth = 2.5,
+}: {
+  size?: number;
+  className?: string;
+  strokeWidth?: number;
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`shrink-0 ${className}`}
+      aria-hidden="true"
+    >
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+  );
 }
 
 /* ─── Chrome Icon ─── */
 function ChromeIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="flex-shrink-0">
-      <circle cx="12" cy="12" r="10" fill="white" fillOpacity="0.2"/>
-      <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="white"/>
-      <path d="M12 8h8.94M12 8l-4.47 7.75M12 8l-4.47 7.75M20.94 8A10 10 0 1 1 3.06 16" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="shrink-0" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="10" fill="white" fillOpacity="0.2" />
+      <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="white" />
+      <path d="M12 8h8.94M12 8l-4.47 7.75M12 8l-4.47 7.75M20.94 8A10 10 0 1 1 3.06 16" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }

@@ -25,10 +25,10 @@ export default function HomePage() {
           <ComparisonToggle />
         </ScrollSection>
         <Features />
+        <BrowserExtension />
         <Differentiation />
         <Testimonials />
         {SHOW_PRICING ? <Pricing /> : <FinalCTA />}
-        <BrowserExtension />
         <FAQSection />
         {SHOW_PRICING && <FinalCTA />}
       </main>

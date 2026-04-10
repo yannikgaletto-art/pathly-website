@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * FeatureTabIcons — Stacked Glassmorphism (Target B2)
- * Ersetzt die Text-Tabs in der Features-Sektion.
+ * FeatureTabIcons — Vertical Stacked Glassmorphism (Left-Side Layout)
+ * Glassmorphism icon tabs displayed vertically for the Features section.
  * 2 gestapelte Vierecke pro Karte (hinten solid, vorne frosted mit radial-gradient/noise).
  */
 
@@ -64,24 +64,31 @@ interface FeatureTabIconsProps {
 
 export function FeatureTabIcons({ activeIndex, onTabChange }: FeatureTabIconsProps) {
   return (
-    <div className="flex justify-center gap-6 sm:gap-10 md:gap-16 mt-8 flex-wrap">
+    <div className="flex flex-col justify-between h-full" style={{ minHeight: 520 }}>
       {TABS.map((tab, i) => {
         const isActive = activeIndex === i;
         return (
           <div
             key={tab.id}
             onClick={() => onTabChange(i)}
-            className="group flex flex-col items-center outline-none cursor-pointer"
+            className={`
+              group flex items-center gap-5 outline-none cursor-pointer
+              rounded-2xl px-5 py-4 transition-all duration-300
+              ${isActive
+                ? "bg-white/80 shadow-md border border-border"
+                : "bg-transparent hover:bg-white/40 border border-transparent"
+              }
+            `}
             role="tab"
             aria-selected={isActive}
           >
-            {/* Stacked dual-card container (offset 16px -> 112px total width) */}
-            <div className="relative w-[112px] h-[112px]">
+            {/* Stacked dual-card container (scaled down for vertical layout) */}
+            <div className="relative w-[100px] h-[100px] shrink-0">
               
               {/* Back square — solid, top-right aligned */}
               <div
                 className={`
-                  absolute top-0 right-0 w-24 h-24 rounded-[1.5rem]
+                  absolute top-0 right-0 w-[80px] h-[80px] rounded-[1.25rem]
                   ${tab.backColor}
                   transition-transform duration-200 ease-out
                   group-hover:scale-105
@@ -91,7 +98,7 @@ export function FeatureTabIcons({ activeIndex, onTabChange }: FeatureTabIconsPro
               {/* Front square — frosted glass, bottom-left aligned */}
               <div
                 className={`
-                  absolute bottom-0 left-0 w-24 h-24 rounded-[1.5rem]
+                  absolute bottom-0 left-0 w-[80px] h-[80px] rounded-[1.25rem]
                   backdrop-blur-md overflow-hidden flex items-center justify-center
                   border border-white/60 shadow-lg
                   transition-transform duration-200 ease-out
@@ -127,7 +134,7 @@ export function FeatureTabIcons({ activeIndex, onTabChange }: FeatureTabIconsPro
             {/* Label */}
             <span
               className={`
-                mt-4 text-sm text-center tracking-tight transition-colors duration-300
+                text-[16px] tracking-tight transition-colors duration-300 whitespace-nowrap
                 ${isActive
                   ? "font-semibold text-[#012e7a]"
                   : "font-normal text-gray-400 group-hover:text-gray-500"

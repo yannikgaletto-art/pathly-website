@@ -96,7 +96,7 @@ export const FEATURES = {
       ],
       screen: "/images/screen-02-queue.jpg",
       cards: [
-        { src: "/images/feature-js-1.png", alt: "Job Search — Keyword & Filter" },
+        { src: "/images/feature-js-1.png", alt: "Job Search — Keyword & Filter", objectPosition: "center 60%" },
         { src: "/images/feature-js-2.png", alt: "Job Search — Add Job Modal" },
         { src: "/images/feature-js-3.png", alt: "Job Search — Job Preview" },
       ],
@@ -111,9 +111,9 @@ export const FEATURES = {
       ],
       screen: "/images/screen-01-goals.jpg",
       cards: [
-        { src: "/images/feature-cv-1.png", alt: "CV Optimizer — Match Score & Analyse" },
-        { src: "/images/feature-cv-2.png", alt: "CV Optimizer — Review Changes" },
-        { src: "/images/feature-cv-3.png", alt: "CV Optimizer — Preview & Template" },
+        { src: "/images/CV_Analyse_1.png", alt: "CV Optimizer — Match Score & Analyse" },
+        { src: "/images/CV_1.png", alt: "CV Optimizer — Review Changes" },
+        { src: "/images/CV_2.png", alt: "CV Optimizer — Preview & Template" },
       ],
     },
     {
@@ -127,8 +127,8 @@ export const FEATURES = {
       ],
       screen: "/images/screen-03-cover.jpg",
       cards: [
-        { src: "/images/feature-cl-1.png", alt: "Cover Letter — Hook & Quotes" },
-        { src: "/images/feature-cl-2.png", alt: "Cover Letter — Tone & Sprache" },
+        { src: "/images/feature-cl-1.png", alt: "Cover Letter — Hook & Quotes", objectPosition: "center 55%" },
+        { src: "/images/Cover_Letter_1.png", alt: "Cover Letter — Tone & Sprache" },
         { src: "/images/feature-cl-3.png", alt: "Cover Letter — Ergebnis" },
       ],
     },
@@ -142,7 +142,7 @@ export const FEATURES = {
       ],
       screen: "/images/screen-04-coach.jpg",
       cards: [
-        { src: "/images/feature-co-1.png", alt: "Coaching — Mock Interview" },
+        { src: "/images/feature-co-1.png", alt: "Coaching — Mock Interview", objectPosition: "center 55%" },
         { src: "/images/feature-co-2.pg.png", alt: "Coaching — Feedback & Gap-Analyse" },
         { src: "/images/feature-co-3.png", alt: "Coaching — Session Report" },
       ],
@@ -172,22 +172,22 @@ export const DIFFERENTIATION = {
 
 // ─── Testimonials ────────────────────────────────────────────
 export const TESTIMONIALS = {
-  headline: "Was andere sagen.",
-  subline: "Echte Erfahrungen — kein Marketing-Text.",
+  headline: "Was unsere Beta-Tester sagen.",
+  subline: "",
   items: [
     {
       quote:
-        "Ich hab morgens aufgemacht, Pathly hat mir direkt 4 passende Stellen rausgesucht. Mittags hatte ich 2 davon angeschrieben — mit einem Anschreiben, das sich anfühlt als hätte ich selbst eine Stunde reingesteckt. Das hat so nicht mal meine alte Stelle gekostet.",
-      name: "Bastian",
-      age: 31,
-      location: "München",
-      role: "Wirtschaftsingenieur auf Jobsuche",
-      initials: "B",
-      src: "/images/Bastian.jpg",
+        "Mit 57 fängst du nicht gerne nochmal bei null an. Ich hatte befürchtet, dass meine Erfahrungen auf dem Papier alt aussehen. Und genau das war das Problem. Pathly hat das in Worte gefasst, die ich selbst nicht gefunden hätte. Klang ganz nach mir.",
+      name: "Joachim",
+      age: 57,
+      location: "Düsseldorf",
+      role: "Vertriebsleiter",
+      initials: "J",
+      src: "/images/Joachim_Rabe.jpg",
     },
     {
       quote:
-        "Der ATS-Scanner hat mein CV auf 34% eingeschätzt. Ich dachte, das Tool spinnt. Dann hab ich die Änderungen übernommen — und plötzlich 3 Rückmeldungen in einer Woche. Davor: Funkstille seit 6 Wochen.",
+        "Jeder will drei Jahre Erfahrung. Ich hab ein Jahr. Pathly hat mir klargemacht, dass ich die falschen Dinge in den Vordergrund gestellt hab. Das klingt trivial, hat mich aber zum Job-Interview gebracht.",
       name: "Clara",
       age: 27,
       location: "Berlin",
@@ -197,9 +197,19 @@ export const TESTIMONIALS = {
     },
     {
       quote:
-        "Ich bin 52 und dachte ehrlich, KI-Tools sind nichts für mich. Aber Pathly hat mir beim Mock-Interview gezeigt, dass ich auf die Frage nach meiner Schwäche seit Jahren dieselbe falsche Antwort gebe. Ein Programm. Das hat mir das gesagt.",
+        "Ich bin kein Fan von KI-Texten die nach KI klingen. Das Anschreiben das Pathly rausgebracht hat klang nach mir. Keine Ahnung wie, aber es hat gepasst. Zweimal abgeschickt, zweimal Rückmeldung.",
+      name: "Bastian",
+      age: 31,
+      location: "München",
+      role: "Wirtschaftsingenieur auf Jobsuche",
+      initials: "B",
+      src: "/images/Bastian.jpg",
+    },
+    {
+      quote:
+        "Ich vor der Kamera, unvorbereitet. Ich hätte das nie gemacht. Pathly hat mich durch den Video Letter geführt, fast wie ein Coaching. Ich wusste danach was ich sagen will und warum. Die Recruiterin hat mir geschrieben, dass ich sie als einzige wirklich überrascht hätte.",
       name: "Dorothea",
-      age: 52,
+      age: 34,
       location: "Köln",
       role: "Projektleiterin im Maschinenbau",
       initials: "D",
@@ -207,9 +217,9 @@ export const TESTIMONIALS = {
     },
     {
       quote:
-        "Ich hab dem Anschreiben-Generator meinen eigenen Schreibstil gegeben — ein altes Motivationsschreiben und zwei E-Mails. Das Ergebnis klang tatsächlich nach mir. Nicht nach 'sehr geehrte Damen und Herren, hiermit bewerbe ich mich'.",
+        "Ich teste Produkte auf Usability. Pathly hat meinen eigenen Schreibstil besser gelesen als ich. Kein 'sehr geehrte Damen und Herren'. Kein generisches Nichts. Einfach ich. Das hat mich eine Weile beschäftigt.",
       name: "Elenor",
-      age: 29,
+      age: 37,
       location: "Hamburg",
       role: "UX Researcherin",
       initials: "E",
@@ -217,33 +227,33 @@ export const TESTIMONIALS = {
     },
     {
       quote:
-        "3 Monate auf Stellen beworben, die ich auf LinkedIn gesehen habe. Dann zwei Wochen mit Pathly. Der Unterschied war nicht das Glück — es war, dass ich aufgehört hab, irgendwo hineinzupassen, und angefangen hab, gezielt zu suchen.",
-      name: "Franziska",
-      age: 34,
-      location: "Frankfurt",
-      role: "Controllerin",
-      initials: "F",
-      src: "/images/Franziska.jpg",
-    },
-    {
-      quote:
-        "Das Coaching hat mich auf eine Frage vorbereitet, die ich im echten Interview tatsächlich bekommen habe — fast wortgleich. Ich hab gelacht. Innerlich. Nach außen: ruhig, strukturiert, vorbereitet.",
+        "Ich hab mal ausgerechnet wie viel Zeit ich pro Bewerbung investiere. 1½ Stunden im Schnitt für meinen eigenen Anspruch. Bei zwanzig Stellen wäre das fast eine Arbeitswoche. Mit Pathly war das ein Nachmittag und die Qualität war nicht schlechter.",
       name: "Jack",
-      age: 26,
+      age: 36,
       location: "Stuttgart",
-      role: "Software Developer",
+      role: "Analyst",
       initials: "J",
       src: "/images/Jack.jpg",
     },
     {
       quote:
-        "Ich war 14 Jahre im selben Unternehmen. Erste Bewerbung seit 2010. Pathly hat mir gezeigt, dass mein CV zwar erfahren wirkt — aber komplett auf die falsche Zielgruppe ausgerichtet war. In zwei Stunden war das anders.",
-      name: "Joachim",
-      age: 47,
-      location: "Düsseldorf",
-      role: "Vertriebsleiter",
-      initials: "J",
-      src: "/images/Joachim_Rabe.jpg",
+        "Nach zehn Jahren selbstständig weiß ich wie ich mich verkaufe. Dachte ich. Der kritische Blick von Pathly hat mir gesagt, dass mein Anschreiben nach jemandem klingt der lieber alleine arbeitet. Das war nicht die Botschaft die ich wollte. Und ich hab es selbst nicht gesehen.",
+      name: "Laura",
+      age: 52,
+      location: "Hamburg",
+      role: "HR",
+      initials: "L",
+      src: "/images/Laura.png",
+    },
+    {
+      quote:
+        "3 Monate auf Stellen beworben, die ich auf LinkedIn gesehen habe mit 'Easy Apply'. Von den ca. 50 kamen zwei Rückmeldungen. Mit Pathly kommt einfach Qualität, ich glaube, dass Recruiter auch persönliche Anschreiben haben wollen, keine generischen KI-Texte.",
+      name: "Franziska",
+      age: 29,
+      location: "Frankfurt",
+      role: "Controllerin",
+      initials: "F",
+      src: "/images/Franziska.jpg",
     },
   ],
 } as const;
@@ -313,49 +323,7 @@ export const PRICING = {
   trustSignals: ["14 Tage Geld-zurück", "EU-gehostet", "DSGVO-konform"],
 } as const;
 
-// ─── Browser Extension ────────────────────────────────────────
-export const BROWSER_EXTENSION = {
-  badge: "Neu — Chrome Extension",
-  headline: "Ein Klick.",
-  headlineAccent: "Job gespeichert.",
-  subline: "Du scrollst LinkedIn. Pathly denkt mit. Mit einem Klick landet jede Stelle direkt in deiner Queue — inklusive KI-Analyse.",
-  cta: "Extension installieren",
-  ctaNote: "Kostenlos · Chrome & Edge · Kein Account nötig",
-  platforms: [
-    { name: "LinkedIn", icon: "linkedin" },
-    { name: "StepStone", icon: "stepstone" },
-    { name: "Indeed", icon: "indeed" },
-    { name: "Xing", icon: "xing" },
-  ],
-  steps: [
-    {
-      number: "01",
-      title: "Extension installieren",
-      description: "Im Chrome Web Store — kostenlos, 30 Sekunden.",
-    },
-    {
-      number: "02",
-      title: "Job-Seite öffnen",
-      description: "LinkedIn, StepStone, Indeed oder Xing — wie immer.",
-    },
-    {
-      number: "03",
-      title: "Pathly-Button klicken",
-      description: "Jobtitel, Firma, Standort — alles wird automatisch erkannt.",
-    },
-    {
-      number: "04",
-      title: "KI übernimmt",
-      description: "ATS-Score, Cover Letter, Coaching — alles wartet schon auf dich.",
-    },
-  ],
-  features: [
-    "Kein Copy-Paste mehr",
-    "Automatische Duplikat-Erkennung",
-    "DSGVO-konform — kein Tracking",
-    "Funktioniert offline",
-  ],
-} as const;
+
 
 // ─── Final CTA ───────────────────────────────────────────────
 export const FINAL_CTA = {

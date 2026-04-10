@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -8,14 +8,25 @@ import { TESTIMONIALS } from "@/lib/constants";
 
 type Item = (typeof TESTIMONIALS.items)[number];
 
-const ITEM_KEYS = ["bastian", "clara", "dorothea", "elenor", "franziska", "jack", "joachim"] as const;
+const ITEM_KEYS = [
+  "joachim",
+  "clara",
+  "bastian",
+  "dorothea",
+  "elenor",
+  "jack",
+  "laura",
+  "franziska",
+] as const;
+
+const SLIDE_DURATION = 5000; // ms per slide
+
 /**
  * Section 08 — Testimonials (Animated)
- * Photo-stack left + quote right, autoplay 5s, arrow nav.
- * Below-the-fold → Framer Motion allowed per AGENTS.md.
+ * Photo-stack left + quote right.
+ * Autoplay 5 s, Pause/Play control, dot nav.
+ * Fixed-height photo container prevents layout influence on sections below.
  */
-
-
 
 // Seeded pseudo-random per index so SSR and client match (no hydration mismatch)
 function getRotation(index: number, seed: number): string {
@@ -27,20 +38,22 @@ export function Testimonials() {
   const t = useTranslations("testimonials");
   const items = TESTIMONIALS.items as unknown as Item[];
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
 
-  const handleNext = useCallback(() => {
+  // Keep a stable ref to active so the interval doesn't need to be re-created
+  const activeRef = useRef(active);
+  activeRef.current = active;
+
+  const advance = useCallback(() => {
     setActive((prev) => (prev + 1) % items.length);
   }, [items.length]);
 
-  const handlePrev = useCallback(() => {
-    setActive((prev) => (prev - 1 + items.length) % items.length);
-  }, [items.length]);
-
-  // Autoplay
+  // Autoplay — restarts whenever paused state changes
   useEffect(() => {
-    const t = setInterval(handleNext, 5500);
-    return () => clearInterval(t);
-  }, [handleNext]);
+    if (paused) return;
+    const id = setInterval(advance, SLIDE_DURATION);
+    return () => clearInterval(id);
+  }, [paused, advance]);
 
   const current = items[active];
 
@@ -56,29 +69,38 @@ export function Testimonials() {
           <h2 className="text-[32px] md:text-[40px] font-bold text-text leading-tight">
             {t("headline")}
           </h2>
-          <p className="mt-4 text-[16px] text-muted">
-            {t("subline")}
-          </p>
+          {t("subline") && (
+            <p className="mt-4 text-[16px] text-muted">{t("subline")}</p>
+          )}
         </div>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center max-w-4xl mx-auto">
+        {/* Two-column layout — items-start keeps columns anchored at top,
+            preventing the photo stack from pushing content below */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start max-w-4xl mx-auto">
 
-          {/* Left — Photo stack */}
+          {/* Left — Photo stack (fixed dimensions, never grows) */}
           <div className="flex justify-center">
-            <div className="relative h-80 w-72">
+            {/* Outer has fixed dimensions; nothing below can be affected */}
+            <div className="relative h-80 w-72 shrink-0">
               <AnimatePresence>
                 {items.map((item, index) => {
                   const isActive = index === active;
                   return (
                     <motion.div
                       key={item.src}
-                      initial={{ opacity: 0, scale: 0.9, y: 40, rotate: getRotation(index, 1) }}
+                      initial={{
+                        opacity: 0,
+                        scale: 0.9,
+                        y: 40,
+                        rotate: getRotation(index, 1),
+                      }}
                       animate={{
                         opacity: isActive ? 1 : 0.45,
                         scale: isActive ? 1 : 0.92,
                         y: isActive ? 0 : 16,
-                        rotate: isActive ? "0deg" : getRotation(index, active),
+                        rotate: isActive
+                          ? "0deg"
+                          : getRotation(index, active),
                         zIndex: isActive
                           ? items.length + 1
                           : items.length - Math.abs(index - active),
@@ -104,7 +126,8 @@ export function Testimonials() {
           </div>
 
           {/* Right — Quote + controls */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-start">
+            {/* Fixed min-height so layout is stable across slides */}
             <div className="min-h-[280px] md:min-h-[240px] flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -118,7 +141,9 @@ export function Testimonials() {
                   <p className="text-[13px] font-medium text-navy uppercase tracking-wider mb-1">
                     {current.name}, {current.age} · {current.location}
                   </p>
-                  <p className="text-[13px] text-muted mb-6">{t(`items.${ITEM_KEYS[active]}.role`)}</p>
+                  <p className="text-[13px] text-muted mb-6">
+                    {t(`items.${ITEM_KEYS[active]}.role`)}
+                  </p>
 
                   {/* Quote */}
                   <blockquote>
@@ -136,30 +161,17 @@ export function Testimonials() {
               </AnimatePresence>
             </div>
 
-            {/* Arrow controls */}
+            {/* Controls: dots + Pause/Play */}
             <div className="flex items-center gap-3 mt-10">
-              <button
-                onClick={handlePrev}
-                aria-label="Vorherige"
-                className="w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center shadow-sm hover:shadow-md hover:border-navy transition-all duration-200 group"
-              >
-                {/* Inline SVG arrow left — no lucide dep */}
-                <svg
-                  width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" strokeWidth="2"
-                  strokeLinecap="round" strokeLinejoin="round"
-                  className="text-text group-hover:text-navy transition-colors group-hover:-translate-x-0.5 duration-200"
-                >
-                  <path d="M19 12H5M12 5l-7 7 7 7" />
-                </svg>
-              </button>
-
               {/* Dot indicator */}
               <div className="flex gap-1.5">
                 {items.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setActive(i)}
+                    onClick={() => {
+                      setActive(i);
+                      setPaused(false);
+                    }}
                     aria-label={`Testimonial ${i + 1}`}
                     className={`rounded-full transition-all duration-300 ${
                       i === active
@@ -170,19 +182,37 @@ export function Testimonials() {
                 ))}
               </div>
 
+              {/* Pause / Play button */}
               <button
-                onClick={handleNext}
-                aria-label="Nächste"
-                className="w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center shadow-sm hover:shadow-md hover:border-navy transition-all duration-200 group"
+                onClick={() => setPaused((p) => !p)}
+                aria-label={paused ? "Fortsetzen" : "Pausieren"}
+                className="w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center shadow-sm hover:shadow-md hover:border-navy transition-all duration-200 group ml-1"
               >
-                <svg
-                  width="16" height="16" viewBox="0 0 24 24"
-                  fill="none" stroke="currentColor" strokeWidth="2"
-                  strokeLinecap="round" strokeLinejoin="round"
-                  className="text-text group-hover:text-navy transition-colors group-hover:translate-x-0.5 duration-200"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+                {paused ? (
+                  /* Play icon */
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-text group-hover:text-navy transition-colors translate-x-px"
+                  >
+                    <path d="M6 4.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0V4.75zm13.25 7.25-10-6.5a.75.75 0 0 0-1.25.56v12.99a.75.75 0 0 0 1.25.56l10-6.5a.75.75 0 0 0 0-1.05z" />
+                    <polygon points="5,3 20,12 5,21" />
+                  </svg>
+                ) : (
+                  /* Pause icon */
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-text group-hover:text-navy transition-colors"
+                  >
+                    <rect x="5" y="3" width="4" height="18" rx="1" />
+                    <rect x="15" y="3" width="4" height="18" rx="1" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
