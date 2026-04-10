@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { COMPARISON, SITE } from "@/lib/constants";
+import { COMPARISON } from "@/lib/constants";
 
 /* ── Confetti (side burst — Pathly SaaS pattern) ─────────────── */
 
@@ -124,20 +124,10 @@ export function ComparisonToggle() {
           }
         `}
       >
-        <div className="px-8 py-10 md:px-12 md:py-12">
+        <div className="px-8 py-8 md:px-12 md:py-10">
 
-          {/* ── Header: Title — Liquid Toggle — Title ── */}
-          <div className="flex items-center justify-between gap-4 mb-3">
-            {/* Left title */}
-            <h2
-              className={`text-[16px] md:text-[18px] font-bold leading-tight tracking-tight whitespace-nowrap transition-colors duration-500 ${
-                isActive ? "text-white/30" : "text-text"
-              }`}
-            >
-              {t("manualTitle")}
-            </h2>
-
-            {/* Liquid Radio Toggle */}
+          {/* ── Toggle — centered inside card ── */}
+          <div className="flex justify-center mb-8">
             <button
               role="switch"
               aria-checked={isActive}
@@ -150,143 +140,139 @@ export function ComparisonToggle() {
               onKeyDown={handleKeyDown}
               className="relative shrink-0 flex items-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-navy cursor-pointer"
               style={{
-                background: isActive ? "rgba(255,255,255,0.08)" : "#E8E8EC",
+                width: "150px",
+                height: "62px",
                 borderRadius: "999px",
-                padding: "4px",
-                gap: "0px",
-                width: "96px",
-                height: "40px",
+                padding: "6px",
+                background: isActive
+                  ? "linear-gradient(135deg, rgba(19,60,123,0.85) 0%, rgba(26,78,155,0.90) 100%)"
+                  : "#E4E8EE",
+                border: isActive
+                  ? "1px solid rgba(255,255,255,0.15)"
+                  : "1px solid rgba(185,200,220,0.5)",
+                boxShadow: isActive
+                  ? "0 6px 20px rgba(19,60,123,0.30), inset 0 1px 0 rgba(255,255,255,0.10)"
+                  : "0 2px 8px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,1)",
+                transition: "background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease",
               }}
             >
-              {/* Left label — "Bisher" */}
+              {/* Left label — Bisher */}
               <span
-                className={`relative z-10 text-[12px] font-semibold transition-colors duration-300 flex-1 text-center select-none ${
-                  !isActive ? "text-transparent" : "text-white/40"
-                }`}
+                className="relative z-10 flex-1 text-center select-none"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  color: isActive ? "rgba(255,255,255,0.45)" : "rgba(50,65,90,0.80)",
+                  transition: "color 0.3s ease",
+                }}
               >
                 Bisher
               </span>
 
-              {/* Sliding pill — liquid glass card */}
+              {/* Sliding pill — clean solid white, no distortion */}
               <span
                 style={{
                   position: "absolute",
-                  top: "4px",
-                  left: isActive ? "calc(50% - 2px)" : "4px",
-                  width: "calc(50% - 2px)",
-                  height: "calc(100% - 8px)",
+                  top: "6px",
+                  left: isActive ? "calc(50% - 3px)" : "6px",
+                  width: "calc(50% - 3px)",
+                  height: "calc(100% - 12px)",
                   borderRadius: "999px",
                   background: isActive
-                    ? "rgba(255,255,255,0.15)"
+                    ? "rgba(255,255,255,0.18)"
                     : "white",
                   boxShadow: isActive
-                    ? "0 0 0 1px rgba(255,255,255,0.2)"
-                    : "0 2px 8px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9)",
-                  transition: "left 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s, box-shadow 0.3s",
-                  filter: "url(#radio-glass)",
+                    ? "0 0 0 1px rgba(255,255,255,0.20), 0 2px 8px rgba(0,0,0,0.20)"
+                    : "0 2px 10px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,1)",
+                  transition: "left 0.35s cubic-bezier(0.34,1.4,0.64,1), background 0.35s ease, box-shadow 0.35s ease",
                 }}
               />
 
-              {/* Right label — "Pathly" */}
+              {/* Right label — Pathly */}
               <span
-                className={`relative z-10 text-[12px] font-semibold transition-colors duration-300 flex-1 text-center select-none ${
-                  isActive ? "text-[#0B1D3A]" : "text-text/40"
-                }`}
-                style={{ color: isActive ? "white" : undefined }}
+                className="relative z-10 flex-1 text-center select-none"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: 700,
+                  color: isActive ? "rgba(255,255,255,0.95)" : "rgba(50,65,90,0.38)",
+                  transition: "color 0.3s ease",
+                }}
               >
                 Pathly
               </span>
             </button>
+          </div>
 
-            {/* Right title */}
-            <h2
-              className={`text-[16px] md:text-[18px] font-bold leading-tight tracking-tight whitespace-nowrap text-right transition-colors duration-500 ${
-                isActive ? "text-white" : "text-muted"
+          {/* ── Step Rows (equal-height: Before determines height, After overlaid) ── */}
+          <div className="relative">
+            {/* BEFORE: always rendered — determines natural height */}
+            <div
+              className={`space-y-2.5 transition-opacity duration-300 ${
+                isActive ? "opacity-0 pointer-events-none" : "opacity-100"
               }`}
             >
-              {t("pathlyTitle")}
-            </h2>
-          </div>
-
-          {/* ── Subtitle ── */}
-          <p
-            className={`text-[13px] mb-8 transition-colors duration-500 ${
-              isActive ? "text-white/50" : "text-muted"
-            }`}
-          >
-            {isActive
-              ? t("pathlyCard.subtext")
-              : "—"}
-          </p>
-
-          {/* ── Step Rows ── */}
-          <div className="space-y-2.5">
-            {isActive
-              ? /* ── AFTER: Pathly checks (4 items) ── */
-                [t("pathlyCard.checks.0"), t("pathlyCard.checks.1"), t("pathlyCard.checks.2"), t("pathlyCard.checks.3")].map((check, i) => (
-                  <div
-                    key={`pathly-${i}`}
-                    className="flex items-center gap-3 rounded-xl px-4 py-3.5 border"
-                    style={{
-                      background: "rgba(255,255,255,0.07)",
-                      borderColor: "rgba(255,255,255,0.1)",
-                      transitionDelay: `${i * 70}ms`,
-                    }}
-                  >
-                    <div className="w-7 h-7 rounded-full bg-[#00B870]/20 flex items-center justify-center shrink-0">
-                      <svg
-                        className="w-3.5 h-3.5 text-[#00B870]"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={3}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M20 6L9 17l-5-5" />
-                      </svg>
-                    </div>
-                    <span className="flex-1 text-[14px] font-medium text-white">
-                      {check}
-                    </span>
-                    <span className="text-[11px] font-medium text-white/35 tracking-widest uppercase">
-                      Complete
-                    </span>
+              {COMPARISON.steps.map((step, i) => (
+                <div
+                  key={step.id}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 bg-white border border-border"
+                  style={{ transitionDelay: `${i * 50}ms` }}
+                >
+                  <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+                    <StepIcon iconKey={step.iconKey} />
                   </div>
-                ))
-              : /* ── BEFORE: Manual steps (7 items) ── */
-                COMPARISON.steps.map((step, i) => (
-                  <div
-                    key={step.id}
-                    className="flex items-center gap-3 rounded-xl px-4 py-3.5 bg-white border border-border"
-                    style={{ transitionDelay: `${i * 50}ms` }}
-                  >
-                    <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
-                      <StepIcon iconKey={step.iconKey} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[14px] font-semibold text-text leading-snug">
-                        {t(`steps.${step.id}.title`)}
-                      </p>
-                      <p className="text-[12px] text-muted leading-relaxed">
-                        {t(`steps.${step.id}.description`)}
-                      </p>
-                    </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[14px] font-semibold text-text leading-snug">
+                      {t(`steps.${step.id}.title`)}
+                    </p>
+                    <p className="text-[12px] text-muted leading-relaxed">
+                      {t(`steps.${step.id}.description`)}
+                    </p>
                   </div>
-                ))}
-          </div>
-
-          {/* ── CTA (only in active state) ── */}
-          {isActive && (
-            <div className="mt-7 text-center">
-              <a
-                href={SITE.appUrl}
-                className="inline-block px-7 py-3 rounded-xl bg-[#A8C4E6] text-navy font-semibold text-[14px] hover:bg-[#93B5DC] transition-colors duration-200 shadow-md"
-              >
-                {t("pathlyCard.cta")}
-              </a>
+                </div>
+              ))}
             </div>
-          )}
+
+            {/* AFTER: absolute overlay — same height as Before */}
+            <div
+              className={`absolute inset-0 flex flex-col justify-center space-y-2.5 transition-opacity duration-300 ${
+                isActive ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              {[t("pathlyCard.checks.0"), t("pathlyCard.checks.1"), t("pathlyCard.checks.2"), t("pathlyCard.checks.3")].map((check, i) => (
+                <div
+                  key={`pathly-${i}`}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3.5 border"
+                  style={{
+                    background: "rgba(255,255,255,0.07)",
+                    borderColor: "rgba(255,255,255,0.1)",
+                    transitionDelay: `${i * 70}ms`,
+                  }}
+                >
+                  <div className="w-7 h-7 rounded-full bg-[#00B870]/20 flex items-center justify-center shrink-0">
+                    <svg
+                      className="w-3.5 h-3.5 text-[#00B870]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </div>
+                  <span className="flex-1 text-[14px] font-medium text-white">
+                    {check}
+                  </span>
+                  <span className="text-[11px] font-medium text-white/35 tracking-widest uppercase">
+                    Complete
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+
         </div>
       </div>
     </section>

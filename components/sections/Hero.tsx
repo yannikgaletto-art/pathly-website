@@ -26,10 +26,10 @@ export function Hero() {
   return (
     <section aria-label="Hero" className="relative bg-white">
       {/* Full-viewport Headline Block */}
-      <div className="flex items-center justify-center min-h-[100svh] px-6">
-        <div className="text-center w-full">
+      <div className="flex items-start pt-[16vh] md:pt-[12vh] px-6 md:px-10 lg:px-16 min-h-[100svh]">
+        <div className="text-center md:text-left md:ml-[32%] lg:ml-[30%] w-full">
           <h1
-            className="text-[clamp(1.75rem,4.2vw,3.5rem)] font-bold text-text leading-[1.15] tracking-[-0.03em]"
+            className="text-[clamp(1.5rem,3.8vw,3.4rem)] font-bold text-text leading-[1.12] tracking-[-0.025em]"
             style={{ visibility: "hidden" }}
           >
             {t("headline")}

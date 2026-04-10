@@ -26,6 +26,7 @@ export const NAV_CTA = "Jetzt starten →" as const;
 // ─── Hero Section ────────────────────────────────────────────
 export const HERO = {
   headline: "Jeder Mensch verdient es,\ngesehen zu werden.",
+  brandWords: ["Pathly", "Simplify", "your", "Path."],
   subheadline:
     "Pathly bereitet deinen Lebenslauf, dein Anschreiben und dein Profil so auf, dass Recruiting-KIs dich nicht übersehen können.",
   cta: "Kostenlos starten →",
