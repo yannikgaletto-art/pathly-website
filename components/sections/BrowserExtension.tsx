@@ -187,7 +187,9 @@ export function BrowserExtension() {
           className="flex flex-col items-center gap-3 mt-10"
         >
           <a
-            href={SITE.appUrl}
+            href={SITE.extensionUrl}
+            target={SITE.extensionUrl.startsWith("http") ? "_blank" : undefined}
+            rel={SITE.extensionUrl.startsWith("http") ? "noopener noreferrer" : undefined}
             className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-navy text-white text-[15px] font-semibold overflow-hidden hover:bg-navy-hover transition-colors duration-300 shadow-md shadow-navy/20"
           >
             <span className="absolute inset-0 overflow-hidden rounded-xl">
