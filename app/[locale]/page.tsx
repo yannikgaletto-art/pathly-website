@@ -22,8 +22,8 @@ export default function HomePage() {
         <ScrollSection>
           <Hero />
           <Problem />
-          <ComparisonToggle />
         </ScrollSection>
+        <ComparisonToggle />
         <Features />
         <BrowserExtension />
         <Differentiation />

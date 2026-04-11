@@ -38,9 +38,7 @@ export function ScrollSection({ children }: ScrollSectionProps) {
 
   const childArray = Children.toArray(children);
   const heroChild = childArray[0];
-  // drawerChild = 3rd child (ComparisonToggle), shown inside the drawer
-  const drawerChild = childArray[childArray.length - 1];
-  const toggleChildren = childArray.slice(1, childArray.length - 1);
+  const toggleChildren = childArray.slice(1);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.history.scrollRestoration) {
@@ -96,7 +94,6 @@ export function ScrollSection({ children }: ScrollSectionProps) {
         const toggleItems = container.querySelectorAll<HTMLElement>("[data-toggle-item]");
         const scrollDot = container.querySelector<HTMLElement>("[data-scroll-dot]");
         const scrollFill = container.querySelector<HTMLElement>("[data-scroll-fill]");
-        const drawerOverlay = container.querySelector<HTMLElement>("[data-drawer-overlay]");
 
         if (!textLine || heroSpans.length === 0 || !contentWrapper) return;
 
@@ -141,10 +138,10 @@ export function ScrollSection({ children }: ScrollSectionProps) {
             onUpdate: (self) => {
               const p = self.progress;
 
-              // ── Progress divider (dot moves to bottom by p≈0.55) ──
+              // ── Progress divider (dot travels full height by p=0.55) ──
               const dotP = Math.min(p / 0.55, 1);
-              if (scrollDot) scrollDot.style.top = `${Math.min(dotP * 100, 95)}%`;
-              if (scrollFill) scrollFill.style.height = `${Math.min(dotP * 100, 96)}%`;
+              if (scrollDot) scrollDot.style.top = `${Math.min(dotP * 100, 100)}%`;
+              if (scrollFill) scrollFill.style.height = `${Math.min(dotP * 100, 100)}%`;
 
               // ════════════════════════════════════════════════
               // PHASE 1: Below-fold fade out 0–2%
@@ -246,7 +243,6 @@ export function ScrollSection({ children }: ScrollSectionProps) {
               // PHASE 5: Dot pulse at arrival — once only
               // ════════════════════════════════════════════════
               if (scrollDot) {
-                // Reset guard on scroll-back so pulse can re-fire
                 if (p < 0.50) dotPulsedRef.current = false;
 
                 if (p >= 0.55 && !dotPulsedRef.current && !reducedMotionRef.current) {
@@ -264,34 +260,6 @@ export function ScrollSection({ children }: ScrollSectionProps) {
                       onComplete: () => { gsap.set(scrollDot, { scale: 1, opacity: 1 }); },
                     }
                   );
-                }
-              }
-
-              // ════════════════════════════════════════════════
-              // PHASE 6: Drawer — drawer is cached once above (not re-queried)
-              // 58→80% = 22% of 500vh ≈ 1100px slow reveal
-              // Starts right after dot reaches bottom and finishes at 0.8.
-              // The remaining 20% (0.8 to 1.0) is exactly 100vh ("1 scroll"),
-              // during which the user scrolls but nothing happens (deliberate pause).
-              // ════════════════════════════════════════════════
-              if (drawerOverlay) {
-                const exitStart = 0.58, exitEnd = 0.80;
-                if (p >= exitEnd) {
-                  drawerOverlay.style.transform = "translateY(0%)";
-                  drawerOverlay.style.opacity = "1";
-                  drawerOverlay.style.visibility = "visible";
-                } else if (p >= exitStart) {
-                  // Linear mapping — user scroll IS the easing.
-                  // No power curves: they fight scroll speed → cause stutter.
-                  const t = (p - exitStart) / (exitEnd - exitStart);
-                  const yPercent = 100 * (1 - t);
-                  drawerOverlay.style.transform = `translateY(${yPercent.toFixed(3)}%)`;
-                  drawerOverlay.style.opacity = "1";
-                  drawerOverlay.style.visibility = "visible";
-                } else {
-                  drawerOverlay.style.transform = "translateY(100%)";
-                  drawerOverlay.style.opacity = "0";
-                  drawerOverlay.style.visibility = "hidden";
                 }
               }
             },
@@ -314,42 +282,8 @@ export function ScrollSection({ children }: ScrollSectionProps) {
   }, []);
 
   return (
-    <div ref={containerRef} style={{ height: "500vh" }} className="relative">
+    <div ref={containerRef} style={{ height: "400vh" }} className="relative">
       <div className="sticky top-0 w-full overflow-hidden" style={{ height: "100vh" }}>
-
-        {/* Drawer — slides up after dot hits bottom */}
-        {/* IMPORTANT: overflow-y is on the INNER wrapper, not the animated element.
-            GPU composites only transform — no overflow repaints = no top-edge flicker. */}
-        <div
-          data-drawer-overlay
-          className="absolute inset-x-0 bottom-0 z-30"
-          style={{
-            height: "100%",
-            background: "var(--color-bg-soft)",
-            transform: "translateY(100%)",
-            opacity: 0,
-            visibility: "hidden",
-            borderTopLeftRadius: "32px",
-            borderTopRightRadius: "32px",
-            boxShadow: "0 -12px 40px rgba(19,60,123,0.10)",
-            transition: "transform 40ms linear",
-            willChange: "transform",
-            backfaceVisibility: "hidden", // prevent sub-pixel GPU artifacts
-          }}
-        >
-          {/* Inner scroll wrapper — separated from the animated parent */}
-          <div
-            style={{
-              height: "100%",
-              overflowY: "auto",
-              paddingTop: "20vh",
-              borderTopLeftRadius: "32px",
-              borderTopRightRadius: "32px",
-            }}
-          >
-            {drawerChild}
-          </div>
-        </div>
 
         {/* Layer 1: Hero above-fold (full viewport, visible initially) */}
         {heroChild}
