@@ -67,6 +67,8 @@ export function ScrollSection({ children }: ScrollSectionProps) {
       document.removeEventListener("touchmove", blockTouch);
     };
 
+    let releaseTimer: ReturnType<typeof setTimeout> | null = null;
+
     async function initAnimation() {
       try {
         const { gsap } = await import("gsap");
@@ -106,28 +108,25 @@ export function ScrollSection({ children }: ScrollSectionProps) {
         const pLen = pArr.length;
         const tLen = tArr.length;
 
-        // ── Init: Hero/Problem ──
+        // ── Init: Hero — CSS animation drives char reveal (SSR-safe, per AGENTS.md) ──
+        // Each span already has inline animation-delay set in JSX.
+        // We just make the text-line visible so CSS can run.
         textLine.style.opacity = "1";
         textLine.style.visibility = "visible";
-        hArr.forEach((el) => { el.style.display = "none"; el.style.opacity = "1"; });
+        hArr.forEach((el) => {
+          // Reset: ensure spans are visible for CSS animation
+          el.style.display = "inline";
+          // opacity is controlled by CSS keyframes
+        });
         if (heroCursor) heroCursor.style.opacity = "1";
 
-        // ── Phase A–C: GSAP Timeline — type hero chars on page load ──
-        // Delayed 1.4s to start AFTER brand-word CSS cascade finishes.
-        // Scroll-lock is held for the full duration; released in onComplete.
-        const introTimeline = gsap.timeline({
-          delay: 1.4,
-          onComplete: () => {
-            releaseScrollLock();
-            createScrollAnimation();
-          },
-        });
-        hArr.forEach((el, i) => {
-          introTimeline.call(() => { el.style.display = "inline"; }, [], i * 0.05);
-        });
-        // Extra 0.8s pause after last char so the completed sentence
-        // is readable before scroll is enabled.
-        introTimeline.to({}, { duration: 0.8 });
+        // ── Release scroll after CSS animation completes ──
+        // Duration = 1.4s delay (brand cascade) + hLen * 0.045s per char + 0.8s pause
+        const introDuration = (1.4 + hLen * 0.045 + 0.8) * 1000;
+        releaseTimer = setTimeout(() => {
+          releaseScrollLock();
+          createScrollAnimation();
+        }, introDuration);
 
         // ══════════════════════════════════════════════════════════════
         // SCROLL PHASES — all in one continuous ScrollTrigger
@@ -305,6 +304,7 @@ export function ScrollSection({ children }: ScrollSectionProps) {
 
     return () => {
       // Always release scroll lock on unmount (e.g. route change mid-animation)
+      if (releaseTimer) clearTimeout(releaseTimer);
       releaseScrollLock();
       import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
         ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -474,7 +474,15 @@ export function ScrollSection({ children }: ScrollSectionProps) {
                   {/* Typed chars: overlaid on ghost */}
                   <span className="absolute top-0 left-0 right-0 block">
                     {heroChars.map((char, i) => (
-                      <span key={`hc-${i}`} data-hc style={{ opacity: 1, display: "none" }}>
+                      <span
+                        key={`hc-${i}`}
+                        data-hc
+                        style={{
+                          opacity: 0,
+                          display: "inline",
+                          animation: `hc-appear 0.001s step-end ${(1.4 + i * 0.045).toFixed(3)}s forwards`,
+                        }}
+                      >
                         {char}
                       </span>
                     ))}
