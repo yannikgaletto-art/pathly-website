@@ -28,7 +28,7 @@ export const NAV_CTA = "Jetzt starten →" as const;
 
 // ─── Hero Section ────────────────────────────────────────────
 export const HERO = {
-  headline: "Jeder Mensch verdient es,\ngesehen zu werden.",
+  headline: "Wir glauben, dass jeder es verdient, gesehen zu werden.",
   brandWords: ["Pathly", "Simplify", "your", "Path."],
   subheadline:
     "Pathly bereitet deinen Lebenslauf, dein Anschreiben und dein Profil so auf, dass Recruiting-KIs dich nicht übersehen können.",
@@ -436,51 +436,51 @@ export const FAQ_DATA = {
     {
       id: "01",
       tag: "Datenschutz",
-      question: "Wo liegen meine Daten — und liest Pathly meinen Lebenslauf?",
+      question: "Wo liegen meine Daten, und liest Pathly meinen Lebenslauf?",
       answer:
-        "Deine Daten werden ausschließlich auf EU-Servern gespeichert. Pathly ist vollständig DSGVO-konform und NIS2-ready. Dein Lebenslauf wird nur verarbeitet, um dir bessere Bewerbungen zu ermöglichen — niemals weitergegeben, verkauft oder für das Training von KI-Modellen genutzt. Du kannst deine Daten jederzeit vollständig löschen.",
+        "Deine Daten werden ausschließlich auf EU-Servern gespeichert. Pathly ist vollständig DSGVO-konform und NIS2-ready. Dein Lebenslauf wird nur verarbeitet, um dir bessere Bewerbungen zu ermöglichen. Niemals weitergegeben, verkauft oder für das Training von KI-Modellen genutzt. Du kannst deine Daten jederzeit vollständig löschen.",
     },
     {
       id: "02",
       tag: "Datenschutz",
       question: "Wird mein CV für KI-Training verwendet?",
       answer:
-        "Nein. Deine Dokumente, Texte und persönlichen Daten werden niemals für das Training von KI-Modellen verwendet — weder von Pathly noch von unseren KI-Partnern. Das ist vertraglich garantiert. Deine Bewerbungsunterlagen gehören dir.",
+        "Nein. Deine Dokumente, Texte und persönlichen Daten werden niemals für das Training von KI-Modellen verwendet, weder von Pathly noch von unseren KI-Partnern. Das ist vertraglich garantiert. Deine Bewerbungsunterlagen gehören dir.",
     },
     {
       id: "03",
       tag: "KI & Stil",
-      question: "Klingt das Anschreiben wirklich nach mir — oder nach KI?",
+      question: "Klingt das Anschreiben wirklich nach mir, oder nach KI?",
       answer:
-        "Pathly analysiert deinen Schreibstil anhand deiner eigenen Texte — Satzlänge, Wortwahl, Ton. Das generierte Anschreiben wird zusätzlich durch eine Skeptical Hiring Manager-Kritik geprüft, die generische Formulierungen aktiv herausfiltert. Das Ergebnis klingt wie du — nicht wie ein Chatbot.",
+        "Pathly analysiert deinen Schreibstil anhand deiner eigenen Texte: Satzlänge, Wortwahl, Ton. Das generierte Anschreiben wird zusätzlich durch eine Skeptical Hiring Manager-Kritik geprüft, die generische Formulierungen aktiv herausfiltert. Das Ergebnis klingt wie du. Nicht wie ein Chatbot.",
     },
     {
       id: "04",
       tag: "Vergleich",
       question: "Was macht Pathly anders als andere KI-Tools?",
       answer:
-        "Andere KI-Tools kennen dich nicht, kennen den Job nicht und wissen nicht, was Recruiter wirklich sehen wollen. Pathly kombiniert dein individuelles Profil, die konkrete Stellenbeschreibung und Echtzeit-Unternehmensrecherche — und erstellt daraus eine Bewerbung, die ATS-Systeme passiert und trotzdem nach dir klingt. Dazu kommt EU-Datenschutz, Job-Tracking und Interview-Coaching in einem System.",
+        "Andere KI-Tools kennen dich nicht, kennen den Job nicht und wissen nicht, was Recruiter wirklich sehen wollen. Pathly kombiniert dein individuelles Profil, die konkrete Stellenbeschreibung und Echtzeit-Unternehmensrecherche, und erstellt daraus eine Bewerbung, die ATS-Systeme passiert und trotzdem nach dir klingt. Dazu kommt EU-Datenschutz, Job-Tracking und Interview-Coaching in einem System.",
     },
     {
       id: "05",
       tag: "Produkt",
       question: "Funktioniert Pathly auch für meine Branche?",
       answer:
-        "Ja. Pathly wurde für alle Berufsfelder entwickelt — von Marketing über Tech bis hin zu Design, Finanzen oder dem öffentlichen Dienst. Das System passt sich an deine Branche, deinen Karrierelevel und deine Ziele an. Auch Quereinsteiger, Berufsrückkehrer und Menschen mit Lücken im Lebenslauf werden gezielt unterstützt.",
+        "Ja. Pathly wurde für alle Berufsfelder entwickelt, von Marketing über Tech bis hin zu Design, Finanzen oder dem öffentlichen Dienst. Das System passt sich an deine Branche, deinen Karrierelevel und deine Ziele an. Auch Quereinsteiger, Berufsrückkehrer und Menschen mit Lücken im Lebenslauf werden gezielt unterstützt.",
     },
     {
       id: "06",
       tag: "Warteliste",
       question: "Was passiert nach der Warteliste?",
       answer:
-        "Sobald Pathly in die Beta startet, bekommst du als Erste:r eine persönliche Einladung per E-Mail. Beta-Nutzer erhalten vollen Zugang zu allen Features — inklusive CV-Optimizer, Cover Letter, Interview-Coaching und Job-Queue. Dein Platz auf der Liste bleibt gesichert.",
+        "Sobald Pathly in die Beta startet, bekommst du als Erste:r eine persönliche Einladung per E-Mail. Beta-Nutzer erhalten vollen Zugang zu allen Features, inklusive CV-Optimizer, Cover Letter, Interview-Coaching und Job-Queue. Dein Platz auf der Liste bleibt gesichert.",
     },
     {
       id: "07",
       tag: "Vertrauen",
       question: "Warum sollte ich einer neuen KI-Plattform vertrauen?",
       answer:
-        "Weil wir selbst erlebt haben, wie frustrierend der Bewerbungsprozess ist — und wie wenig bestehende Tools wirklich helfen. Pathly wurde nicht gebaut, um einen weiteren KI-Wrapper auf den Markt zu bringen, sondern um das zu lösen, was wirklich im Weg steht: unsichtbare Hürden durch ATS-Filter, generische Texte und kein Überblick. Transparenz und Datenschutz sind dabei keine Features — sie sind die Grundlage.",
+        "Weil wir selbst erlebt haben, wie frustrierend der Bewerbungsprozess ist, und wie wenig bestehende Tools wirklich helfen. Pathly wurde nicht gebaut, um einen weiteren KI-Wrapper auf den Markt zu bringen, sondern um das zu lösen, was wirklich im Weg steht: unsichtbare Hürden durch ATS-Filter, generische Texte und kein Überblick. Transparenz und Datenschutz sind dabei keine Features. Sie sind die Grundlage.",
     },
   ],
   schemaId: "faq-schema",

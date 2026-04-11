@@ -163,7 +163,7 @@ export function Navbar() {
 
           {/* Liquid Slide CTA */}
           <a
-            href="#waitlist"
+            href={`${SITE.appUrl}/signup`}
             className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-full text-[13px] font-semibold text-white overflow-hidden transition-all duration-300 cursor-pointer"
             style={{
               background: "linear-gradient(135deg, #133C7B 0%, #1A4E9F 100%)",
@@ -226,7 +226,7 @@ export function Navbar() {
               </li>
               <li className="pt-1">
                 <a
-                  href="#waitlist"
+                  href={`${SITE.appUrl}/signup`}
                   onClick={() => setOpen(false)}
                   className="block w-full text-center px-4 py-2.5 rounded-full text-[14px] font-semibold text-white"
                   style={{ background: "linear-gradient(135deg, #133C7B 0%, #1A4E9F 100%)", boxShadow: "0 4px 14px rgba(19,60,123,0.25)" }}

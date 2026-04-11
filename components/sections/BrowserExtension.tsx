@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { SITE } from "@/lib/constants";
+// SITE import removed — CTA button hidden until extension published
 import Image from "next/image";
 
 /**
@@ -178,41 +178,8 @@ export function BrowserExtension() {
           ))}
         </motion.div>
 
-        {/* ─── CTA Block ─── */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="flex flex-col items-center gap-3 mt-10"
-        >
-          <a
-            href={SITE.extensionUrl}
-            target={SITE.extensionUrl.startsWith("http") ? "_blank" : undefined}
-            rel={SITE.extensionUrl.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-navy text-white text-[15px] font-semibold overflow-hidden hover:bg-navy-hover transition-colors duration-300 shadow-md shadow-navy/20"
-          >
-            <span className="absolute inset-0 overflow-hidden rounded-xl">
-              <span className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:left-[200%] transition-all duration-700" />
-            </span>
-            <ChromeIcon />
-            <span className="relative z-10">{t("cta")}</span>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="relative z-10 group-hover:translate-x-1 transition-transform duration-200"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-          <span className="text-[13px] text-muted">{t("ctaNote")}</span>
-        </motion.div>
+        {/* ─── CTA Block — HIDDEN until extension is published ─── */}
+        {/* <motion.div ... hidden until Chrome Web Store listing is live /> */}
       </div>
     </section>
   );

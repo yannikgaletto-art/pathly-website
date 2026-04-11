@@ -2,14 +2,16 @@
 
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { SITE } from "@/lib/constants";
 
 /**
  * Section 10 — Final CTA
- * Inline email capture with urgency-driven copy.
  *
- * Sends email to SaaS API: POST /api/waitlist/subscribe
+ * PRIMARY: Direct button → SaaS Signup (no email needed here, Onboarding collects it)
+ * SECONDARY: Expandable waitlist form for users who prefer to wait for an invitation
+ *
+ * Backend: POST /api/waitlist/subscribe (existing DOI pipeline via Resend)
  * Bot protection: Honeypot field (invisible input)
- * DOI: User receives confirmation email via Resend
  */
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.path-ly.eu";
@@ -17,6 +19,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://app.path-ly.eu";
 export function FinalCTA() {
   const t = useTranslations("finalCta");
   const locale = useLocale();
+  const [showWaitlist, setShowWaitlist] = useState(false);
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState(""); // Bot trap
   const [state, setState] = useState<"idle" | "submitting" | "done" | "duplicate" | "error">("idle");
@@ -74,69 +77,82 @@ export function FinalCTA() {
           {t("body")}
         </p>
 
-        <form
-          onSubmit={handleSubmit}
-          className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-[480px] mx-auto"
-        >
-          {/* Honeypot — invisible to humans, bots fill it */}
-          <input
-            type="text"
-            name="company_url"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-            className="absolute opacity-0 w-0 h-0 pointer-events-none"
-          />
-
-          <div className="relative flex-1">
-            <input
-              type="email"
-              required
-              disabled={state !== "idle"}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={t("inputPlaceholder")}
-              aria-label={t("inputPlaceholder")}
-              className="w-full h-[52px] px-5 text-[15px] text-text bg-white rounded-xl border border-border
-                         placeholder:text-muted/50
-                         focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy
-                         disabled:opacity-50 disabled:cursor-not-allowed
-                         transition-all duration-200"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={state === "submitting" || state === "done" || state === "duplicate"}
-            className="h-[52px] px-7 text-[15px] font-semibold text-white bg-navy rounded-xl
-                       hover:bg-navy-hover active:scale-[0.98]
-                       focus-visible:outline-navy
-                       disabled:opacity-60 disabled:cursor-not-allowed
-                       transition-all duration-200
-                       whitespace-nowrap shrink-0"
+        {/* ── Primary CTA: Direct to Signup ── */}
+        <div className="mt-10">
+          <a
+            href={`${SITE.appUrl}/signup`}
+            className="group relative inline-flex items-center gap-2.5 px-8 py-4 rounded-xl text-[16px] font-semibold text-white overflow-hidden transition-all duration-300"
+            style={{
+              background: "linear-gradient(135deg, #133C7B 0%, #1A4E9F 100%)",
+              boxShadow: "0 4px 14px rgba(19,60,123,0.25), inset 0 1px 0 rgba(255,255,255,0.10)",
+            }}
           >
-            {state === "submitting" ? (
-              <span className="flex items-center gap-2">
-                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                </svg>
-                …
-              </span>
-            ) : state === "done" || state === "duplicate" ? (
-              <span className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg>
-                ✓
-              </span>
-            ) : (
-              t("cta")
-            )}
+            <span className="absolute inset-0 overflow-hidden rounded-xl">
+              <span className="absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:left-[200%] transition-all duration-700" />
+            </span>
+            <span className="relative z-10">{t("cta")}</span>
+            <span className="relative z-10 flex items-center justify-center w-6 h-6 rounded-[5px] bg-white/15 group-hover:bg-white/25 transition-colors duration-200">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-0.5 transition-transform duration-200">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </span>
+          </a>
+        </div>
+
+        {/* ── Secondary: Expandable Waitlist (for users who prefer email invite) ── */}
+        {!showWaitlist && state === "idle" && (
+          <button
+            onClick={() => setShowWaitlist(true)}
+            className="mt-4 text-[13px] text-muted hover:text-navy transition-colors duration-200 underline underline-offset-2"
+          >
+            {t("waitlistToggle")}
           </button>
-        </form>
+        )}
+
+        {showWaitlist && state === "idle" && (
+          <form
+            onSubmit={handleSubmit}
+            className="mt-6 flex flex-row items-center gap-3 mx-auto max-w-[520px] animate-fade-in"
+          >
+            {/* Honeypot — invisible to humans, bots fill it */}
+            <input
+              type="text"
+              name="company_url"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute opacity-0 w-0 h-0 pointer-events-none"
+            />
+
+            <div className="relative flex-1">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={t("inputPlaceholder")}
+                aria-label={t("inputPlaceholder")}
+                className="w-full h-[48px] px-5 text-[14px] text-text bg-white rounded-xl border border-border
+                           placeholder:text-muted/50
+                           focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy
+                           transition-all duration-200"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="h-[48px] px-6 text-[14px] font-semibold text-white bg-navy rounded-xl
+                         hover:bg-navy-hover active:scale-[0.98]
+                         focus-visible:outline-navy
+                         transition-all duration-200
+                         whitespace-nowrap shrink-0"
+            >
+              {t("waitlistCta")}
+            </button>
+          </form>
+        )}
 
         {/* Success message — appears after submit */}
         {state === "done" && (

@@ -14,7 +14,7 @@
     "cta": "Get Started →"
   },
   "hero": {
-    "headline": "Every person deserves\nto be seen.",
+    "headline": "We believe every person deserves to be seen.",
     "subheadline": "Pathly optimizes your resume, cover letter, and profile so recruiting AIs can't overlook you.",
     "cta": "Start for Free →",
     "ctaSecondary": "Watch Demo",
@@ -245,7 +245,7 @@
     ]
   },
   "browserExtension": {
-    "badge": "New — Chrome Extension",
+    "badge": "Coming Soon",
     "headline": "One Click.",
     "headlineAccent": "Job Saved.",
     "subline": "You scroll LinkedIn. Pathly thinks along. With one click, every position lands directly in your queue — including AI analysis.",
@@ -320,7 +320,9 @@
     "headlineAccent": "now.",
     "body": "Pathly is in beta. Sign up and you'll get early access — free, no commitment.",
     "inputPlaceholder": "Email address",
-    "cta": "I want early access →",
+    "cta": "Get Started Free →",
+    "waitlistToggle": "Prefer the waitlist instead?",
+    "waitlistCta": "Join",
     "successMessage": "📧 Check your email — we sent you a confirmation!",
     "duplicateMessage": "You're already on the waitlist ✓",
     "errorMessage": "Something went wrong. Please try again.",
@@ -357,38 +359,38 @@
     "items": {
       "01": {
         "tag": "Privacy",
-        "question": "Where is my data stored — and does Pathly read my resume?",
-        "answer": "Your data is stored exclusively on EU servers. Pathly is fully GDPR-compliant and NIS2-ready. Your resume is only processed to help you create better applications — never shared, sold, or used to train AI models. You can delete your data completely at any time."
+        "question": "Where is my data stored, and does Pathly read my resume?",
+        "answer": "Your data is stored exclusively on EU servers. Pathly is fully GDPR-compliant and NIS2-ready. Your resume is only processed to help you create better applications. Never shared, sold, or used to train AI models. You can delete your data completely at any time."
       },
       "02": {
         "tag": "Privacy",
         "question": "Is my CV used for AI training?",
-        "answer": "No. Your documents, texts, and personal data are never used for training AI models — neither by Pathly nor our AI partners. This is contractually guaranteed. Your application documents belong to you."
+        "answer": "No. Your documents, texts, and personal data are never used for training AI models, neither by Pathly nor our AI partners. This is contractually guaranteed. Your application documents belong to you."
       },
       "03": {
         "tag": "AI & Style",
-        "question": "Does the cover letter really sound like me — or like AI?",
-        "answer": "Pathly analyzes your writing style from your own texts — sentence length, word choice, tone. The generated cover letter is additionally reviewed by a Skeptical Hiring Manager critique that actively filters out generic phrases. The result sounds like you — not like a chatbot."
+        "question": "Does the cover letter really sound like me, or like AI?",
+        "answer": "Pathly analyzes your writing style from your own texts: sentence length, word choice, tone. The generated cover letter is additionally reviewed by a Skeptical Hiring Manager critique that actively filters out generic phrases. The result sounds like you. Not like a chatbot."
       },
       "04": {
         "tag": "Comparison",
         "question": "What makes Pathly different from other AI tools?",
-        "answer": "Other AI tools don't know you, don't know the job, and don't know what recruiters really want to see. Pathly combines your individual profile, the specific job description, and real-time company research — creating an application that passes ATS systems while still sounding like you. Plus EU data protection, job tracking, and interview coaching in one system."
+        "answer": "Other AI tools don't know you, don't know the job, and don't know what recruiters really want to see. Pathly combines your individual profile, the specific job description, and real-time company research, creating an application that passes ATS systems while still sounding like you. Plus EU data protection, job tracking, and interview coaching in one system."
       },
       "05": {
         "tag": "Product",
         "question": "Does Pathly work for my industry?",
-        "answer": "Yes. Pathly was designed for all professional fields — from marketing to tech to design, finance, or public service. The system adapts to your industry, career level, and goals. Career changers, returners, and people with resume gaps are also specifically supported."
+        "answer": "Yes. Pathly was designed for all professional fields, from marketing to tech to design, finance, or public service. The system adapts to your industry, career level, and goals. Career changers, returners, and people with resume gaps are also specifically supported."
       },
       "06": {
         "tag": "Waitlist",
         "question": "What happens after the waitlist?",
-        "answer": "Once Pathly launches into beta, you'll be among the first to receive a personal invitation via email. Beta users get full access to all features — including CV Optimizer, Cover Letter, Interview Coaching, and Job Queue. Your spot on the list is secured."
+        "answer": "Once Pathly launches into beta, you'll be among the first to receive a personal invitation via email. Beta users get full access to all features, including CV Optimizer, Cover Letter, Interview Coaching, and Job Queue. Your spot on the list is secured."
       },
       "07": {
         "tag": "Trust",
         "question": "Why should I trust a new AI platform?",
-        "answer": "Because we've experienced firsthand how frustrating the application process is — and how little existing tools really help. Pathly wasn't built to launch yet another AI wrapper, but to solve what's actually in the way: invisible barriers from ATS filters, generic texts, and no overview. Transparency and privacy aren't features — they're the foundation."
+        "answer": "Because we've experienced firsthand how frustrating the application process is, and how little existing tools really help. Pathly wasn't built to launch yet another AI wrapper, but to solve what's actually in the way: invisible barriers from ATS filters, generic texts, and no overview. Transparency and privacy aren't features. They're the foundation."
       }
     }
   },

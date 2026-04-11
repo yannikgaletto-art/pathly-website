@@ -14,7 +14,7 @@
     "cta": "Empieza ya →"
   },
   "hero": {
-    "headline": "Toda persona merece\nser vista.",
+    "headline": "Creemos que toda persona merece ser vista.",
     "subheadline": "Pathly optimiza tu currículum, carta de presentación y perfil para que las IAs de reclutamiento no te pasen por alto.",
     "cta": "Empezar gratis →",
     "ctaSecondary": "Ver demo",
@@ -245,7 +245,7 @@
     ]
   },
   "browserExtension": {
-    "badge": "Nuevo — Extensión Chrome",
+    "badge": "Coming Soon",
     "headline": "Un clic.",
     "headlineAccent": "Empleo guardado.",
     "subline": "Navegas LinkedIn. Pathly piensa contigo. Con un clic, cada puesto llega directamente a tu cola — incluyendo análisis de IA.",
@@ -320,7 +320,9 @@
     "headlineAccent": "ahora.",
     "body": "Pathly está en beta. Regístrate y obtendrás acceso anticipado — gratis, sin compromiso.",
     "inputPlaceholder": "Dirección de correo",
-    "cta": "Quiero acceso anticipado →",
+    "cta": "Empezar gratis →",
+    "waitlistToggle": "¿Prefieres la lista de espera?",
+    "waitlistCta": "Inscribirme",
     "successMessage": "📧 Revisa tu correo — te enviamos una confirmación!",
     "duplicateMessage": "Ya estás en la lista de espera ✓",
     "errorMessage": "Algo salió mal. Por favor, inténtalo de nuevo.",
@@ -357,38 +359,38 @@
     "items": {
       "01": {
         "tag": "Privacidad",
-        "question": "¿Dónde están mis datos — y Pathly lee mi currículum?",
-        "answer": "Tus datos se almacenan exclusivamente en servidores de la UE. Pathly es totalmente compatible con el RGPD y NIS2-ready. Tu currículum solo se procesa para ayudarte a crear mejores candidaturas — nunca se comparte, vende ni se usa para entrenar modelos de IA. Puedes eliminar tus datos completamente en cualquier momento."
+        "question": "¿Dónde están mis datos, y Pathly lee mi currículum?",
+        "answer": "Tus datos se almacenan exclusivamente en servidores de la UE. Pathly es totalmente compatible con el RGPD y NIS2-ready. Tu currículum solo se procesa para ayudarte a crear mejores candidaturas. Nunca se comparte, vende ni se usa para entrenar modelos de IA. Puedes eliminar tus datos completamente en cualquier momento."
       },
       "02": {
         "tag": "Privacidad",
         "question": "¿Se usa mi CV para entrenar IA?",
-        "answer": "No. Tus documentos, textos y datos personales nunca se utilizan para entrenar modelos de IA — ni por Pathly ni por nuestros socios de IA. Esto está garantizado por contrato. Tus documentos de candidatura te pertenecen."
+        "answer": "No. Tus documentos, textos y datos personales nunca se utilizan para entrenar modelos de IA, ni por Pathly ni por nuestros socios de IA. Esto está garantizado por contrato. Tus documentos de candidatura te pertenecen."
       },
       "03": {
         "tag": "IA y Estilo",
-        "question": "¿La carta realmente suena como yo — o como IA?",
-        "answer": "Pathly analiza tu estilo de escritura a partir de tus propios textos — longitud de oraciones, elección de palabras, tono. La carta generada es revisada adicionalmente por una crítica de Hiring Manager Escéptico que filtra activamente formulaciones genéricas. El resultado suena como tú — no como un chatbot."
+        "question": "¿La carta realmente suena como yo, o como IA?",
+        "answer": "Pathly analiza tu estilo de escritura a partir de tus propios textos: longitud de oraciones, elección de palabras, tono. La carta generada es revisada adicionalmente por una crítica de Hiring Manager Escéptico que filtra activamente formulaciones genéricas. El resultado suena como tú. No como un chatbot."
       },
       "04": {
         "tag": "Comparación",
         "question": "¿Qué hace Pathly diferente de otras herramientas IA?",
-        "answer": "Otras herramientas de IA no te conocen, no conocen el puesto y no saben qué quieren ver realmente los reclutadores. Pathly combina tu perfil individual, la descripción específica del puesto e investigación en tiempo real de la empresa — creando una candidatura que pasa los sistemas ATS y sigue sonando como tú. Además: protección de datos UE, seguimiento de empleo y coaching de entrevistas en un solo sistema."
+        "answer": "Otras herramientas de IA no te conocen, no conocen el puesto y no saben qué quieren ver realmente los reclutadores. Pathly combina tu perfil individual, la descripción específica del puesto e investigación en tiempo real de la empresa, creando una candidatura que pasa los sistemas ATS y sigue sonando como tú. Además: protección de datos UE, seguimiento de empleo y coaching de entrevistas en un solo sistema."
       },
       "05": {
         "tag": "Producto",
         "question": "¿Pathly funciona para mi sector?",
-        "answer": "Sí. Pathly fue diseñado para todos los campos profesionales — desde marketing hasta tecnología, diseño, finanzas o administración pública. El sistema se adapta a tu sector, nivel profesional y objetivos. También se apoya específicamente a quienes cambian de carrera, regresan al mercado laboral y personas con vacíos en el currículum."
+        "answer": "Sí. Pathly fue diseñado para todos los campos profesionales, desde marketing hasta tecnología, diseño, finanzas o administración pública. El sistema se adapta a tu sector, nivel profesional y objetivos. También se apoya específicamente a quienes cambian de carrera, regresan al mercado laboral y personas con vacíos en el currículum."
       },
       "06": {
         "tag": "Lista de espera",
         "question": "¿Qué pasa después de la lista de espera?",
-        "answer": "Una vez que Pathly lance su beta, serás de los primeros en recibir una invitación personal por correo electrónico. Los usuarios beta obtienen acceso completo a todas las funciones — incluyendo CV Optimizer, Carta de Presentación, Coaching de Entrevistas y Cola de empleos. Tu lugar en la lista está asegurado."
+        "answer": "Una vez que Pathly lance su beta, serás de los primeros en recibir una invitación personal por correo electrónico. Los usuarios beta obtienen acceso completo a todas las funciones, incluyendo CV Optimizer, Carta de Presentación, Coaching de Entrevistas y Cola de empleos. Tu lugar en la lista está asegurado."
       },
       "07": {
         "tag": "Confianza",
         "question": "¿Por qué debería confiar en una nueva plataforma de IA?",
-        "answer": "Porque hemos experimentado de primera mano lo frustrante que es el proceso de candidatura — y lo poco que ayudan realmente las herramientas existentes. Pathly no se construyó para lanzar otro wrapper de IA, sino para resolver lo que realmente estorba: barreras invisibles de filtros ATS, textos genéricos y falta de visión general. La transparencia y la privacidad no son funciones — son la base."
+        "answer": "Porque hemos experimentado de primera mano lo frustrante que es el proceso de candidatura, y lo poco que ayudan realmente las herramientas existentes. Pathly no se construyó para lanzar otro wrapper de IA, sino para resolver lo que realmente estorba: barreras invisibles de filtros ATS, textos genéricos y falta de visión general. La transparencia y la privacidad no son funciones. Son la base."
       }
     }
   },

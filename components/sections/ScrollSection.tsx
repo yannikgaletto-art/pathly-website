@@ -260,7 +260,7 @@ export function ScrollSection({ children }: ScrollSectionProps) {
                       ease: "power2.out",
                       yoyo: true,
                       repeat: 1,
-                      onComplete: () => gsap.set(scrollDot, { scale: 1, opacity: 1 }),
+                      onComplete: () => { gsap.set(scrollDot, { scale: 1, opacity: 1 }); },
                     }
                   );
                 }

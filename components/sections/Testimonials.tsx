@@ -76,7 +76,7 @@ export function Testimonials() {
 
         {/* Two-column layout — items-start keeps columns anchored at top,
             preventing the photo stack from pushing content below */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center max-w-4xl mx-auto" style={{ minHeight: '520px' }}>
 
           {/* Left — Photo stack (fixed dimensions, never grows) */}
           <div className="flex justify-center">
@@ -128,7 +128,7 @@ export function Testimonials() {
           {/* Right — Quote + controls */}
           <div className="flex flex-col justify-start">
             {/* Fixed min-height so layout is stable across slides */}
-            <div className="min-h-[280px] md:min-h-[240px] flex flex-col justify-center">
+            <div className="min-h-[320px] flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
