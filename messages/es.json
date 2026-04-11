@@ -5,6 +5,10 @@
   },
   "nav": {
     "features": "Funciones",
+    "extension": "Extensión",
+    "comparison": "Comparar",
+    "testimonials": "Opiniones",
+    "faq": "FAQ",
     "howItWorks": "Cómo funciona",
     "aboutUs": "Sobre nosotros",
     "cta": "Empieza ya →"
