@@ -107,28 +107,18 @@ export function ScrollSection({ children }: ScrollSectionProps) {
         const pLen = pArr.length;
         const tLen = tArr.length;
 
-        // ── Init: Hero/Problem ──
+        // ── Init: show hero text immediately (no page-load animation) ──
+        // Scroll phases (backspace + problem typewriter) still run on scroll.
         textLine.style.opacity = "1";
         textLine.style.visibility = "visible";
-        hArr.forEach((el) => { el.style.display = "none"; el.style.opacity = "1"; });
+        hArr.forEach((el) => { el.style.display = "inline"; el.style.opacity = "1"; });
         if (heroCursor) heroCursor.style.opacity = "1";
 
-        // ── Phase A–C: GSAP Timeline — type hero chars on page load ──
-        // Delayed 1.4s to start AFTER brand-word CSS cascade finishes.
-        // Scroll-lock is held for the full duration; released in onComplete.
-        const introTimeline = gsap.timeline({
-          delay: 1.4,
-          onComplete: () => {
-            releaseScrollLock();
-            createScrollAnimation();
-          },
-        });
-        hArr.forEach((el, i) => {
-          introTimeline.call(() => { el.style.display = "inline"; }, [], i * 0.05);
-        });
-        // Extra 0.8s pause after last char so the completed sentence
-        // is readable before scroll is enabled.
-        introTimeline.to({}, { duration: 0.8 });
+        // Release scroll after brand-word cascade (1.4s CSS) + brief pause
+        setTimeout(() => {
+          releaseScrollLock();
+          createScrollAnimation();
+        }, 2200);
 
         // ══════════════════════════════════════════════════════════════
         // SCROLL PHASES — all in one continuous ScrollTrigger
