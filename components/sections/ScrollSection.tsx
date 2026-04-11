@@ -107,18 +107,28 @@ export function ScrollSection({ children }: ScrollSectionProps) {
         const pLen = pArr.length;
         const tLen = tArr.length;
 
-        // ── Init: show hero text immediately (no page-load animation) ──
-        // Scroll phases (backspace + problem typewriter) still run on scroll.
+        // ── Init: Hero/Problem ──
         textLine.style.opacity = "1";
         textLine.style.visibility = "visible";
-        hArr.forEach((el) => { el.style.display = "inline"; el.style.opacity = "1"; });
+        hArr.forEach((el) => { el.style.display = "none"; el.style.opacity = "1"; });
         if (heroCursor) heroCursor.style.opacity = "1";
 
-        // Release scroll after brand-word cascade (1.4s CSS) + brief pause
-        setTimeout(() => {
-          releaseScrollLock();
-          createScrollAnimation();
-        }, 2200);
+        // ── Phase A–C: GSAP Timeline — type hero chars on page load ──
+        // Delayed 1.4s to start AFTER brand-word CSS cascade finishes.
+        // Scroll-lock is held for the full duration; released in onComplete.
+        const introTimeline = gsap.timeline({
+          delay: 1.4,
+          onComplete: () => {
+            releaseScrollLock();
+            createScrollAnimation();
+          },
+        });
+        hArr.forEach((el, i) => {
+          introTimeline.call(() => { el.style.display = "inline"; }, [], i * 0.05);
+        });
+        // Extra 0.8s pause after last char so the completed sentence
+        // is readable before scroll is enabled.
+        introTimeline.to({}, { duration: 0.8 });
 
         // ══════════════════════════════════════════════════════════════
         // SCROLL PHASES — all in one continuous ScrollTrigger
@@ -307,10 +317,12 @@ export function ScrollSection({ children }: ScrollSectionProps) {
     <div ref={containerRef} style={{ height: "500vh" }} className="relative">
       <div className="sticky top-0 w-full overflow-hidden" style={{ height: "100vh" }}>
 
-        {/* Drawer — slides up after dot hits bottom, contains real ComparisonToggle content */}
+        {/* Drawer — slides up after dot hits bottom */}
+        {/* IMPORTANT: overflow-y is on the INNER wrapper, not the animated element.
+            GPU composites only transform — no overflow repaints = no top-edge flicker. */}
         <div
           data-drawer-overlay
-          className="absolute inset-x-0 bottom-0 z-30 overflow-y-auto"
+          className="absolute inset-x-0 bottom-0 z-30"
           style={{
             height: "100%",
             background: "var(--color-bg-soft)",
@@ -320,14 +332,23 @@ export function ScrollSection({ children }: ScrollSectionProps) {
             borderTopLeftRadius: "32px",
             borderTopRightRadius: "32px",
             boxShadow: "0 -12px 40px rgba(19,60,123,0.10)",
-            paddingTop: "20vh",
-            // 40ms linear bridges the gap between discrete scroll events (~15-30 fps)
-            // giving the browser time to glide to the next position smoothly
             transition: "transform 40ms linear",
             willChange: "transform",
+            backfaceVisibility: "hidden", // prevent sub-pixel GPU artifacts
           }}
         >
-          {drawerChild}
+          {/* Inner scroll wrapper — separated from the animated parent */}
+          <div
+            style={{
+              height: "100%",
+              overflowY: "auto",
+              paddingTop: "20vh",
+              borderTopLeftRadius: "32px",
+              borderTopRightRadius: "32px",
+            }}
+          >
+            {drawerChild}
+          </div>
         </div>
 
         {/* Layer 1: Hero above-fold (full viewport, visible initially) */}

@@ -2,11 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Problem } from "@/components/sections/Problem";
-import dynamic from "next/dynamic";
-const ScrollSection = dynamic(
-  () => import("@/components/sections/ScrollSection").then((m) => ({ default: m.ScrollSection })),
-  { ssr: false }
-);
+import { ScrollSection } from "@/components/sections/ScrollSection";
 import { ComparisonToggle } from "@/components/sections/ComparisonToggle";
 import { Features } from "@/components/sections/Features";
 import { Differentiation } from "@/components/sections/Differentiation";
