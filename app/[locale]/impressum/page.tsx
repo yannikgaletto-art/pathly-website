@@ -72,11 +72,12 @@ export default function ImpressumPage() {
             >
               contact@{SITE.domain}
             </a>
-            <br />
-            Telefon:{" "}
-            {"phonePlaceholder" in (contactSection ?? {})
-              ? (contactSection as { phonePlaceholder: string }).phonePlaceholder
-              : ""}
+            {"phonePlaceholder" in (contactSection ?? {}) && (
+              <>
+                <br />
+                Telefon: {(contactSection as { phonePlaceholder: string }).phonePlaceholder}
+              </>
+            )}
           </p>
           {contactSection?.legalRef && (
             <p className="text-[12px] text-muted/60 mt-1">

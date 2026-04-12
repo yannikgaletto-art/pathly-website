@@ -501,19 +501,18 @@ export const IMPRESSUM = {
       lines: [
         "Yannik Galetto",
         "Pathly",
-        "[Straße und Hausnummer]",
-        "[PLZ] [Ort]",
+        "Borsigstraße 12",
+        "10115 Berlin",
         "Deutschland",
       ],
-      isTodo: true,
+      isTodo: false,
     },
     {
       id: "kontakt",
       heading: "Kontakt",
       legalRef: "§ 5 Abs. 1 Nr. 2 DDG",
       lines: null,
-      phonePlaceholder: "[Telefonnummer eintragen]",
-      isTodo: true,
+      isTodo: false,
     },
     {
       id: "verantwortlich",
