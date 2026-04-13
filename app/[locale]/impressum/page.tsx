@@ -75,7 +75,7 @@ export default function ImpressumPage() {
             {"phonePlaceholder" in (contactSection ?? {}) && (
               <>
                 <br />
-                Telefon: {(contactSection as { phonePlaceholder: string }).phonePlaceholder}
+                Telefon: {(contactSection as unknown as { phonePlaceholder: string }).phonePlaceholder}
               </>
             )}
           </p>

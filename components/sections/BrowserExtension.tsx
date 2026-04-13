@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-// SITE import removed — CTA button hidden until extension published
+import { SITE } from "@/lib/constants";
 import Image from "next/image";
 
 /**
@@ -178,8 +178,33 @@ export function BrowserExtension() {
           ))}
         </motion.div>
 
-        {/* ─── CTA Block — HIDDEN until extension is published ─── */}
-        {/* <motion.div ... hidden until Chrome Web Store listing is live /> */}
+        {/* ─── CTA Block — Install Extension ─── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="flex flex-col items-center mt-10 gap-3"
+        >
+          <a
+            href={SITE.extensionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex items-center gap-3
+              px-8 py-3.5 rounded-2xl
+              bg-navy text-white font-semibold text-[15px]
+              shadow-lg shadow-navy/20
+              hover:shadow-xl hover:shadow-navy/30
+              hover:scale-[1.03] active:scale-[0.98]
+              transition-all duration-200
+            "
+          >
+            <ChromeIcon />
+            <span>{t("cta")}</span>
+          </a>
+          <p className="text-[12px] text-muted">{t("ctaNote")}</p>
+        </motion.div>
       </div>
     </section>
   );

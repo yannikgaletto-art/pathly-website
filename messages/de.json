@@ -113,7 +113,7 @@
       },
       "privacy": {
         "feature": "Datenschutz",
-        "pathly": "EU-gehostet & DSGVO",
+        "pathly": "DSGVO & PII-sicher",
         "others": "US-Server, keine Garantie"
       },
       "tracking": {
@@ -148,8 +148,8 @@
       }
     },
     "trustBadges": [
-      "🔒 EU-gehostet",
-      "🛡️ DSGVO-konform",
+      "🔒 DSGVO-konform",
+      "🛡️ PII sanitisiert",
       "🇪🇺 NIS2-ready"
     ]
   },
@@ -245,7 +245,7 @@
     ]
   },
   "browserExtension": {
-    "badge": "Coming Soon",
+    "badge": "Jetzt verfügbar",
     "headline": "Ein Klick.",
     "headlineAccent": "Job gespeichert.",
     "subline": "Du scrollst LinkedIn. Pathly denkt mit. Mit einem Klick landet jede Stelle direkt in deiner Queue — inklusive KI-Analyse.",
@@ -272,6 +272,8 @@
   },
   "comparison": {
     "manualTitle": "Wie ich es bisher gemacht habe",
+    "toggleBefore": "Bisher",
+    "toggleAfter": "Pathly",
     "pathlyTitle": "Wie ich es jetzt mache",
     "steps": {
       "01": {
@@ -360,7 +362,7 @@
       "01": {
         "tag": "Datenschutz",
         "question": "Wo liegen meine Daten, und liest Pathly meinen Lebenslauf?",
-        "answer": "Deine Daten werden ausschließlich auf EU-Servern gespeichert. Pathly ist vollständig DSGVO-konform und NIS2-ready. Dein Lebenslauf wird nur verarbeitet, um dir bessere Bewerbungen zu ermöglichen. Niemals weitergegeben, verkauft oder für das Training von KI-Modellen genutzt. Du kannst deine Daten jederzeit vollständig löschen."
+        "answer": "Deine Daten werden auf EU-Infrastruktur gespeichert (Supabase Frankfurt). Pathly ist vollständig DSGVO-konform und NIS2-ready. KI-Verarbeitung nutzt Anthropics Claude mit vertraglicher Zero-Retention — deine Daten werden nie gespeichert oder für Training genutzt. Du kannst deine Daten jederzeit vollständig löschen."
       },
       "02": {
         "tag": "Datenschutz",

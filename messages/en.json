@@ -1,7 +1,7 @@
 {
   "site": {
     "tagline": "Your Path. Your Application. Your AI.",
-    "description": "Pathly is the GDPR-compliant AI platform that optimizes your resume, cover letter, and profile so you get seen — EU-hosted, no data exploitation."
+    "description": "Pathly is the GDPR-compliant AI platform that optimizes your resume, cover letter, and profile so you get seen — privacy-first, no data exploitation."
   },
   "nav": {
     "features": "Features",
@@ -113,7 +113,7 @@
       },
       "privacy": {
         "feature": "Data Privacy",
-        "pathly": "EU-hosted & GDPR",
+        "pathly": "GDPR & PII-safe",
         "others": "US Servers, No Guarantee"
       },
       "tracking": {
@@ -148,8 +148,8 @@
       }
     },
     "trustBadges": [
-      "🔒 EU-hosted",
-      "🛡️ GDPR Compliant",
+      "🔒 GDPR Compliant",
+      "🛡️ PII Sanitized",
       "🇪🇺 NIS2-ready"
     ]
   },
@@ -240,12 +240,12 @@
     },
     "trustSignals": [
       "14-Day Money-Back",
-      "EU-hosted",
-      "GDPR Compliant"
+      "GDPR Compliant",
+      "PII-safe AI"
     ]
   },
   "browserExtension": {
-    "badge": "Coming Soon",
+    "badge": "Now Available",
     "headline": "One Click.",
     "headlineAccent": "Job Saved.",
     "subline": "You scroll LinkedIn. Pathly thinks along. With one click, every position lands directly in your queue — including AI analysis.",
@@ -272,6 +272,8 @@
   },
   "comparison": {
     "manualTitle": "How I used to do it",
+    "toggleBefore": "Before",
+    "toggleAfter": "Pathly",
     "pathlyTitle": "How I do it now",
     "steps": {
       "01": {
@@ -329,7 +331,7 @@
     "trustSignals": [
       "No credit card",
       "Cancel anytime",
-      "EU servers"
+      "GDPR compliant"
     ]
   },
   "footer": {
@@ -360,7 +362,7 @@
       "01": {
         "tag": "Privacy",
         "question": "Where is my data stored, and does Pathly read my resume?",
-        "answer": "Your data is stored exclusively on EU servers. Pathly is fully GDPR-compliant and NIS2-ready. Your resume is only processed to help you create better applications. Never shared, sold, or used to train AI models. You can delete your data completely at any time."
+        "answer": "Your data is stored on EU-hosted infrastructure (Supabase Frankfurt). Pathly is fully GDPR-compliant and NIS2-ready. AI processing uses Anthropic's Claude with contractual zero-retention — your data is never stored or used for training. You can delete your data completely at any time."
       },
       "02": {
         "tag": "Privacy",

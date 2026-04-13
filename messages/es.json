@@ -113,7 +113,7 @@
       },
       "privacy": {
         "feature": "Privacidad",
-        "pathly": "Alojado en UE y RGPD",
+        "pathly": "RGPD y PII seguro",
         "others": "Servidores en EE.UU., sin garantía"
       },
       "tracking": {
@@ -148,8 +148,8 @@
       }
     },
     "trustBadges": [
-      "🔒 Alojado en UE",
-      "🛡️ Compatible RGPD",
+      "🔒 Compatible RGPD",
+      "🛡️ PII sanitizado",
       "🇪🇺 NIS2-ready"
     ]
   },
@@ -245,7 +245,7 @@
     ]
   },
   "browserExtension": {
-    "badge": "Coming Soon",
+    "badge": "Ya disponible",
     "headline": "Un clic.",
     "headlineAccent": "Empleo guardado.",
     "subline": "Navegas LinkedIn. Pathly piensa contigo. Con un clic, cada puesto llega directamente a tu cola — incluyendo análisis de IA.",
@@ -272,6 +272,8 @@
   },
   "comparison": {
     "manualTitle": "Cómo lo hacía antes",
+    "toggleBefore": "Antes",
+    "toggleAfter": "Pathly",
     "pathlyTitle": "Cómo lo hago ahora",
     "steps": {
       "01": {

@@ -156,7 +156,7 @@ export function ComparisonToggle() {
                 transition: "background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease",
               }}
             >
-              {/* Left label — Bisher */}
+              {/* Left label — Before/Bisher */}
               <span
                 className="relative z-10 flex-1 text-center select-none"
                 style={{
@@ -166,7 +166,7 @@ export function ComparisonToggle() {
                   transition: "color 0.3s ease",
                 }}
               >
-                Bisher
+                {t("toggleBefore")}
               </span>
 
               {/* Sliding pill — clean solid white, no distortion */}
