@@ -149,8 +149,7 @@
     },
     "trustBadges": [
       "🔒 GDPR Compliant",
-      "🛡️ PII Sanitized",
-      "🇪🇺 NIS2-ready"
+      "🛡️ PII Sanitized"
     ]
   },
   "testimonials": {
@@ -309,8 +308,8 @@
       "checks": [
         "Job analyzed",
         "CV optimized for position",
-        "Cover letter in your style",
-        "Application ready in 15min"
+        "Cover letter & CV in your style",
+        "Application ready"
       ],
       "subtext": "3× more interviews. In half the time. Still sounds like you.",
       "cta": "Try it now!"
@@ -362,7 +361,7 @@
       "01": {
         "tag": "Privacy",
         "question": "Where is my data stored, and does Pathly read my resume?",
-        "answer": "Your data is stored on EU-hosted infrastructure (Supabase Frankfurt). Pathly is fully GDPR-compliant and NIS2-ready. AI processing uses Anthropic's Claude with contractual zero-retention — your data is never stored or used for training. You can delete your data completely at any time."
+        "answer": "Your data is stored on EU-hosted infrastructure (Supabase Frankfurt). Pathly is fully GDPR-compliant. AI processing uses Anthropic's Claude with contractual zero-retention — your data is never stored or used for training. You can delete your data completely at any time."
       },
       "02": {
         "tag": "Privacy",

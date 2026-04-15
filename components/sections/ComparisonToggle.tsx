@@ -119,7 +119,7 @@ export function ComparisonToggle() {
           mx-auto max-w-2xl rounded-2xl border shadow-lg overflow-hidden
           transition-colors duration-500 ease-out
           ${isActive
-            ? "bg-[#0B1D3A] border-white/10"
+            ? "bg-[#133C7B] border-white/10"
             : "bg-white border-border"
           }
         `}
@@ -169,7 +169,7 @@ export function ComparisonToggle() {
                 {t("toggleBefore")}
               </span>
 
-              {/* Sliding pill — clean solid white, no distortion */}
+              {/* Sliding pill — solid white when active, natural white when inactive */}
               <span
                 style={{
                   position: "absolute",
@@ -178,23 +178,21 @@ export function ComparisonToggle() {
                   width: "calc(50% - 3px)",
                   height: "calc(100% - 12px)",
                   borderRadius: "999px",
-                  background: isActive
-                    ? "rgba(255,255,255,0.18)"
-                    : "white",
+                  background: "white",
                   boxShadow: isActive
-                    ? "0 0 0 1px rgba(255,255,255,0.20), 0 2px 8px rgba(0,0,0,0.20)"
+                    ? "0 2px 10px rgba(0,0,0,0.20), 0 1px 3px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,1)"
                     : "0 2px 10px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,1)",
-                  transition: "left 0.35s cubic-bezier(0.34,1.4,0.64,1), background 0.35s ease, box-shadow 0.35s ease",
+                  transition: "left 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s ease",
                 }}
               />
 
-              {/* Right label — Pathly */}
+              {/* Right label — Pathly (navy text on white pill) */}
               <span
                 className="relative z-10 flex-1 text-center select-none"
                 style={{
                   fontSize: "14px",
                   fontWeight: 700,
-                  color: isActive ? "rgba(255,255,255,0.95)" : "rgba(50,65,90,0.38)",
+                  color: isActive ? "#133C7B" : "rgba(50,65,90,0.38)",
                   transition: "color 0.3s ease",
                 }}
               >
@@ -248,9 +246,9 @@ export function ComparisonToggle() {
                     transitionDelay: `${i * 70}ms`,
                   }}
                 >
-                  <div className="w-7 h-7 rounded-full bg-[#00B870]/20 flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shrink-0">
                     <svg
-                      className="w-3.5 h-3.5 text-[#00B870]"
+                      className="w-3.5 h-3.5 text-[#133C7B]"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"

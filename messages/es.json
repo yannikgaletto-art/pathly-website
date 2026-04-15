@@ -149,8 +149,7 @@
     },
     "trustBadges": [
       "🔒 Compatible RGPD",
-      "🛡️ PII sanitizado",
-      "🇪🇺 NIS2-ready"
+      "🛡️ PII sanitizado"
     ]
   },
   "testimonials": {
@@ -309,8 +308,8 @@
       "checks": [
         "Empleo analizado",
         "CV optimizado para el puesto",
-        "Carta en tu estilo",
-        "Candidatura lista en 15min"
+        "Carta & CV en tu estilo",
+        "Candidatura lista"
       ],
       "subtext": "3× más entrevistas. En la mitad del tiempo. Sigue sonando como tú.",
       "cta": "¡Pruébalo ahora!"
@@ -362,7 +361,7 @@
       "01": {
         "tag": "Privacidad",
         "question": "¿Dónde están mis datos, y Pathly lee mi currículum?",
-        "answer": "Tus datos se almacenan exclusivamente en servidores de la UE. Pathly es totalmente compatible con el RGPD y NIS2-ready. Tu currículum solo se procesa para ayudarte a crear mejores candidaturas. Nunca se comparte, vende ni se usa para entrenar modelos de IA. Puedes eliminar tus datos completamente en cualquier momento."
+        "answer": "Tus datos se almacenan exclusivamente en servidores de la UE. Pathly es totalmente compatible con el RGPD. Tu currículum solo se procesa para ayudarte a crear mejores candidaturas. Nunca se comparte, vende ni se usa para entrenar modelos de IA. Puedes eliminar tus datos completamente en cualquier momento."
       },
       "02": {
         "tag": "Privacidad",

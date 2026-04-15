@@ -149,8 +149,7 @@
     },
     "trustBadges": [
       "🔒 DSGVO-konform",
-      "🛡️ PII sanitisiert",
-      "🇪🇺 NIS2-ready"
+      "🛡️ PII sanitisiert"
     ]
   },
   "testimonials": {
@@ -249,7 +248,7 @@
     "headline": "Ein Klick.",
     "headlineAccent": "Job gespeichert.",
     "subline": "Du scrollst LinkedIn. Pathly denkt mit. Mit einem Klick landet jede Stelle direkt in deiner Queue — inklusive KI-Analyse.",
-    "cta": "Extension installieren",
+    "cta": "Chrome Extension installieren",
     "ctaNote": "Kostenlos · Chrome & Edge · Kein Account nötig",
     "features": {
       "0": "Kein Copy-Paste mehr",
@@ -309,8 +308,8 @@
       "checks": [
         "Job analysiert",
         "CV auf Stelle optimiert",
-        "Anschreiben in deinem Stil",
-        "Bewerbung ready in 15min"
+        "Anschreiben & CV in deinem Stil",
+        "Bewerbung ready"
       ],
       "subtext": "3× mehr Interviews. In der Hälfte der Zeit. Klingt trotzdem wie du.",
       "cta": "Probier es jetzt!"

@@ -170,7 +170,7 @@ export const DIFFERENTIATION = {
     { feature: "Ehrenamt & Gaps",   pathly: "Lücken intelligent erklären", others: "Keine Gap-Unterstützung"   },
     { feature: "Community",         pathly: "Pathly Community & Support",  others: "Alleine"                   },
   ],
-  trustBadges: ["🔒 DSGVO-konform", "🛡️ PII sanitisiert", "🇪🇺 NIS2-ready"],
+  trustBadges: ["🔒 DSGVO-konform", "🛡️ PII sanitisiert"],
 } as const;
 
 // ─── Testimonials ────────────────────────────────────────────
@@ -421,8 +421,8 @@ export const COMPARISON = {
     checks: [
       "Job analysiert",
       "CV auf Stelle optimiert",
-      "Anschreiben in deinem Stil",
-      "Bewerbung ready in 15min",
+      "Anschreiben & CV in deinem Stil",
+      "Bewerbung ready",
     ],
     subtext: "3× mehr Interviews. In der Hälfte der Zeit. Klingt trotzdem wie du.",
     cta: "Probier es jetzt!",
