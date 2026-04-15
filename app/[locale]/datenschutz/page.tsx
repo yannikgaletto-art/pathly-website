@@ -1,9 +1,67 @@
+'use client';
+
+import { useState } from 'react';
 import { SITE } from "@/lib/constants";
 
-export const metadata = {
-  title: "Datenschutzerklärung | Pathly",
-  description: "Datenschutzerklärung von Pathly — DSGVO-konform, transparent und verständlich.",
-};
+const SUBPROCESSORS = [
+  { name: 'Supabase (AWS)', purpose: 'Datenbank, Authentifizierung, Dateispeicher', location: '🇩🇪 EU (Frankfurt)', safeguard: 'AVV, TLS, AES-256' },
+  { name: 'Vercel Inc.', purpose: 'Hosting, CDN', location: '🇩🇪 EU (Frankfurt)', safeguard: 'AVV, TLS' },
+  { name: 'Anthropic (Claude)', purpose: 'KI-Textgenerierung (Anschreiben, Coaching, Optimierung)', location: '🇺🇸 USA', safeguard: 'AVV, EU-SCC, Zero Data Retention' },
+  { name: 'OpenAI (Whisper)', purpose: 'Sprachtranskription (Coaching Audio)', location: '🇺🇸 USA', safeguard: 'AVV, EU-SCC, Zero Data Retention' },
+  { name: 'Microsoft Azure', purpose: 'Dokumentenextraktion (Lebenslauf-Parsing)', location: '🇪🇺 EU (West Europe)', safeguard: 'AVV, EU-DSGVO' },
+  { name: 'Perplexity', purpose: 'KI-gestützte Unternehmensrecherche', location: '🇺🇸 USA', safeguard: 'AVV, EU-SCC' },
+  { name: 'SerpAPI', purpose: 'Stellensuche', location: '🇺🇸 USA', safeguard: 'AVV, EU-SCC' },
+  { name: 'Stripe', purpose: 'Zahlungsabwicklung', location: '🇮🇪 IE / 🇺🇸 USA', safeguard: 'AVV, EU-SCC, PCI DSS' },
+  { name: 'PostHog', purpose: 'Anonymisierte Produktanalyse', location: '🇪🇺 EU', safeguard: 'AVV, keine Cookies' },
+  { name: 'Sentry', purpose: 'Fehlerüberwachung', location: '🇪🇺 EU (Ingest)', safeguard: 'AVV, PII-Filterung' },
+  { name: 'Upstash', purpose: 'Rate Limiting (Redis)', location: '🇪🇺 EU', safeguard: 'AVV, TLS' },
+  { name: 'Inngest', purpose: 'Asynchrone Hintergrundprozesse', location: '🇺🇸 USA', safeguard: 'AVV, EU-SCC' },
+];
+
+function SubprocessorAccordion() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border border-border rounded-lg overflow-hidden">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="w-full flex items-center justify-between px-5 py-4 text-left text-text font-medium hover:bg-bg-soft transition-colors"
+        aria-expanded={open}
+      >
+        <span>Vollständige Liste der Auftragsverarbeiter anzeigen</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`w-4 h-4 text-muted flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+      {open && (
+        <div className="border-t border-border divide-y divide-border">
+          {SUBPROCESSORS.map((sp) => (
+            <div key={sp.name} className="px-5 py-3 grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-1 md:gap-4">
+              <p className="font-medium text-text text-small">{sp.name}</p>
+              <p className="text-muted text-small">{sp.purpose}</p>
+              <p className="text-muted text-small">{sp.location} · {sp.safeguard}</p>
+            </div>
+          ))}
+          <div className="px-5 py-3 bg-bg-soft">
+            <p className="text-small text-muted">
+              Für Drittlandtransfers (USA) gelten EU-Standardvertragsklauseln (SCC) nach Art. 46 Abs. 2 lit. c DSGVO.
+              Zero Data Retention = Ihre Daten werden nicht für KI-Training genutzt.
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function DatenschutzPage() {
   return (
@@ -11,320 +69,289 @@ export default function DatenschutzPage() {
       <h1 className="text-h2-mobile lg:text-h2-desktop font-bold text-text mb-2">
         Datenschutzerklärung
       </h1>
-      <p className="text-small text-muted mb-10">Stand: April 2026 · Version 2.0</p>
+      <p className="text-small text-muted mb-12">Stand: April 2026 · Version 2.0</p>
 
-      <div className="prose prose-gray max-w-2xl text-body text-muted space-y-10">
+      <div className="max-w-2xl space-y-12">
 
         {/* 1. Verantwortlicher */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
             1. Verantwortlicher
           </h2>
-          <p>
+          <p className="text-small text-muted mb-3">
             Verantwortlicher im Sinne der DSGVO ist:
           </p>
-          <div className="bg-gray-50 rounded-lg p-4 mt-3 text-sm space-y-1 border border-gray-200">
-            <p className="font-semibold text-text">Pathly</p>
-            <p>Yannik Galetto</p>
-            <p>E-Mail: <a href="mailto:contact@path-ly.eu" className="text-navy underline">contact@path-ly.eu</a></p>
-            <p>Website: <a href="https://path-ly.eu" className="text-navy underline">path-ly.eu</a></p>
+          <div className="bg-bg-soft rounded-lg p-4 border border-border space-y-1">
+            <p className="text-small font-semibold text-text">Pathly</p>
+            <p className="text-small text-muted">Yannik Galetto</p>
+            <p className="text-small text-muted">
+              E-Mail:{' '}
+              <a href="mailto:contact@path-ly.eu" className="text-navy underline">
+                contact@{SITE.domain}
+              </a>
+            </p>
           </div>
         </section>
 
         {/* 2. Überblick */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
             2. Überblick
           </h2>
-          <p>
-            Pathly ist eine KI-gestützte Bewerbungsplattform. Diese Datenschutzerklärung gilt für die
-            Marketing-Website (<strong>path-ly.eu</strong>) sowie die registrierungspflichtige
-            Plattform (<strong>app.path-ly.eu</strong> bzw. <strong>path-ly.eu/dashboard</strong>).
+          <p className="text-small text-muted mb-3">
+            Pathly ist eine KI-gestützte Bewerbungsplattform. Diese Datenschutzerklärung gilt für
+            die Marketing-Website (<strong className="text-text">path-ly.eu</strong>) sowie die
+            registrierungspflichtige Plattform (Dashboard).
           </p>
-          <p className="mt-3">
-            Wir nehmen den Schutz Ihrer Daten ernst. Daten werden nur erhoben, soweit es für den
-            Betrieb der Plattform erforderlich ist — nach dem Prinzip der Datensparsamkeit (Art. 5
-            Abs. 1 lit. c DSGVO).
+          <p className="text-small text-muted">
+            Daten werden nur erhoben, soweit es für den Betrieb erforderlich ist — nach dem Prinzip
+            der Datensparsamkeit (Art. 5 Abs. 1 lit. c DSGVO).
           </p>
         </section>
 
-        {/* 3. Hosting & Infrastruktur */}
+        {/* 3. Hosting */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
             3. Hosting & Infrastruktur
           </h2>
-          <p>
-            Diese Website sowie die Plattform werden bei <strong>Vercel Inc.</strong> gehostet.
-            Die primären Server befinden sich in der EU (Frankfurt). Vercel verarbeitet technische
-            Zugriffsdaten (IP-Adresse, User-Agent, Zeitstempel) in Server-Log-Dateien.
-            Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Betriebssicherheit).
+          <p className="text-small text-muted mb-3">
+            Website und Plattform werden bei <strong className="text-text">Vercel Inc.</strong> gehostet.
+            Primäre Server: EU (Frankfurt). Vercel verarbeitet technische Zugriffsdaten
+            (IP-Adresse, User-Agent, Zeitstempel). Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
           </p>
-          <p className="mt-3">
-            Die Datenbank und Authentifizierung laufen auf <strong>Supabase</strong> (AWS eu-central-1,
-            Frankfurt). Alle Daten sind AES-256 verschlüsselt gespeichert (at rest) und werden via
-            TLS 1.3 übertragen (in transit).
-          </p>
-        </section>
-
-        {/* 4. Datenerfassung auf der Website */}
-        <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
-            4. Datenerfassung auf der Marketing-Website
-          </h2>
-
-          <h3 className="font-semibold text-text mt-4 mb-1">Server-Log-Dateien</h3>
-          <p>
-            Bei jedem Aufruf werden automatisch technische Daten erfasst (IP-Adresse, Browser,
-            Betriebssystem, Referrer, Uhrzeit). Diese dienen ausschließlich dem technischen Betrieb
-            und ermöglichen keine Personenidentifikation. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
-          </p>
-
-          <h3 className="font-semibold text-text mt-4 mb-1">Warteliste (Tally.so)</h3>
-          <p>
-            Wenn Sie sich für die Warteliste eintragen, wird Ihre E-Mail-Adresse über{" "}
-            <strong>Tally.so</strong> (EU-Server, DSGVO-konform) verarbeitet. Zweck: Benachrichtigung
-            über den Launch. Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).
-            Sie können Ihre Einwilligung jederzeit widerrufen via{" "}
-            <a href="mailto:contact@path-ly.eu" className="text-navy underline">contact@path-ly.eu</a>.
-          </p>
-
-          <h3 className="font-semibold text-text mt-4 mb-1">Cookies & Tracking</h3>
-          <p>
-            Auf der Marketing-Website werden <strong>keine Tracking-Cookies</strong> gesetzt.
-            Es wird kein Google Analytics oder vergleichbares Tracking eingesetzt.
+          <p className="text-small text-muted">
+            Datenbank und Authentifizierung laufen auf{' '}
+            <strong className="text-text">Supabase</strong> (AWS eu-central-1, Frankfurt).
+            Alle Daten sind AES-256 verschlüsselt (at rest) und via TLS 1.3 gesichert (in transit).
           </p>
         </section>
 
-        {/* 5. Datenverarbeitung in der Plattform */}
+        {/* 4. Website-Datenerfassung */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
-            5. Datenverarbeitung in der Plattform (registrierte Nutzer)
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
+            4. Datenerfassung auf der Website
           </h2>
-          <p>
-            Für registrierte Nutzer verarbeiten wir zusätzlich folgende Datenkategorien:
-          </p>
 
-          <div className="overflow-x-auto mt-4">
-            <table className="w-full text-sm border border-gray-200 rounded-lg">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left p-3 font-semibold text-text">Datenkategorie</th>
-                  <th className="text-left p-3 font-semibold text-text">Beispiele</th>
-                  <th className="text-left p-3 font-semibold text-text">Rechtsgrundlage</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                <tr>
-                  <td className="p-3 font-medium text-text">Account-Daten</td>
-                  <td className="p-3">E-Mail, Passwort (gehasht)</td>
-                  <td className="p-3">Art. 6(1)(b) — Vertragserfüllung</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-medium text-text">Lebenslauf-Daten</td>
-                  <td className="p-3">Berufserfahrung, Ausbildung, Qualifikationen</td>
-                  <td className="p-3">Art. 6(1)(a) — Einwilligung</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-medium text-text">Besondere Kategorien (Art. 9)</td>
-                  <td className="p-3">Foto, Behinderung (optional, im Lebenslauf)</td>
-                  <td className="p-3">Art. 9(2)(a) — Ausdrückliche Einwilligung</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-medium text-text">Stellendaten</td>
-                  <td className="p-3">Jobtitel, Unternehmensname, Beschreibung</td>
-                  <td className="p-3">Art. 6(1)(b) — Vertragserfüllung</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-medium text-text">Coaching-Daten</td>
-                  <td className="p-3">Interview-Antworten, Sprachaufnahmen (transkribiert)</td>
-                  <td className="p-3">Art. 6(1)(a) — Einwilligung</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-medium text-text">Zahlungsdaten</td>
-                  <td className="p-3">Zahlungsmethode, Abrechnungsdetails</td>
-                  <td className="p-3">Art. 6(1)(b) — Vertragserfüllung</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-medium text-text">Nutzungsanalyse</td>
-                  <td className="p-3">Feature-Events (anonymisiert, keine PII)</td>
-                  <td className="p-3">Art. 6(1)(f) — Berechtigtes Interesse</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="space-y-4">
+            <div>
+              <p className="text-small font-semibold text-text mb-1">Server-Log-Dateien</p>
+              <p className="text-small text-muted">
+                Bei jedem Aufruf werden technische Daten erfasst (IP-Adresse, Browser, Betriebssystem,
+                Referrer, Uhrzeit). Diese dienen ausschließlich dem Betrieb und ermöglichen keine
+                Personenidentifikation. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-small font-semibold text-text mb-1">Warteliste (Tally.so)</p>
+              <p className="text-small text-muted">
+                Bei Eintragung in die Warteliste wird Ihre E-Mail-Adresse über Tally.so
+                (EU-Server, DSGVO-konform) verarbeitet. Zweck: Launch-Benachrichtigung.
+                Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Widerruf jederzeit
+                unter{' '}
+                <a href="mailto:contact@path-ly.eu" className="text-navy underline">
+                  contact@{SITE.domain}
+                </a>.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-small font-semibold text-text mb-1">Cookies & Tracking</p>
+              <p className="text-small text-muted">
+                Auf der Marketing-Website werden keine Tracking-Cookies gesetzt.
+                Kein Google Analytics oder vergleichbares Tracking.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* 6. KI-Verarbeitung & EU AI Act */}
+        {/* 5. Plattform-Verarbeitung */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
-            6. KI-Verarbeitung & EU AI Act Transparenz
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
+            5. Datenverarbeitung in der Plattform
+          </h2>
+          <p className="text-small text-muted mb-4">
+            Für registrierte Nutzer werden folgende Datenkategorien verarbeitet:
+          </p>
+
+          <div className="space-y-3">
+            {[
+              { cat: 'Account-Daten', ex: 'E-Mail, Passwort (gehasht)', basis: 'Art. 6(1)(b) — Vertragserfüllung' },
+              { cat: 'Lebenslauf-Inhalte', ex: 'Berufserfahrung, Ausbildung, Qualifikationen', basis: 'Art. 6(1)(a) — Einwilligung' },
+              { cat: 'Besondere Kategorien (Art. 9)', ex: 'Foto, Behinderung — nur mit ausdrücklicher Einwilligung', basis: 'Art. 9(2)(a) — Ausdrückliche Einwilligung' },
+              { cat: 'Stellendaten', ex: 'Jobtitel, Unternehmen, Beschreibung', basis: 'Art. 6(1)(b) — Vertragserfüllung' },
+              { cat: 'Coaching-Daten', ex: 'Interview-Nachrichten, Sprachaufnahmen (transkribiert)', basis: 'Art. 6(1)(a) — Einwilligung' },
+              { cat: 'Zahlungsdaten', ex: 'Zahlungsmethode, Abrechnungsdetails', basis: 'Art. 6(1)(b) — Vertragserfüllung' },
+              { cat: 'Nutzungsanalyse', ex: 'Feature-Events, anonymisiert, keine PII', basis: 'Art. 6(1)(f) — Berechtigtes Interesse' },
+            ].map((row) => (
+              <div key={row.cat} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 border-b border-border pb-3 last:border-none last:pb-0">
+                <span className="text-small font-medium text-text min-w-[160px]">{row.cat}</span>
+                <span className="text-small text-muted flex-1">{row.ex}</span>
+                <span className="text-small text-muted opacity-75 whitespace-nowrap">{row.basis}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 6. KI-Transparenz */}
+        <section>
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
+            6. KI-Verarbeitung & Transparenz
           </h2>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-3">
-            <p className="text-sm font-semibold text-blue-900 mb-1">
-              Pflichthinweis nach EU AI Act Art. 50
-            </p>
-            <p className="text-sm text-blue-800">
-              Pathly nutzt KI-Systeme (Claude von Anthropic) zur Erstellung von Anschreiben,
-              zur Optimierung von Lebensläufen und zur Durchführung von Coaching-Gesprächen.
-              Diese Inhalte sind im Interface als <strong>„KI-generiert"</strong> gekennzeichnet.
+          <div className="bg-navy/5 border border-navy/20 rounded-lg p-4 mb-4">
+            <p className="text-small font-semibold text-navy mb-1">Pflichthinweis nach EU AI Act Art. 50</p>
+            <p className="text-small text-text/80">
+              Pathly nutzt KI-Systeme zur Erstellung von Anschreiben, zur Lebenslauf-Optimierung
+              und für Coaching-Gespräche. Diese Inhalte sind im Interface als{' '}
+              <strong>„KI-generiert"</strong> gekennzeichnet.
             </p>
           </div>
 
-          <ul className="space-y-3 text-sm mt-4">
-            <li>
-              <strong className="text-text">Kein KI-Training mit Ihren Daten:</strong>{" "}
-              Ihre Daten werden nicht zur Verbesserung externer KI-Modelle verwendet. Anthropic
-              und OpenAI nutzen API-Anfragen nicht für Training (Zero Data Retention, ZDR).
-            </li>
-            <li>
-              <strong className="text-text">PII-Pseudonymisierung:</strong>{" "}
-              Vor jeder KI-Anfrage werden Name, E-Mail, Telefon und Adresse durch Platzhalter ersetzt.
-              Nur berufliche Inhalte werden verarbeitet.
-            </li>
-            <li>
-              <strong className="text-text">Mensch behält die Kontrolle:</strong>{" "}
-              Alle KI-generierten Inhalte müssen vom Nutzer geprüft und freigegeben werden,
-              bevor sie verwendet werden können.
-            </li>
-            <li>
-              <strong className="text-text">Besondere Datenkategorien (Art. 9):</strong>{" "}
-              Fotos oder Angaben zu Behinderungen im Lebenslauf werden nur mit Ihrer ausdrücklichen
-              Einwilligung an KI-Dienste übertragen. Sie können diese Einwilligung jederzeit
-              in den Einstellungen widerrufen — die Daten werden dann automatisch gefiltert.
-            </li>
-            <li>
-              <strong className="text-text">Coaching & Sprachverarbeitung:</strong>{" "}
-              Sprachaufnahmen werden via OpenAI Whisper transkribiert und anschließend sofort
-              verworfen. Nur der Text wird für die Coaching-Sitzung verwendet.
-            </li>
-          </ul>
+          <div className="space-y-3">
+            {[
+              { label: 'Kein KI-Training mit Ihren Daten', text: 'Ihre Inhalte werden nicht zur Verbesserung externer KI-Modelle genutzt. Alle KI-Anbieter haben Zero Data Retention (ZDR) vertraglich zugesichert.' },
+              { label: 'PII-Pseudonymisierung', text: 'Vor jeder KI-Anfrage werden Name, E-Mail, Telefon und Adresse durch Platzhalter ersetzt. Nur berufliche Inhalte werden übertragen.' },
+              { label: 'Mensch entscheidet', text: 'Alle KI-generierten Inhalte müssen aktiv vom Nutzer geprüft und freigegeben werden.' },
+              { label: 'Besondere Datenkategorien', text: 'Fotos oder Angaben zu Behinderungen werden nur mit ausdrücklicher Einwilligung an KI-Dienste übertragen. Widerruf jederzeit in den Einstellungen.' },
+              { label: 'Sprachaufnahmen', text: 'Coaching-Audio wird via Whisper transkribiert und sofort verworfen. Nur der Text verbleibt für die Sitzung.' },
+            ].map((item) => (
+              <div key={item.label}>
+                <p className="text-small font-semibold text-text mb-0.5">{item.label}</p>
+                <p className="text-small text-muted">{item.text}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-        {/* 7. Auftragsverarbeiter */}
+        {/* 7. Auftragsverarbeiter — Accordion */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
-            7. Auftragsverarbeiter (Sub-Processors)
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-2">
+            7. Auftragsverarbeiter
           </h2>
-          <p className="mb-4">
-            Wir setzen folgende Dienstleister ein, mit denen Auftragsverarbeitungsverträge (AVV)
-            gemäß Art. 28 DSGVO bestehen:
+          <p className="text-small text-muted mb-4">
+            Wir setzen technische Dienstleister ein, mit denen Auftragsverarbeitungsverträge (AVV)
+            nach Art. 28 DSGVO bestehen. Die vollständige Liste ist auf Anfrage einsehbar:
           </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-gray-200 rounded-lg">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left p-3 font-semibold text-text">Anbieter</th>
-                  <th className="text-left p-3 font-semibold text-text">Zweck</th>
-                  <th className="text-left p-3 font-semibold text-text">Standort</th>
-                  <th className="text-left p-3 font-semibold text-text">Schutzmaßnahme</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100 text-xs">
-                <tr><td className="p-3 font-medium text-text">Supabase (AWS)</td><td className="p-3">Datenbank, Auth, Speicher</td><td className="p-3">🇩🇪 EU (Frankfurt)</td><td className="p-3">AVV, TLS, AES-256</td></tr>
-                <tr><td className="p-3 font-medium text-text">Vercel Inc.</td><td className="p-3">Hosting, CDN</td><td className="p-3">🇩🇪 EU (Frankfurt)</td><td className="p-3">AVV, TLS</td></tr>
-                <tr><td className="p-3 font-medium text-text">Anthropic (Claude)</td><td className="p-3">KI-Textgenerierung</td><td className="p-3">🇺🇸 USA</td><td className="p-3">AVV, SCC, ZDR</td></tr>
-                <tr><td className="p-3 font-medium text-text">OpenAI (Whisper)</td><td className="p-3">Sprachtranskription</td><td className="p-3">🇺🇸 USA</td><td className="p-3">AVV, SCC, ZDR</td></tr>
-                <tr><td className="p-3 font-medium text-text">Microsoft Azure</td><td className="p-3">Dokumentenextraktion (CV)</td><td className="p-3">🇪🇺 EU (West Europe)</td><td className="p-3">AVV, EU-DSGVO</td></tr>
-                <tr><td className="p-3 font-medium text-text">Perplexity</td><td className="p-3">Unternehmensrecherche</td><td className="p-3">🇺🇸 USA</td><td className="p-3">AVV, SCC</td></tr>
-                <tr><td className="p-3 font-medium text-text">SerpAPI</td><td className="p-3">Jobsuche</td><td className="p-3">🇺🇸 USA</td><td className="p-3">AVV, SCC</td></tr>
-                <tr><td className="p-3 font-medium text-text">Stripe</td><td className="p-3">Zahlungsabwicklung</td><td className="p-3">🇮🇪 IE / 🇺🇸 USA</td><td className="p-3">AVV, SCC, PCI DSS</td></tr>
-                <tr><td className="p-3 font-medium text-text">PostHog</td><td className="p-3">Produktanalyse (anonym)</td><td className="p-3">🇪🇺 EU</td><td className="p-3">AVV, keine Cookies</td></tr>
-                <tr><td className="p-3 font-medium text-text">Sentry</td><td className="p-3">Fehlermonitoring</td><td className="p-3">🇪🇺 EU (Ingest)</td><td className="p-3">AVV, PII-Filterung</td></tr>
-                <tr><td className="p-3 font-medium text-text">Upstash</td><td className="p-3">Rate Limiting (Redis)</td><td className="p-3">🇪🇺 EU</td><td className="p-3">AVV, TLS</td></tr>
-                <tr><td className="p-3 font-medium text-text">Inngest</td><td className="p-3">Hintergrundprozesse</td><td className="p-3">🇺🇸 USA</td><td className="p-3">AVV, SCC</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="text-xs mt-3 text-muted">
-            Für Drittlandtransfers (USA) gelten EU-Standardvertragsklauseln (SCC) gemäß Art. 46 Abs. 2 lit. c DSGVO.
-            ZDR = Zero Data Retention (keine Nutzung für KI-Training).
-          </p>
+          <SubprocessorAccordion />
         </section>
 
         {/* 8. Speicherdauer */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
             8. Speicherdauer
           </h2>
-          <ul className="space-y-2 text-sm">
-            <li><strong className="text-text">Account-Daten:</strong> Solange das Konto aktiv ist. Bei Inaktivität &gt; 12 Monate werden Anwendungsdaten automatisch gelöscht (Art. 5 Abs. 1 lit. e DSGVO).</li>
-            <li><strong className="text-text">Lebenslauf & Dokumente:</strong> Bis zur Löschung durch den Nutzer oder automatisch nach 12 Monaten Inaktivität.</li>
-            <li><strong className="text-text">Coaching-Protokolle:</strong> Sitzung gelöscht nach 180 Tagen; Chat anonymisiert nach 90 Tagen.</li>
-            <li><strong className="text-text">Einwilligungsnachweise:</strong> 3 Jahre nach Account-Löschung (Art. 7 DSGVO — Beweissicherung).</li>
-            <li><strong className="text-text">Zahlungs-Audittrail:</strong> 10 Jahre gemäß steuerrechtlichen Aufbewahrungspflichten (§ 147 AO).</li>
-            <li><strong className="text-text">Server-Logs:</strong> 7 Tage, danach automatisch gelöscht.</li>
-          </ul>
+          <div className="space-y-3">
+            {[
+              { label: 'Account-Daten', text: 'Solange das Konto aktiv ist. Bei Inaktivität > 12 Monate werden Anwendungsdaten automatisch gelöscht (Art. 5 Abs. 1 lit. e DSGVO).' },
+              { label: 'Dokumente & Lebenslauf', text: 'Bis zur Nutzer-Löschung oder automatisch nach 12 Monaten Inaktivität.' },
+              { label: 'Coaching-Protokolle', text: 'Chat anonymisiert nach 90 Tagen, Sitzung gelöscht nach 180 Tagen.' },
+              { label: 'Einwilligungsnachweise', text: '3 Jahre nach Account-Löschung (Art. 7 DSGVO — Beweissicherung).' },
+              { label: 'Zahlungs-Audittrail', text: '10 Jahre nach handels- und steuerrechtlichen Vorgaben (§ 147 AO).' },
+              { label: 'Server-Logs', text: '7 Tage, danach automatisch gelöscht.' },
+            ].map((item) => (
+              <div key={item.label} className="border-b border-border pb-3 last:border-none last:pb-0">
+                <p className="text-small font-semibold text-text mb-0.5">{item.label}</p>
+                <p className="text-small text-muted">{item.text}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* 9. Ihre Rechte */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
             9. Ihre Rechte
           </h2>
-          <p className="mb-3">
-            Sie haben nach DSGVO folgende Rechte, die Sie jederzeit unter{" "}
-            <a href="mailto:contact@path-ly.eu" className="text-navy underline">contact@path-ly.eu</a>{" "}
-            oder direkt in der Plattform (Dashboard → Einstellungen → Sicherheit) ausüben können:
+          <p className="text-small text-muted mb-4">
+            Sie können Ihre Rechte jederzeit unter{' '}
+            <a href="mailto:contact@path-ly.eu" className="text-navy underline">
+              contact@{SITE.domain}
+            </a>{' '}
+            oder direkt in der Plattform (Dashboard → Einstellungen → Sicherheit) ausüben:
           </p>
-          <ul className="space-y-2 text-sm">
-            <li><strong className="text-text">Art. 15 — Auskunft:</strong> Abruf aller gespeicherten Daten (in der Plattform als JSON-Export verfügbar).</li>
-            <li><strong className="text-text">Art. 16 — Berichtigung:</strong> Korrektur unrichtiger Daten.</li>
-            <li><strong className="text-text">Art. 17 — Löschung:</strong> Selbstständige Account-Löschung direkt in der App (Dashboard → Einstellungen → Sicherheit → Account löschen).</li>
-            <li><strong className="text-text">Art. 18 — Einschränkung:</strong> Einschränkung der Verarbeitung auf Anfrage.</li>
-            <li><strong className="text-text">Art. 20 — Datenportabilität:</strong> Export Ihrer Daten als maschinenlesbares JSON in der Plattform.</li>
-            <li><strong className="text-text">Art. 21 — Widerspruch:</strong> Widerspruch gegen Verarbeitungen auf Basis berechtigter Interessen.</li>
-            <li><strong className="text-text">Art. 7 Abs. 3 — Widerruf der Einwilligung:</strong> Jederzeit mit Wirkung für die Zukunft (in den Einstellungen oder per E-Mail).</li>
-          </ul>
-          <p className="text-sm mt-3">
-            Auf Anfragen antworten wir innerhalb von <strong>30 Tagen</strong> (Art. 12 Abs. 3 DSGVO).
+          <div className="space-y-3">
+            {[
+              { art: 'Art. 15', label: 'Auskunft', text: 'Abruf aller gespeicherten Daten — als JSON-Export direkt in der App verfügbar.' },
+              { art: 'Art. 16', label: 'Berichtigung', text: 'Korrektur unrichtiger Daten.' },
+              { art: 'Art. 17', label: 'Löschung', text: 'Selbstständige Account-Löschung in der App (Dashboard → Einstellungen → Sicherheit).' },
+              { art: 'Art. 18', label: 'Einschränkung', text: 'Einschränkung der Verarbeitung auf Anfrage.' },
+              { art: 'Art. 20', label: 'Datenportabilität', text: 'Export Ihrer Daten als maschinenlesbares JSON direkt in der Plattform.' },
+              { art: 'Art. 21', label: 'Widerspruch', text: 'Widerspruch gegen Verarbeitungen auf Basis berechtigter Interessen.' },
+              { art: 'Art. 7(3)', label: 'Widerruf', text: 'Widerruf Ihrer Einwilligung jederzeit mit Wirkung für die Zukunft.' },
+            ].map((item) => (
+              <div key={item.art} className="flex gap-3 border-b border-border pb-3 last:border-none last:pb-0">
+                <span className="text-small text-muted font-mono min-w-[56px]">{item.art}</span>
+                <div>
+                  <p className="text-small font-semibold text-text mb-0.5">{item.label}</p>
+                  <p className="text-small text-muted">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-small text-muted mt-4">
+            Auf Anfragen antworten wir innerhalb von <strong className="text-text">30 Tagen</strong>{' '}
+            (Art. 12 Abs. 3 DSGVO).
           </p>
         </section>
 
         {/* 10. Aufsichtsbehörde */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
-            10. Beschwerderecht bei der Aufsichtsbehörde
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
+            10. Beschwerderecht
           </h2>
-          <p className="text-sm">
-            Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren (Art. 77 DSGVO).
-            Zuständige Behörde für Deutschland:{" "}
-            <strong>Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)</strong>,{" "}
-            <a href="https://www.lda.bayern.de" target="_blank" rel="noopener noreferrer" className="text-navy underline">www.lda.bayern.de</a>.
+          <p className="text-small text-muted">
+            Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde zu beschweren
+            (Art. 77 DSGVO). Zuständig:{' '}
+            <strong className="text-text">Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)</strong>,{' '}
+            <a
+              href="https://www.lda.bayern.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-navy underline"
+            >
+              www.lda.bayern.de
+            </a>.
           </p>
         </section>
 
         {/* 11. Sicherheit */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
-            11. Technische & organisatorische Maßnahmen (TOM)
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
+            11. Sicherheitsmaßnahmen (TOM)
           </h2>
-          <ul className="space-y-2 text-sm">
-            <li><strong className="text-text">Verschlüsselung:</strong> AES-256 at rest, TLS 1.3 in transit.</li>
-            <li><strong className="text-text">Zugriffskontrolle:</strong> Row Level Security (RLS) — jeder Nutzer sieht ausschließlich seine eigenen Daten.</li>
-            <li><strong className="text-text">PII-Pseudonymisierung:</strong> Name, E-Mail, Telefon und Adresse werden vor jeder KI-Anfrage automatisch durch Platzhalter ersetzt.</li>
-            <li><strong className="text-text">Rate Limiting:</strong> Alle APIs sind gegen Missbrauch geschützt (Upstash Redis, 14 Endpunkte).</li>
-            <li><strong className="text-text">Fehlermonitoring:</strong> Sentry mit PII-Filterung und deaktiviertem Session Replay.</li>
-            <li><strong className="text-text">Produktanalyse:</strong> PostHog ausschließlich via localStorage (keine Cookies), alle Eingaben maskiert.</li>
-          </ul>
+          <div className="space-y-3">
+            {[
+              { label: 'Verschlüsselung', text: 'AES-256 (gespeicherte Daten), TLS 1.3 (Übertragung).' },
+              { label: 'Zugriffskontrolle', text: 'Row Level Security — jeder Nutzer sieht ausschließlich seine eigenen Daten.' },
+              { label: 'PII-Filter', text: 'Automatische Pseudonymisierung von Name, E-Mail, Telefon und Adresse vor jeder KI-Anfrage.' },
+              { label: 'Rate Limiting', text: 'Alle APIs sind gegen Missbrauch geschützt (14 Endpunkte via Upstash Redis).' },
+              { label: 'Fehlermonitoring', text: 'Sentry mit PII-Filterung, Session Replay deaktiviert.' },
+              { label: 'Produktanalyse', text: 'PostHog via localStorage (keine Cookies), alle Eingaben maskiert.' },
+            ].map((item) => (
+              <div key={item.label} className="border-b border-border pb-3 last:border-none last:pb-0">
+                <p className="text-small font-semibold text-text mb-0.5">{item.label}</p>
+                <p className="text-small text-muted">{item.text}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* 12. Änderungen */}
         <section>
-          <h2 className="text-h3-desktop font-semibold text-text">
-            12. Änderungen dieser Datenschutzerklärung
+          <h2 className="text-h3-mobile lg:text-h3-desktop font-semibold text-text mb-4">
+            12. Änderungen
           </h2>
-          <p className="text-sm">
-            Wir behalten uns vor, diese Datenschutzerklärung bei wesentlichen Änderungen der
-            Verarbeitungstätigkeiten zu aktualisieren. Registrierte Nutzer werden über wesentliche
-            Änderungen per Banner in der Plattform informiert. Das Datum der letzten Änderung ist
-            oben auf dieser Seite angegeben.
+          <p className="text-small text-muted">
+            Bei wesentlichen Änderungen der Verarbeitungstätigkeiten aktualisieren wir diese
+            Erklärung und informieren registrierte Nutzer per Banner in der Plattform. Das Datum
+            der letzten Änderung ist oben angegeben.
           </p>
         </section>
 
       </div>
 
-      <div className="mt-16 pt-8 border-t border-border">
+      <div className="mt-16 pt-8 border-t border-border max-w-2xl">
         <a href="/" className="text-navy hover:text-navy-hover text-small font-medium transition-colors">
           ← Zurück zur Startseite
         </a>
