@@ -12,9 +12,9 @@ export const SITE = {
     "Pathly ist die DSGVO-konforme KI-Plattform, die Lebenslauf, Anschreiben und Profil so aufbereitet, dass Bewerber gesehen werden — EU-gehostet, ohne Datenmissbrauch.",
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "https://app.path-ly.eu",
   tallyFormId: process.env.NEXT_PUBLIC_TALLY_FORM_ID ?? "",
-  // Chrome Web Store listing URL — set NEXT_PUBLIC_EXTENSION_URL once published.
-  // Falls back to #waitlist scroll so the button isn't broken before the Store listing exists.
-  extensionUrl: process.env.NEXT_PUBLIC_EXTENSION_URL ?? "#waitlist",
+  // Chrome Web Store listing URL — set NEXT_PUBLIC_EXTENSION_URL to override.
+  // Defaults to the published Chrome Web Store listing.
+  extensionUrl: process.env.NEXT_PUBLIC_EXTENSION_URL ?? "https://chromewebstore.google.com/detail/pathly-%E2%80%94-job-copilot/iebipapmekiemcgdonmnmlpbobfonkki",
 } as const;
 
 // ─── Navigation ──────────────────────────────────────────────
