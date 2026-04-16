@@ -322,7 +322,7 @@ export function ScrollSection({ children }: ScrollSectionProps) {
                 </span>
                 <SlotWord
                   words={SLOT_WORDS}
-                  intervalMs={2000}
+                  intervalMs={7000}
                   className="brand-word-1"
                   style={{
                     fontFamily: "var(--font-display)",

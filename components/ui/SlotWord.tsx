@@ -52,7 +52,7 @@ export function SlotWord({
         key={animKey}
         style={{
           display: "block",
-          animation: "slot-roll-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both",
+          animation: "slot-roll-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both",
         }}
       >
         {words[index]}
@@ -63,8 +63,8 @@ export function SlotWord({
         @keyframes slot-roll-in {
           from {
             opacity: 0;
-            transform: translateY(-60%) rotateX(40deg);
-            filter: blur(2px);
+            transform: translateY(-45%) rotateX(30deg);
+            filter: blur(3px);
           }
           to {
             opacity: 1;
