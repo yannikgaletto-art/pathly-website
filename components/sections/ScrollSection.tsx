@@ -3,6 +3,9 @@
 import { useRef, useEffect, type ReactNode, Children } from "react";
 import { useTranslations } from "next-intl";
 import { HERO } from "@/lib/constants";
+import { SlotWord } from "@/components/ui/SlotWord";
+
+const SLOT_WORDS = ["Identify", "Modify", "Clarify"];
 
 /**
  * ScrollSection — Sticky scroll container for Hero + Problem.
@@ -317,7 +320,9 @@ export function ScrollSection({ children }: ScrollSectionProps) {
                 >
                   {HERO.brandWords[0]}
                 </span>
-                <span
+                <SlotWord
+                  words={SLOT_WORDS}
+                  intervalMs={2000}
                   className="brand-word-1"
                   style={{
                     fontFamily: "var(--font-display)",
@@ -327,10 +332,9 @@ export function ScrollSection({ children }: ScrollSectionProps) {
                     letterSpacing: "-0.03em",
                     color: "var(--color-text)",
                     marginTop: "0.1em",
+                    perspective: "400px",
                   }}
-                >
-                  {HERO.brandWords[1]}
-                </span>
+                />
                 <span
                   className="brand-word-2"
                   style={{
@@ -400,7 +404,17 @@ export function ScrollSection({ children }: ScrollSectionProps) {
                     className="text-[16px] text-muted"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
-                    {HERO.brandWords[1]} {HERO.brandWords[2]}{" "}
+                    <SlotWord
+                      words={SLOT_WORDS}
+                      intervalMs={2000}
+                      style={{
+                        display: "inline-block",
+                        fontFamily: "var(--font-display)",
+                        fontSize: "inherit",
+                        color: "inherit",
+                        perspective: "200px",
+                      }}
+                    />{" "}{HERO.brandWords[2]}{" "}
                     <span className="text-navy font-semibold">{HERO.brandWords[3]}</span>
                   </span>
                 </div>
