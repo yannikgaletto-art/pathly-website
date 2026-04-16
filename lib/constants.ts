@@ -52,7 +52,7 @@ export const TRUST_TICKER = {
 
 // ─── Problem Section ────────────────────────────────────────
 export const PROBLEMS = {
-  headline: "Weißt Du, was mit deiner Bewerbung passiert, bevor ein Mensch sie liest?",
+  headline: "Weißt Du, warum Deine Bewerbung nicht gesehen wird?",
   items: [
     {
       id: "01",

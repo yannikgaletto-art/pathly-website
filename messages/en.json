@@ -30,7 +30,7 @@
     "linkLabel": "Read the Study →"
   },
   "problems": {
-    "headline": "Do you know what happens to your application before a human reads it?",
+    "headline": "Do you know why your application is never seen?",
     "items": {
       "01": {
         "tag": "ATS Filter",
