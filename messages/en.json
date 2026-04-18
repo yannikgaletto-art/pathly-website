@@ -52,6 +52,26 @@
       }
     }
   },
+  "funnelCalculator": {
+    "headline": "What happens to your applications?",
+    "subline": "Enter how many applications you've sent. We'll show you what the research says.",
+    "sliderLabel": "How many applications have you sent in the last 30 days?",
+    "cta": "Calculate my funnel →",
+    "steps": {
+      "sent": "applications sent",
+      "filteredCount": "of those",
+      "filteredReason": "are statistically filtered out by ATS — before a human sees them. (Harvard × Accenture, 2021)",
+      "passedAts": "pass the ATS filter",
+      "scanNote": "Of these, a recruiter scans the CV for an average of only 7.4 seconds according to TheLadders' eye-tracking study.",
+      "actuallyRead": "applications are actually read"
+    },
+    "takeaway": {
+      "of": "of",
+      "applications": "applications",
+      "body": "never reach a human. ATS filtering is the only factor in this funnel that you can fully control.",
+      "pathlyLine": "Pathly ensures your CV survives this phase."
+    }
+  },
   "features": {
     "headline": "Everything in one system.",
     "subline": "No tab-switching. No manual tracking.",

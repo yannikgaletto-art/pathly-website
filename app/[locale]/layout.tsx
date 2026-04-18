@@ -23,6 +23,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${SITE.name} — ${messages.site.tagline}`,
     description: messages.site.description,
     metadataBase: new URL(`https://${SITE.domain}`),
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: '48x48' },
+        { url: '/icon_32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/icon.png', sizes: '1024x1024', type: 'image/png' },
+      ],
+      apple: [
+        { url: '/apple-icon.png', sizes: '1024x1024', type: 'image/png' },
+      ],
+    },
     openGraph: {
       title: `${SITE.name} — ${messages.site.tagline}`,
       description: messages.site.description,

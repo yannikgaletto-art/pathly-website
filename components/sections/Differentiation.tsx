@@ -193,7 +193,7 @@ export function Differentiation() {
 
         {/* Trust Badges */}
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          {[t("trustBadges.0"), t("trustBadges.1"), t("trustBadges.2")].map((badge) => (
+          {[t("trustBadges.0"), t("trustBadges.1")].map((badge) => (
             <span
               key={badge}
               className="inline-flex items-center rounded-full bg-white/10 backdrop-blur-sm border border-white/10 px-5 py-2.5 text-[13px] md:text-[14px] font-medium text-white/90"

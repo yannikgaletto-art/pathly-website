@@ -52,6 +52,26 @@
       }
     }
   },
+  "funnelCalculator": {
+    "headline": "¿Qué pasa con tus candidaturas?",
+    "subline": "Introduce cuántas candidaturas has enviado. Te mostramos lo que dice la investigación.",
+    "sliderLabel": "¿Cuántas candidaturas has enviado en los últimos 30 días?",
+    "cta": "Calcular mi funnel →",
+    "steps": {
+      "sent": "candidaturas enviadas",
+      "filteredCount": "de esas",
+      "filteredReason": "son filtradas estadísticamente por el ATS — antes de que un humano las vea. (Harvard × Accenture, 2021)",
+      "passedAts": "pasan el filtro ATS",
+      "scanNote": "De estas, un reclutador escanea el CV en un promedio de solo 7,4 segundos según el estudio de eye-tracking de TheLadders.",
+      "actuallyRead": "candidaturas son realmente leídas"
+    },
+    "takeaway": {
+      "of": "de",
+      "applications": "candidaturas",
+      "body": "nunca llegan a un humano. El filtrado ATS es el único factor en este funnel que puedes controlar completamente.",
+      "pathlyLine": "Pathly asegura que tu CV supere esta fase."
+    }
+  },
   "features": {
     "headline": "Todo en un solo sistema.",
     "subline": "Sin cambiar de pestaña. Sin seguimiento manual.",
