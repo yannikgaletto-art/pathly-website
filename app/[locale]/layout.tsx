@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const messages = (await import(`@/messages/${locale}.json`)).default;
 
   return {
-    title: `${SITE.name} — ${messages.site.tagline}`,
+    title: `${SITE.name} - ${messages.site.tagline}`,
     description: messages.site.description,
     metadataBase: new URL(`https://${SITE.domain}`),
     icons: {
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
     },
     openGraph: {
-      title: `${SITE.name} — ${messages.site.tagline}`,
+      title: `${SITE.name} - ${messages.site.tagline}`,
       description: messages.site.description,
       url: `https://${SITE.domain}`,
       siteName: SITE.name,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${SITE.name} — ${messages.site.tagline}`,
+      title: `${SITE.name} - ${messages.site.tagline}`,
       description: messages.site.description,
       images: ["/og-image.png"],
     },

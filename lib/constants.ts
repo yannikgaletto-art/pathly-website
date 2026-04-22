@@ -7,7 +7,7 @@
 export const SITE = {
   name: "Pathly",
   domain: "path-ly.eu",
-  tagline: "Dein Weg. Deine Bewerbung. Deine KI.",
+  tagline: "Modify your Path",
   description:
     "Pathly ist die DSGVO-konforme KI-Plattform, die Lebenslauf, Anschreiben und Profil so aufbereitet, dass Bewerber gesehen werden — EU-gehostet, ohne Datenmissbrauch.",
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "https://app.path-ly.eu",
