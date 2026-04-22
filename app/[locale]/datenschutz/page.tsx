@@ -211,7 +211,7 @@ export default function DatenschutzPage() {
           <div className="space-y-3">
             {[
               { label: 'Kein KI-Training mit Ihren Daten', text: 'Ihre Inhalte werden nicht zur Verbesserung externer KI-Modelle genutzt. Alle KI-Anbieter haben Zero Data Retention (ZDR) vertraglich zugesichert.' },
-              { label: 'PII-Pseudonymisierung', text: 'Vor jeder KI-Anfrage werden Name, E-Mail, Telefon und Adresse durch Platzhalter ersetzt. Nur berufliche Inhalte werden übertragen.' },
+              { label: 'Datentrennung bei der Dokumentenverarbeitung', text: 'Bei der Verarbeitung Ihres Lebenslaufs werden Kontaktdaten (Name, E-Mail, Telefon) automatisch vom beruflichen Inhalt getrennt. Alle KI-Dienste arbeiten unter Zero Data Retention.' },
               { label: 'Mensch entscheidet', text: 'Alle KI-generierten Inhalte müssen aktiv vom Nutzer geprüft und freigegeben werden.' },
               { label: 'Besondere Datenkategorien', text: 'Fotos oder Angaben zu Behinderungen werden nur mit ausdrücklicher Einwilligung an KI-Dienste übertragen. Widerruf jederzeit in den Einstellungen.' },
               { label: 'Sprachaufnahmen', text: 'Coaching-Audio wird via Whisper transkribiert und sofort verworfen. Nur der Text verbleibt für die Sitzung.' },
@@ -324,7 +324,7 @@ export default function DatenschutzPage() {
             {[
               { label: 'Verschlüsselung', text: 'AES-256 (gespeicherte Daten), TLS 1.3 (Übertragung).' },
               { label: 'Zugriffskontrolle', text: 'Row Level Security — jeder Nutzer sieht ausschließlich seine eigenen Daten.' },
-              { label: 'PII-Filter', text: 'Automatische Pseudonymisierung von Name, E-Mail, Telefon und Adresse vor jeder KI-Anfrage.' },
+              { label: 'Datentrennung', text: 'Kontaktdaten werden bei der Dokumentenverarbeitung automatisch vom beruflichen Inhalt getrennt. Alle KI-Dienste unter Zero Data Retention.' },
               { label: 'Rate Limiting', text: 'Alle APIs sind gegen Missbrauch geschützt (14 Endpunkte via Upstash Redis).' },
               { label: 'Fehlermonitoring', text: 'Sentry mit PII-Filterung, Session Replay deaktiviert.' },
               { label: 'Produktanalyse', text: 'PostHog via localStorage (keine Cookies), alle Eingaben maskiert.' },

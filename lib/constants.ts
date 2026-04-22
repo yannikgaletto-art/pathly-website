@@ -162,7 +162,7 @@ export const DIFFERENTIATION = {
   rows: [
     { feature: "Schreibstil",       pathly: "Dein Stil",                   others: "Generischer Output"        },
     { feature: "ATS-Optimierung",   pathly: "Pro Job individuell",         others: "Manuell nacharbeiten"      },
-    { feature: "Datenschutz",       pathly: "DSGVO & PII-sicher",          others: "US-Server, keine Garantie" },
+    { feature: "Datenschutz",       pathly: "DSGVO & Zero Data Retention",  others: "US-Server, keine Garantie" },
     { feature: "Job-Tracking",      pathly: "Pipeline & Workflow",         others: "Kein Tracking"             },
     { feature: "Coaching",          pathly: "KI-Interview-Coaching",       others: "Kein Coaching"             },
     { feature: "Video Pitch",       pathly: "Video Letter / Pitch",        others: "Nicht vorhanden"           },
@@ -170,7 +170,7 @@ export const DIFFERENTIATION = {
     { feature: "Ehrenamt & Gaps",   pathly: "Lücken intelligent erklären", others: "Keine Gap-Unterstützung"   },
     { feature: "Community",         pathly: "Pathly Community & Support",  others: "Alleine"                   },
   ],
-  trustBadges: ["🔒 DSGVO-konform", "🛡️ PII sanitisiert"],
+  trustBadges: ["🔒 DSGVO-konform", "🛡️ Zero Data Retention"],
 } as const;
 
 // ─── Testimonials ────────────────────────────────────────────
@@ -323,7 +323,7 @@ export const PRICING = {
       ],
     },
   ],
-  trustSignals: ["14 Tage Geld-zurück", "DSGVO-konform", "PII-sicher"],
+  trustSignals: ["14 Tage Geld-zurück", "DSGVO-konform", "Zero Data Retention"],
 } as const;
 
 
